@@ -14,7 +14,8 @@ import work_gen
 APP_DIR = Path(__file__).parent
 DATA_DIR = APP_DIR / "data"
 DB_PATH = DATA_DIR / "workouts.db"
-DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
+# Support both explicit DATABASE_URL and Render's default datastore var naming.
+DATABASE_URL = (os.getenv("DATABASE_URL") or os.getenv("WORKOUT_GENERATOR_DB_URL") or "").strip()
 ADMIN_REGISTRATION_CODE = os.getenv("WG_ADMIN_CODE", "coach-admin-123")
 EXERCISE_LIBRARY_PATH = APP_DIR / "exercise_library.json"
 
@@ -31,6 +32,9 @@ app.config.update(
 
 def _is_postgres() -> bool:
     return DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql://")
+
+
+print(f"[startup] db_backend={'postgres' if _is_postgres() else 'sqlite'}")
 
 
 class DBConn:
