@@ -1,6 +1,7 @@
 import json
 import os
 import sqlite3
+import traceback
 import uuid
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -1461,6 +1462,7 @@ def delete_performance(log_id: int):
 def handle_unexpected_error(exc: Exception):
     if isinstance(exc, HTTPException):
         return exc
+    traceback.print_exc()
     return render_template("error.html"), 500
 
 
