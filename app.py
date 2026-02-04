@@ -52,7 +52,14 @@ class DBConn:
         return self.raw.execute(self._adapt(query), params)
 
     def executemany(self, query: str, seq):
-        return self.raw.executemany(self._adapt(query), seq)
+        adapted = self._adapt(query)
+        # psycopg3 connections don't expose executemany; cursors do.
+        if self.postgres:
+            with self.raw.cursor() as cur:
+                for params in seq:
+                    cur.execute(adapted, params)
+            return None
+        return self.raw.executemany(adapted, seq)
 
     def close(self):
         return self.raw.close()
