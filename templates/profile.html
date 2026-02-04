@@ -13,12 +13,16 @@
       input, select { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2c3547; background:#0f141f; color:var(--text); }
       button { margin-top:16px; background:var(--accent); color:#071018; border:none; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; width:100%; }
       a { color:var(--accent); }
+      .error { color:#ff9a9a; margin-bottom:10px; }
     </style>
   </head>
   <body>
     <div class="wrap">
       <div class="card">
         <h2>Edit Profile</h2>
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
         <form method="post" action="/profile">
           <label for="full_name">Name</label>
           <input id="full_name" name="full_name" type="text" value="{{ profile.full_name or '' }}" />

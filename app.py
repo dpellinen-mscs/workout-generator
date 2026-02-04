@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from flask import Flask, redirect, render_template, request, session, url_for
+from werkzeug.exceptions import HTTPException
 from werkzeug.security import check_password_hash, generate_password_hash
 
 import work_gen
@@ -245,6 +246,46 @@ def _parse_int(raw: str | None, min_val: int | None = None, max_val: int | None 
     if max_val is not None and num > max_val:
         return None
     return num
+
+
+def _validate_float_field(
+    raw: str | None,
+    label: str,
+    min_val: float | None = None,
+    max_val: float | None = None,
+) -> tuple[float | None, str | None]:
+    if raw is None or not raw.strip():
+        return None, None
+    value = _parse_float(raw, min_val=min_val, max_val=max_val)
+    if value is None:
+        bounds = []
+        if min_val is not None:
+            bounds.append(f">= {min_val}")
+        if max_val is not None:
+            bounds.append(f"<= {max_val}")
+        bound_text = f" ({', '.join(bounds)})" if bounds else ""
+        return None, f"{label} must be a valid number{bound_text}."
+    return value, None
+
+
+def _validate_int_field(
+    raw: str | None,
+    label: str,
+    min_val: int | None = None,
+    max_val: int | None = None,
+) -> tuple[int | None, str | None]:
+    if raw is None or not raw.strip():
+        return None, None
+    value = _parse_int(raw, min_val=min_val, max_val=max_val)
+    if value is None:
+        bounds = []
+        if min_val is not None:
+            bounds.append(f">= {min_val}")
+        if max_val is not None:
+            bounds.append(f"<= {max_val}")
+        bound_text = f" ({', '.join(bounds)})" if bounds else ""
+        return None, f"{label} must be a valid whole number{bound_text}."
+    return value, None
 
 
 def _fetch_history(user_id: str) -> list[dict]:
@@ -768,6 +809,7 @@ def log_workout_web(workout_id: int):
     profile = _current_user_profile()
     if not workout or not profile:
         return redirect(url_for("index"))
+    form_error = None
 
     athlete = {
         "age": _age_from_dob(profile.get("dob")),
@@ -814,9 +856,42 @@ def log_workout_web(workout_id: int):
         category = entry["category"]
         weight_raw = request.form.get(f"weight::{exercise_id}", "").strip()
         reps_raw = request.form.get(f"reps::{exercise_id}", "").strip()
-        weight = _parse_float(weight_raw, min_val=0)
-        reps = _parse_int(reps_raw, min_val=0)
+        weight, weight_err = _validate_float_field(weight_raw, f"{exercise_name} weight", min_val=0)
+        reps, reps_err = _validate_int_field(reps_raw, f"{exercise_name} reps", min_val=0)
+        if weight_err or reps_err:
+            form_error = weight_err or reps_err
+            break
         rows.append((user_id, workout_id, log_date, entry["exercise_id"], exercise_name, category, athlete["phase"], weight, reps))
+
+    if form_error:
+        history = _fetch_history(user_id)
+        caps = work_gen.compute_history_caps_from_history(history, athlete["phase"], workout, days=7)
+        benchmark_bench = profile.get("estimated_bench_1rm_lbs") or profile.get("max_bench_lbs")
+        benchmark = _benchmark_recommendation(
+            user_id=user_id,
+            height_in=profile.get("height_in"),
+            max_bench_lbs=benchmark_bench,
+            med_ball_chest_pass_ft=profile.get("med_ball_chest_pass_ft"),
+            max_deadlift_lbs=profile.get("estimated_deadlift_1rm_lbs") or profile.get("max_deadlift_lbs"),
+            max_back_squat_lbs=profile.get("estimated_back_squat_1rm_lbs") or profile.get("max_back_squat_lbs"),
+            standing_vertical_jump_in=profile.get("standing_vertical_jump_in"),
+            rotational_scoop_toss_ft=profile.get("rotational_scoop_toss_ft"),
+            cable_chop_lbs=profile.get("cable_chop_lbs"),
+            max_exit_velocity_mph=profile.get("max_exit_velocity_mph"),
+        )
+        return render_template(
+            "result.html",
+            athlete=athlete,
+            profile=profile,
+            workout=workout,
+            workout_id=workout_id,
+            exercise_entries=_workout_entries(workout),
+            already_logged=False,
+            caps=caps,
+            benchmark=benchmark,
+            workout_date=log_date,
+            error=form_error,
+        )
 
     conn = _db()
     with conn:
@@ -884,19 +959,32 @@ def register():
         phase = request.form.get("phase", "").strip().lower()
         injuries = request.form.get("injuries", "").strip().lower()
         admin_code = request.form.get("admin_code", "").strip()
-        height_in = _parse_float(height_in_raw, min_val=36, max_val=96)
-        weight_lbs = _parse_float(weight_lbs_raw, min_val=50, max_val=600)
-        max_bench_lbs = _parse_float(max_bench_raw, min_val=1)
-        max_deadlift_lbs = _parse_float(max_deadlift_raw, min_val=1)
-        max_back_squat_lbs = _parse_float(max_back_squat_raw, min_val=1)
-        standing_vertical_jump_in = _parse_float(vertical_jump_raw, min_val=1)
-        rotational_scoop_toss_ft = _parse_float(rotational_scoop_toss_raw, min_val=1)
-        cable_chop_lbs = _parse_float(cable_chop_lbs_raw, min_val=1)
-        max_exit_velocity_mph = _parse_float(max_exit_velocity_raw, min_val=1)
-        med_ball_chest_pass_ft = _parse_float(med_ball_raw, min_val=1)
+        errors = []
+        height_in, e = _validate_float_field(height_in_raw, "Height", min_val=36, max_val=96)
+        if e: errors.append(e)
+        weight_lbs, e = _validate_float_field(weight_lbs_raw, "Weight", min_val=50, max_val=600)
+        if e: errors.append(e)
+        max_bench_lbs, e = _validate_float_field(max_bench_raw, "Max bench", min_val=1)
+        if e: errors.append(e)
+        max_deadlift_lbs, e = _validate_float_field(max_deadlift_raw, "Max deadlift", min_val=1)
+        if e: errors.append(e)
+        max_back_squat_lbs, e = _validate_float_field(max_back_squat_raw, "Max back squat", min_val=1)
+        if e: errors.append(e)
+        standing_vertical_jump_in, e = _validate_float_field(vertical_jump_raw, "Standing vertical jump", min_val=1)
+        if e: errors.append(e)
+        rotational_scoop_toss_ft, e = _validate_float_field(rotational_scoop_toss_raw, "Rotational scoop toss", min_val=1)
+        if e: errors.append(e)
+        cable_chop_lbs, e = _validate_float_field(cable_chop_lbs_raw, "Cable chop load", min_val=1)
+        if e: errors.append(e)
+        max_exit_velocity_mph, e = _validate_float_field(max_exit_velocity_raw, "Ball exit velo", min_val=1)
+        if e: errors.append(e)
+        med_ball_chest_pass_ft, e = _validate_float_field(med_ball_raw, "Med ball chest pass", min_val=1)
+        if e: errors.append(e)
         is_admin = 1 if admin_code and admin_code == ADMIN_REGISTRATION_CODE else 0
         if not email or not password:
             return render_template("register.html", error="Email and password are required.")
+        if errors:
+            return render_template("register.html", error=" ".join(errors))
 
         user_id = str(uuid.uuid4())
         password_hash = generate_password_hash(password)
@@ -996,16 +1084,30 @@ def profile():
         goal = request.form.get("goal", "").strip().lower()
         phase = request.form.get("phase", "").strip().lower()
         injuries = request.form.get("injuries", "").strip().lower()
-        height_in = _parse_float(height_in_raw, min_val=36, max_val=96)
-        weight_lbs = _parse_float(weight_lbs_raw, min_val=50, max_val=600)
-        max_bench_lbs = _parse_float(max_bench_raw, min_val=1)
-        max_deadlift_lbs = _parse_float(max_deadlift_raw, min_val=1)
-        max_back_squat_lbs = _parse_float(max_back_squat_raw, min_val=1)
-        standing_vertical_jump_in = _parse_float(vertical_jump_raw, min_val=1)
-        rotational_scoop_toss_ft = _parse_float(rotational_scoop_toss_raw, min_val=1)
-        cable_chop_lbs = _parse_float(cable_chop_lbs_raw, min_val=1)
-        max_exit_velocity_mph = _parse_float(max_exit_velocity_raw, min_val=1)
-        med_ball_chest_pass_ft = _parse_float(med_ball_raw, min_val=1)
+        errors = []
+        height_in, e = _validate_float_field(height_in_raw, "Height", min_val=36, max_val=96)
+        if e: errors.append(e)
+        weight_lbs, e = _validate_float_field(weight_lbs_raw, "Weight", min_val=50, max_val=600)
+        if e: errors.append(e)
+        max_bench_lbs, e = _validate_float_field(max_bench_raw, "Max bench", min_val=1)
+        if e: errors.append(e)
+        max_deadlift_lbs, e = _validate_float_field(max_deadlift_raw, "Max deadlift", min_val=1)
+        if e: errors.append(e)
+        max_back_squat_lbs, e = _validate_float_field(max_back_squat_raw, "Max back squat", min_val=1)
+        if e: errors.append(e)
+        standing_vertical_jump_in, e = _validate_float_field(vertical_jump_raw, "Standing vertical jump", min_val=1)
+        if e: errors.append(e)
+        rotational_scoop_toss_ft, e = _validate_float_field(rotational_scoop_toss_raw, "Rotational scoop toss", min_val=1)
+        if e: errors.append(e)
+        cable_chop_lbs, e = _validate_float_field(cable_chop_lbs_raw, "Cable chop load", min_val=1)
+        if e: errors.append(e)
+        max_exit_velocity_mph, e = _validate_float_field(max_exit_velocity_raw, "Ball exit velo", min_val=1)
+        if e: errors.append(e)
+        med_ball_chest_pass_ft, e = _validate_float_field(med_ball_raw, "Med ball chest pass", min_val=1)
+        if e: errors.append(e)
+        if errors:
+            profile = _current_user_profile()
+            return render_template("profile.html", profile=profile, error=" ".join(errors))
         conn = _db()
         with conn:
             conn.execute(
@@ -1073,6 +1175,21 @@ def performance():
         lateral_broad_jump_raw = request.form.get("lateral_broad_jump_in", "").strip()
         notes = request.form.get("notes", "").strip()
 
+        errors = []
+        exit_velocity_mph, e = _validate_float_field(exit_velocity_raw, "Exit velo", min_val=1)
+        if e: errors.append(e)
+        throw_velocity_mph, e = _validate_float_field(throw_velocity_raw, "Throw velo", min_val=1)
+        if e: errors.append(e)
+        dash_60_time_s, e = _validate_float_field(dash_60_raw, "60-yard dash", min_val=1)
+        if e: errors.append(e)
+        broad_jump_in, e = _validate_float_field(broad_jump_raw, "Broad jump", min_val=1)
+        if e: errors.append(e)
+        lateral_broad_jump_in, e = _validate_float_field(lateral_broad_jump_raw, "Lateral broad jump", min_val=1)
+        if e: errors.append(e)
+        if errors:
+            logs = _fetch_performance_logs(user_id)
+            return render_template("performance.html", profile=profile, logs=logs, today=date, error=" ".join(errors))
+
         conn = _db()
         with conn:
             conn.execute(
@@ -1084,11 +1201,11 @@ def performance():
                 (
                     user_id,
                     date,
-                    _parse_float(exit_velocity_raw, min_val=1),
-                    _parse_float(throw_velocity_raw, min_val=1),
-                    _parse_float(dash_60_raw, min_val=1),
-                    _parse_float(broad_jump_raw, min_val=1),
-                    _parse_float(lateral_broad_jump_raw, min_val=1),
+                    exit_velocity_mph,
+                    throw_velocity_mph,
+                    dash_60_time_s,
+                    broad_jump_in,
+                    lateral_broad_jump_in,
                     notes or None,
                 ),
             )
@@ -1128,6 +1245,22 @@ def edit_performance(log_id: int):
         broad_jump_raw = request.form.get("broad_jump_in", "").strip()
         lateral_broad_jump_raw = request.form.get("lateral_broad_jump_in", "").strip()
         notes = request.form.get("notes", "").strip()
+        errors = []
+        exit_velocity_mph, e = _validate_float_field(exit_velocity_raw, "Exit velo", min_val=1)
+        if e: errors.append(e)
+        throw_velocity_mph, e = _validate_float_field(throw_velocity_raw, "Throw velo", min_val=1)
+        if e: errors.append(e)
+        dash_60_time_s, e = _validate_float_field(dash_60_raw, "60-yard dash", min_val=1)
+        if e: errors.append(e)
+        broad_jump_in, e = _validate_float_field(broad_jump_raw, "Broad jump", min_val=1)
+        if e: errors.append(e)
+        lateral_broad_jump_in, e = _validate_float_field(lateral_broad_jump_raw, "Lateral broad jump", min_val=1)
+        if e: errors.append(e)
+        if errors:
+            log = dict(row)
+            conn.close()
+            return render_template("edit_performance.html", log=log, error=" ".join(errors))
+
         with conn:
             conn.execute(
                 """
@@ -1138,11 +1271,11 @@ def edit_performance(log_id: int):
                 """,
                 (
                     date,
-                    _parse_float(exit_velocity_raw, min_val=1),
-                    _parse_float(throw_velocity_raw, min_val=1),
-                    _parse_float(dash_60_raw, min_val=1),
-                    _parse_float(broad_jump_raw, min_val=1),
-                    _parse_float(lateral_broad_jump_raw, min_val=1),
+                    exit_velocity_mph,
+                    throw_velocity_mph,
+                    dash_60_time_s,
+                    broad_jump_in,
+                    lateral_broad_jump_in,
                     notes or None,
                     log_id,
                     user_id,
@@ -1168,6 +1301,13 @@ def delete_performance(log_id: int):
         conn.execute("DELETE FROM performance_logs WHERE id = ? AND user_id = ?", (log_id, user_id))
     conn.close()
     return redirect(url_for("performance"))
+
+
+@app.errorhandler(Exception)
+def handle_unexpected_error(exc: Exception):
+    if isinstance(exc, HTTPException):
+        return exc
+    return render_template("error.html"), 500
 
 
 @app.route("/history/edit/<int:log_id>", methods=["GET", "POST"])

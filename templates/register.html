@@ -20,6 +20,9 @@
     <div class="wrap">
       <div class="card">
         <h2>Create Account</h2>
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
         <form method="post" action="/register">
           <label for="full_name">Name</label>
           <input id="full_name" name="full_name" type="text" required />
@@ -72,9 +75,6 @@
           <input id="admin_code" name="admin_code" type="text" placeholder="Only if you are staff" />
           <button type="submit">Create account</button>
         </form>
-        {% if error %}
-          <div class="error">{{ error }}</div>
-        {% endif %}
         <p class="muted">Already have an account? <a href="/login">Log in</a></p>
       </div>
     </div>

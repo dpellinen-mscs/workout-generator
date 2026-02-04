@@ -56,11 +56,17 @@
       a {
         color: var(--accent);
       }
+      .error {
+        color: #ff9a9a;
+      }
     </style>
   </head>
   <body>
     <div class="wrap">
       <h1>Workout Ready</h1>
+      {% if error %}
+      <div class="line error">{{ error }}</div>
+      {% endif %}
       <div class="line"><strong>{{ profile.full_name or profile.email }}</strong> | {{ workout_date }}</div>
       <div class="muted">
         {{ athlete.position }} | {{ athlete.goal }} | {{ athlete.phase }} |

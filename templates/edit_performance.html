@@ -11,6 +11,7 @@
       .grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
       input, textarea { width:100%; padding:8px; border-radius:8px; border:1px solid #2c3547; background:#0f141f; color:#e7ecf2; }
       button { margin-top:10px; background:#7bd8ff; color:#071018; border:none; border-radius:8px; padding:10px 14px; font-weight:700; cursor:pointer; }
+      .error { color:#ff9a9a; margin-bottom:10px; }
       a { color:#7bd8ff; }
     </style>
   </head>
@@ -19,6 +20,9 @@
       <h1>Edit Performance Log</h1>
       <p><a href="/performance">Back to performance logs</a></p>
       <div class="card">
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
         <form method="post" action="/performance/edit/{{ log.id }}">
           <div class="grid">
             <div><label>Date</label><input type="date" name="date" value="{{ log.date }}" /></div>
