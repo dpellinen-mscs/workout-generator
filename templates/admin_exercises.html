@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exercise Editor</title>
+    <style>
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:#0f1115; color:#e7ecf2; }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px 48px; }
+      .card { background:#1a1f2b; border-radius:14px; padding:16px; margin-bottom:12px; }
+      h3 { margin-top:0; }
+      input, select { padding:8px; border-radius:8px; border:1px solid #2c3547; background:#0f141f; color:#e7ecf2; }
+      button { padding:8px 10px; border:none; border-radius:8px; background:#7bd8ff; color:#071018; font-weight:700; cursor:pointer; }
+      .danger { background:#6a2a2a; color:#fff; }
+      .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px; }
+      .name { min-width: 250px; }
+      .idbox { min-width: 170px; }
+      a { color:#7bd8ff; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Exercise Editor</h1>
+      <p><a href="/admin">Back to admin</a></p>
+
+      <div class="card">
+        <h3>Add Exercise</h3>
+        <form method="post" action="/admin/exercises/add" class="row">
+          <select name="category" required>
+            {% for category, items in library.items() %}
+            {% if category != "warmup" %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+          <input name="name" class="name" placeholder="Exercise name" required />
+          <select name="movement_family">
+            {% for mf in ["general", "bench_press", "back_squat", "deadlift", "reverse_lunge", "dumbbell_row", "vertical_jump", "rotational_power", "cable_chop"] %}
+            <option value="{{ mf }}">{{ mf }}</option>
+            {% endfor %}
+          </select>
+          <input name="pattern" placeholder="pattern" required />
+          <select name="muscle_mass">
+            <option value="very_small">very_small</option>
+            <option value="small">small</option>
+            <option value="medium" selected>medium</option>
+            <option value="large">large</option>
+            <option value="very_large">very_large</option>
+          </select>
+          <select name="unilateral">
+            <option value="false">bilateral</option>
+            <option value="true">unilateral</option>
+          </select>
+          <button type="submit">Add</button>
+        </form>
+      </div>
+
+      {% for category, items in library.items() %}
+      {% if category != "warmup" %}
+      <div class="card">
+        <h3>{{ category }}</h3>
+        {% for ex in items %}
+        <form method="post" action="/admin/exercises/update" class="row">
+          <input type="hidden" name="category" value="{{ category }}" />
+          <input type="hidden" name="idx" value="{{ loop.index0 }}" />
+          <input class="idbox" value="{{ ex.id or '' }}" readonly title="Auto-assigned exercise ID" />
+          <input name="name" class="name" value="{{ ex.name }}" required />
+          <select name="movement_family">
+            {% for mf in ["general", "bench_press", "back_squat", "deadlift", "reverse_lunge", "dumbbell_row", "vertical_jump", "rotational_power", "cable_chop"] %}
+            <option value="{{ mf }}" {% if (ex.movement_family or "general") == mf %}selected{% endif %}>{{ mf }}</option>
+            {% endfor %}
+          </select>
+          <input name="pattern" value="{{ ex.pattern }}" />
+          <select name="muscle_mass">
+            {% for mm in ["very_small", "small", "medium", "large", "very_large"] %}
+            <option value="{{ mm }}" {% if ex.muscle_mass == mm %}selected{% endif %}>{{ mm }}</option>
+            {% endfor %}
+          </select>
+          <select name="unilateral">
+            <option value="false" {% if not ex.unilateral %}selected{% endif %}>bilateral</option>
+            <option value="true" {% if ex.unilateral %}selected{% endif %}>unilateral</option>
+          </select>
+          <button type="submit">Save</button>
+        </form>
+        <form method="post" action="/admin/exercises/delete" class="row" onsubmit="return confirm('Delete this exercise?');">
+          <input type="hidden" name="category" value="{{ category }}" />
+          <input type="hidden" name="idx" value="{{ loop.index0 }}" />
+          <button type="submit" class="danger">Delete</button>
+        </form>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </body>
+</html>

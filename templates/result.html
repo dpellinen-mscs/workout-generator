@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workout Ready</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --card: #1a1f2b;
+        --text: #e7ecf2;
+        --muted: #a7b0bf;
+        --accent: #7bd8ff;
+      }
+      body {
+        margin: 0;
+        font-family: "Fira Sans", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(1200px 700px at 20% -10%, #1f2942 0%, #0f1115 60%);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+      h1 {
+        font-size: 28px;
+        margin: 0 0 8px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .card {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        margin-bottom: 16px;
+      }
+      .section-title {
+        margin: 16px 0 8px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .line {
+        margin: 6px 0;
+      }
+      .pill {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: #2a3450;
+        font-size: 12px;
+        margin-right: 6px;
+      }
+      a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Workout Ready</h1>
+      <div class="line"><strong>{{ profile.full_name or profile.email }}</strong> | {{ workout_date }}</div>
+      <div class="muted">
+        {{ athlete.position }} | {{ athlete.goal }} | {{ athlete.phase }} |
+        Injuries: {{ athlete.injuries | join(", ") if athlete.injuries else "None" }}
+      </div>
+
+      <div class="card">
+        <div class="section-title">Warm-up</div>
+        {% for item in workout.warmup %}
+          <div class="line">- {{ item }}</div>
+        {% endfor %}
+
+        <div class="section-title">Main Lifts</div>
+        {% for label, key in [("Lower", "main_lift_lower"), ("Upper Push", "main_lift_upper_push"), ("Upper Pull", "main_lift_upper_pull")] %}
+          {% set block = workout[key] %}
+          <div class="line"><strong>{{ label }}:</strong> {{ block.exercise.name }}</div>
+          <div class="line muted">Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+        {% endfor %}
+
+        <div class="section-title">Core</div>
+        <div class="line">{{ workout.core.exercise.name }}</div>
+        <div class="line muted">Sets {{ workout.core.sets }} | Reps {{ workout.core.reps }} | Rest {{ workout.core.rest }}</div>
+
+        {% if workout.accessories %}
+        <div class="section-title">Accessories</div>
+        {% for block in workout.accessories %}
+          <div class="line">- {{ block.exercise.name }}</div>
+          <div class="line muted">Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }}</div>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <div class="section-title">7-Day Load Check</div>
+        <div class="line">Projected 7-day total (including today): <strong>{{ caps.total_load }}</strong></div>
+        {% if caps.warnings %}
+          <div class="line muted">Warnings:</div>
+          {% for w in caps.warnings %}
+            <div class="line">- {{ w }}</div>
+          {% endfor %}
+        {% else %}
+          <div class="line muted">No warnings. You’re within caps.</div>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <div class="section-title">Benchmark Recommendation</div>
+        <div class="line">{{ benchmark.message }}</div>
+        {% if benchmark.status == "ok" %}
+          <div class="line muted">Height bucket: {{ benchmark.height_bucket }} | Peer count: {{ benchmark.peer_count }}</div>
+          <div class="line muted">Upper focus: <strong>{{ benchmark.upper_focus }}</strong> | Lower focus: <strong>{{ benchmark.lower_focus }}</strong> | Core focus: <strong>{{ benchmark.core_focus }}</strong></div>
+          <div class="line muted">Bench ratio: {{ benchmark.bench_ratio }} | Med-ball ratio: {{ benchmark.pass_ratio }}</div>
+          <div class="line muted">Deadlift ratio: {{ benchmark.deadlift_ratio }} | Back squat ratio: {{ benchmark.back_squat_ratio }} | Vertical jump ratio: {{ benchmark.vertical_jump_ratio }}</div>
+          {% if benchmark.exit_velocity_ratio %}
+          <div class="line muted">Exit velo ratio: {{ benchmark.exit_velocity_ratio }} | Peer avg exit velo: {{ benchmark.peer_avg_exit_velocity_mph }} mph</div>
+          {% endif %}
+          <div class="line muted">Upper power-to-strength ratio: {{ benchmark.upper_profile_ratio }} | Lower power-to-strength ratio: {{ benchmark.lower_profile_ratio }}</div>
+          {% if benchmark.rotation_profile_ratio %}
+          <div class="line muted">Rotation power-to-strength ratio: {{ benchmark.rotation_profile_ratio }} | Rotation peers: {{ benchmark.rotation_peer_count }}</div>
+          <div class="line muted">Rotation peer averages: {{ benchmark.peer_avg_rotational_scoop_toss_ft }} ft toss, {{ benchmark.peer_avg_cable_chop_lbs }} lbs chop</div>
+          {% endif %}
+          <div class="line muted">Peer averages: {{ benchmark.peer_avg_bench_lbs }} lbs bench, {{ benchmark.peer_avg_med_ball_ft }} ft chest pass</div>
+          <div class="line muted">Peer averages: {{ benchmark.peer_avg_deadlift_lbs }} lbs deadlift, {{ benchmark.peer_avg_back_squat_lbs }} lbs back squat, {{ benchmark.peer_avg_vertical_jump_in }} in vertical</div>
+          <div class="section-title">Recommendation Reasons</div>
+          <div class="line">Upper: {{ benchmark.upper_reason }}</div>
+          <div class="line">Lower: {{ benchmark.lower_reason }}</div>
+          <div class="line">Core: {{ benchmark.core_reason }}</div>
+          {% if benchmark.exit_velocity_note %}
+          <div class="line">Exit Velo: {{ benchmark.exit_velocity_note }}</div>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <div class="section-title">Log Completed Workout</div>
+        {% if already_logged %}
+          <div class="line muted">This workout is already logged.</div>
+        {% else %}
+          <form method="post" action="/log/{{ workout_id }}">
+            <div class="line">
+              <label for="log_date">Workout Date</label>
+              <input id="log_date" name="log_date" type="date" value="{{ workout_date }}" required />
+            </div>
+            {% for entry in exercise_entries %}
+              <div class="line" style="margin-top:10px;"><strong>{{ entry.exercise_name }}</strong> <span class="muted">({{ entry.category }})</span></div>
+              <div class="line">
+                <input name="weight::{{ entry.exercise_id or entry.exercise_name }}" type="number" step="0.1" placeholder="Weight (lbs)" />
+                <input name="reps::{{ entry.exercise_id or entry.exercise_name }}" type="number" step="1" placeholder="Reps" />
+              </div>
+            {% endfor %}
+            <div class="line" style="margin-top:12px;">
+              <button type="submit">Save Workout Log</button>
+            </div>
+          </form>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <a href="/">Generate another workout</a> |
+        <a href="/history">View workout history</a>
+        | <a href="/performance">Performance logs</a>
+        {% if profile.is_admin == 1 %}
+        | <a href="/admin">Admin</a>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

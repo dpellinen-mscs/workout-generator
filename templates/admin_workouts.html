@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>All Workouts</title>
+    <style>
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:#0f1115; color:#e7ecf2; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
+      .card { background:#1a1f2b; border-radius:14px; padding:16px; margin-bottom:12px; }
+      table { width:100%; border-collapse: collapse; }
+      th, td { text-align:left; padding:8px; border-bottom:1px solid #2c3547; font-size:14px; }
+      a { color:#7bd8ff; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>All Workouts</h1>
+      <p><a href="/admin">Back to admin</a></p>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Created</th>
+              <th>User</th>
+              <th>Total Load</th>
+              <th>Open</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for w in workouts %}
+            <tr>
+              <td>{{ w.id }}</td>
+              <td>{{ w.created_at }}</td>
+              <td>{{ w.user_name }}</td>
+              <td>{{ w.total_load_score }}</td>
+              <td><a href="/admin/workout/{{ w.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

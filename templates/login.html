@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <style>
+      :root { --bg:#0f1115; --card:#1a1f2b; --text:#e7ecf2; --muted:#a7b0bf; --accent:#7bd8ff; }
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:radial-gradient(1200px 700px at 20% -10%, #1f2942 0%, #0f1115 60%); color:var(--text); }
+      .wrap { max-width:520px; margin:0 auto; padding:48px 20px; }
+      .card { background:var(--card); border-radius:16px; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,.35); }
+      label { display:block; margin:12px 0 6px; color:var(--muted); font-size:14px; }
+      input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2c3547; background:#0f141f; color:var(--text); }
+      button { margin-top:16px; background:var(--accent); color:#071018; border:none; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; width:100%; }
+      a { color:var(--accent); }
+      .error { color:#ff9a9a; margin-top:10px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h2>Login</h2>
+        <form method="post" action="/login">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+          <button type="submit">Log in</button>
+        </form>
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
+        <p class="muted">New here? <a href="/register">Create an account</a></p>
+      </div>
+    </div>
+  </body>
+</html>

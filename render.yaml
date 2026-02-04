@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: workout-generator
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT
+    autoDeploy: true
+    envVars:
+      - key: WG_SECRET_KEY
+        generateValue: true
+      - key: WG_ADMIN_CODE
+        sync: false
+      - key: WG_SECURE_COOKIES
+        value: "1"

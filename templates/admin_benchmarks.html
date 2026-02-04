@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Benchmark QA</title>
+    <style>
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:#0f1115; color:#e7ecf2; }
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
+      .card { background:#1a1f2b; border-radius:14px; padding:16px; margin-bottom:12px; overflow:auto; }
+      table { width:100%; border-collapse: collapse; min-width: 980px; }
+      th, td { text-align:left; padding:8px; border-bottom:1px solid #2c3547; font-size:13px; vertical-align: top; }
+      .muted { color:#a7b0bf; font-size:12px; }
+      a { color:#7bd8ff; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Benchmark QA</h1>
+      <p><a href="/admin">Back to admin</a></p>
+
+      <div class="card">
+        <h3>Overall Distributions</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>N</th>
+              <th>Avg</th>
+              <th>P25</th>
+              <th>P50</th>
+              <th>P75</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for metric, s in overall.items() %}
+            <tr>
+              <td>{{ metric }}</td>
+              {% if s %}
+              <td>{{ s.n }}</td>
+              <td>{{ s.avg }}</td>
+              <td>{{ s.p25 }}</td>
+              <td>{{ s.p50 }}</td>
+              <td>{{ s.p75 }}</td>
+              {% else %}
+              <td colspan="5">No data</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>By Height Bucket</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Bucket</th>
+              <th>N</th>
+              <th>Bench</th>
+              <th>Chest Pass</th>
+              <th>Deadlift</th>
+              <th>Back Squat</th>
+              <th>Vertical</th>
+              <th>Rot Toss</th>
+              <th>Cable Chop</th>
+              <th>Exit Velo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in bucket_rows %}
+            <tr>
+              <td>{{ row.bucket }}</td>
+              <td>{{ row.n }}</td>
+              {% for metric in [
+                "max_bench_lbs",
+                "med_ball_chest_pass_ft",
+                "max_deadlift_lbs",
+                "max_back_squat_lbs",
+                "standing_vertical_jump_in",
+                "rotational_scoop_toss_ft",
+                "cable_chop_lbs",
+                "max_exit_velocity_mph"
+              ] %}
+              <td>
+                {% if row.stats[metric] %}
+                <div>A: {{ row.stats[metric].avg }}</div>
+                <div class="muted">P25 {{ row.stats[metric].p25 }} | P50 {{ row.stats[metric].p50 }} | P75 {{ row.stats[metric].p75 }}</div>
+                {% else %}
+                -
+                {% endif %}
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workout Generator MVP</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --card: #1a1f2b;
+        --text: #e7ecf2;
+        --muted: #a7b0bf;
+        --accent: #7bd8ff;
+      }
+      body {
+        margin: 0;
+        font-family: "Fira Sans", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(1200px 700px at 20% -10%, #1f2942 0%, #0f1115 60%);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 32px 20px 80px;
+      }
+      h1 {
+        font-size: 32px;
+        margin: 0 0 8px;
+        letter-spacing: 0.2px;
+      }
+      p {
+        color: var(--muted);
+        margin: 0 0 24px;
+      }
+      .card {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      input, select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #2c3547;
+        background: #0f141f;
+        color: var(--text);
+      }
+      .actions {
+        margin-top: 20px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      button {
+        background: var(--accent);
+        color: #071018;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .ghost {
+        background: transparent;
+        border: 1px solid #2c3547;
+        color: var(--text);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Workout Generator MVP</h1>
+      <p>
+        Logged in as {{ profile.full_name or profile.email }}.
+        <a href="/profile">View/Edit profile</a> |
+        <a href="/history">Workout history</a>
+        | <a href="/performance">Performance logs</a>
+        {% if profile.is_admin == 1 %}
+        | <a href="/admin">Admin</a>
+        {% endif %}
+      </p>
+      <div class="card">
+        <form method="post" action="/generate">
+          <div class="actions">
+            <button type="submit">Generate Workout</button>
+            <button type="submit" formmethod="post" formaction="/reset" class="ghost">Reset History</button>
+            <button type="submit" formmethod="post" formaction="/logout" class="ghost">Log out</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

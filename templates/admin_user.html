@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Detail</title>
+    <style>
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:#0f1115; color:#e7ecf2; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
+      .card { background:#1a1f2b; border-radius:14px; padding:16px; margin-bottom:12px; }
+      table { width:100%; border-collapse: collapse; }
+      th, td { text-align:left; padding:8px; border-bottom:1px solid #2c3547; font-size:14px; }
+      a { color:#7bd8ff; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>User Detail</h1>
+      <p><a href="/admin">Back to admin</a></p>
+      <div class="card">
+        <p><strong>{{ user.full_name or "Unnamed user" }}</strong></p>
+        <p>{{ user.email }}</p>
+        <p>Position: {{ user.position or "-" }} | Phase: {{ user.phase or "-" }} | Goal: {{ user.goal or "-" }}</p>
+      </div>
+      <div class="card">
+        <h3>Completed Logs</h3>
+        {% if grouped_logs %}
+          {% for group in grouped_logs %}
+            <h4 style="margin-top:0;">Workout {{ group.workout_id }} | {{ group.date }}</h4>
+            <table style="margin-bottom:16px;">
+              <thead>
+                <tr>
+                  <th>Exercise</th>
+                  <th>Category</th>
+                  <th>Weight</th>
+                  <th>Reps</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for log in group.entries %}
+                <tr>
+                  <td>{{ log.exercise_name }}</td>
+                  <td>{{ log.category }}</td>
+                  <td>{{ log.weight if log.weight is not none else "-" }}</td>
+                  <td>{{ log.reps if log.reps is not none else "-" }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endfor %}
+        {% else %}
+          <p>No completed logs for this user.</p>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

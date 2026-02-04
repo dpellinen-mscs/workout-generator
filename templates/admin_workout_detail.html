@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workout {{ workout_id }}</title>
+    <style>
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:#0f1115; color:#e7ecf2; }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px 48px; }
+      .card { background:#1a1f2b; border-radius:14px; padding:16px; margin-bottom:12px; }
+      .muted { color:#a7b0bf; }
+      a { color:#7bd8ff; }
+      pre { white-space: pre-wrap; background:#111723; border-radius:10px; padding:12px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Workout {{ workout_id }}</h1>
+      <p><a href="/admin/workouts">Back to all workouts</a></p>
+      <div class="card">
+        <p><strong>User:</strong> {{ user_name }}</p>
+        <p class="muted"><strong>Created:</strong> {{ created_at }}</p>
+      </div>
+      <div class="card">
+        <h3>Workout JSON</h3>
+        <pre>{{ workout | tojson(indent=2) }}</pre>
+      </div>
+    </div>
+  </body>
+</html>

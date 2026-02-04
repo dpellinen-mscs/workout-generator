@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile</title>
+    <style>
+      :root { --bg:#0f1115; --card:#1a1f2b; --text:#e7ecf2; --muted:#a7b0bf; --accent:#7bd8ff; }
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:radial-gradient(1200px 700px at 20% -10%, #1f2942 0%, #0f1115 60%); color:var(--text); }
+      .wrap { max-width:520px; margin:0 auto; padding:48px 20px; }
+      .card { background:var(--card); border-radius:16px; padding:24px; box-shadow:0 12px 30px rgba(0,0,0,.35); }
+      label { display:block; margin:12px 0 6px; color:var(--muted); font-size:14px; }
+      input, select { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #2c3547; background:#0f141f; color:var(--text); }
+      button { margin-top:16px; background:var(--accent); color:#071018; border:none; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer; width:100%; }
+      a { color:var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h2>Edit Profile</h2>
+        <form method="post" action="/profile">
+          <label for="full_name">Name</label>
+          <input id="full_name" name="full_name" type="text" value="{{ profile.full_name or '' }}" />
+          <label for="dob">Date of birth</label>
+          <input id="dob" name="dob" type="date" value="{{ profile.dob or '' }}" />
+          <label for="height_in">Height (inches)</label>
+          <input id="height_in" name="height_in" type="number" step="0.1" min="36" max="96" value="{{ profile.height_in or '' }}" />
+          <label for="weight_lbs">Weight (lbs)</label>
+          <input id="weight_lbs" name="weight_lbs" type="number" step="0.1" min="50" max="600" value="{{ profile.weight_lbs or '' }}" />
+          <label for="max_bench_lbs">Max bench (lbs)</label>
+          <input id="max_bench_lbs" name="max_bench_lbs" type="number" step="0.1" min="1" value="{{ profile.max_bench_lbs or '' }}" />
+          <label for="max_deadlift_lbs">Max deadlift (lbs)</label>
+          <input id="max_deadlift_lbs" name="max_deadlift_lbs" type="number" step="0.1" min="1" value="{{ profile.max_deadlift_lbs or '' }}" />
+          <label for="max_back_squat_lbs">Max back squat (lbs)</label>
+          <input id="max_back_squat_lbs" name="max_back_squat_lbs" type="number" step="0.1" min="1" value="{{ profile.max_back_squat_lbs or '' }}" />
+          <label for="standing_vertical_jump_in">Standing vertical jump (inches)</label>
+          <input id="standing_vertical_jump_in" name="standing_vertical_jump_in" type="number" step="0.1" min="1" value="{{ profile.standing_vertical_jump_in or '' }}" />
+          <label for="rotational_scoop_toss_ft">Rotational scoop toss (ft)</label>
+          <input id="rotational_scoop_toss_ft" name="rotational_scoop_toss_ft" type="number" step="0.1" min="1" value="{{ profile.rotational_scoop_toss_ft or '' }}" />
+          <label for="cable_chop_lbs">Cable chop load (lbs)</label>
+          <input id="cable_chop_lbs" name="cable_chop_lbs" type="number" step="0.1" min="1" value="{{ profile.cable_chop_lbs or '' }}" />
+          <label for="med_ball_chest_pass_ft">Med ball chest pass (ft)</label>
+          <input id="med_ball_chest_pass_ft" name="med_ball_chest_pass_ft" type="number" step="0.1" min="1" value="{{ profile.med_ball_chest_pass_ft or '' }}" />
+          <label for="max_exit_velocity_mph">Ball exit velo (mph)</label>
+          <input id="max_exit_velocity_mph" name="max_exit_velocity_mph" type="number" step="0.1" min="1" value="{{ profile.max_exit_velocity_mph or '' }}" />
+          <label for="estimated_bench_1rm_lbs">Estimated bench 1RM (auto)</label>
+          <input id="estimated_bench_1rm_lbs" type="number" step="0.1" value="{{ profile.estimated_bench_1rm_lbs or '' }}" readonly />
+          <label for="estimated_back_squat_1rm_lbs">Estimated back squat 1RM (auto)</label>
+          <input id="estimated_back_squat_1rm_lbs" type="number" step="0.1" value="{{ profile.estimated_back_squat_1rm_lbs or '' }}" readonly />
+          <label for="estimated_deadlift_1rm_lbs">Estimated deadlift 1RM (auto)</label>
+          <input id="estimated_deadlift_1rm_lbs" type="number" step="0.1" value="{{ profile.estimated_deadlift_1rm_lbs or '' }}" readonly />
+          <label for="estimated_reverse_lunge_1rm_lbs">Estimated reverse lunge 1RM (auto)</label>
+          <input id="estimated_reverse_lunge_1rm_lbs" type="number" step="0.1" value="{{ profile.estimated_reverse_lunge_1rm_lbs or '' }}" readonly />
+          <label for="estimated_dumbbell_row_1rm_lbs">Estimated dumbbell row 1RM (auto)</label>
+          <input id="estimated_dumbbell_row_1rm_lbs" type="number" step="0.1" value="{{ profile.estimated_dumbbell_row_1rm_lbs or '' }}" readonly />
+          <label for="position">Position</label>
+          <input id="position" name="position" type="text" value="{{ profile.position or '' }}" />
+          <label for="goal">Goal</label>
+          <select id="goal" name="goal">
+            <option value="power" {% if profile.goal == "power" %}selected{% endif %}>Power</option>
+            <option value="speed" {% if profile.goal == "speed" %}selected{% endif %}>Speed</option>
+            <option value="hypertrophy" {% if profile.goal == "hypertrophy" %}selected{% endif %}>Hypertrophy</option>
+            <option value="general" {% if profile.goal == "general" %}selected{% endif %}>General</option>
+          </select>
+          <label for="phase">Phase</label>
+          <select id="phase" name="phase">
+            <option value="offseason" {% if profile.phase == "offseason" %}selected{% endif %}>Off-season</option>
+            <option value="preseason" {% if profile.phase == "preseason" %}selected{% endif %}>Pre-season</option>
+            <option value="inseason" {% if profile.phase == "inseason" %}selected{% endif %}>In-season</option>
+            <option value="postseason" {% if profile.phase == "postseason" %}selected{% endif %}>Post-season</option>
+            <option value="return_to_play" {% if profile.phase == "return_to_play" %}selected{% endif %}>Return to play</option>
+          </select>
+          <label for="injuries">Injuries (comma separated)</label>
+          <input id="injuries" name="injuries" type="text" value="{{ profile.injuries or '' }}" />
+          <button type="submit">Save profile</button>
+        </form>
+        <p class="muted"><a href="/">Back to generator</a></p>
+        <p class="muted"><a href="/history">Workout history</a> | <a href="/performance">Performance logs</a>{% if profile.is_admin == 1 %} | <a href="/admin">Admin</a>{% endif %}</p>
+      </div>
+    </div>
+  </body>
+</html>

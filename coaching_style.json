@@ -1,0 +1,155 @@
+{
+  "prescriptions": {
+    "power": {
+      "sets": 4,
+      "reps": "3–5",
+      "rest": "2–3 min"
+    },
+    "hypertrophy": {
+      "sets": 3,
+      "reps": "8–12",
+      "rest": "60–90 sec"
+    },
+    "speed": {
+      "sets": 4,
+      "reps": "2–4 (fast)",
+      "rest": "2–3 min"
+    },
+    "general": {
+      "sets": 3,
+      "reps": "6–10",
+      "rest": "90 sec"
+    }
+  },
+  "core_prescription": {
+    "sets": 3,
+    "reps": "20–30 sec / 10–12 reps",
+    "rest": "30–45 sec"
+  },
+  "accessory_prescription": {
+    "sets": 2,
+    "reps": "10–15",
+    "rest": "45–60 sec"
+  },
+  "muscle_mass_scale": {
+    "very_small": 1,
+    "small": 2,
+    "medium": 3,
+    "large": 4,
+    "very_large": 5
+  },
+  "intensity_scale": {
+    "light": 1,
+    "moderate": 2,
+    "heavy": 3
+  },
+  "phase_intensity": {
+    "inseason": "light",
+    "preseason": "moderate",
+    "offseason": "heavy",
+    "postseason": "light",
+    "return_to_play": "light"
+  },
+  "progression": {
+    "lookback_sessions": 3,
+    "increase_pct": 2.5,
+    "decrease_pct": 2.5,
+    "require_improve_sessions": 2
+  },
+  "rotation": {
+    "block_length": 4,
+    "order": {
+      "lower": [
+        "Barbell back squat",
+        "Barbell front squat",
+        "Barbell deadlift",
+        "Trap bar deadlift",
+        "Split squat",
+        "Reverse lunge",
+        "Forward lunge",
+        "Single-leg straight-leg deadlift",
+        "Barbell straight-leg deadlift",
+        "Leg press",
+        "Leg curl",
+        "Leg extension",
+        "Cable shuffle",
+        "Goblet squat",
+        "Hip flexor cable",
+        "Groin cable",
+        "Glute ham bridge",
+        "One-leg glute ham bridge"
+      ],
+      "upper_push": [
+        "Barbell bench press",
+        "Dumbbell bench press",
+        "Incline barbell bench press",
+        "Incline dumbbell bench press",
+        "Decline barbell bench press",
+        "Decline dumbbell bench press",
+        "Barbell military press",
+        "Dumbbell military press",
+        "Push-up",
+        "Half-kneeling landmine press",
+        "Dumbbell chest fly",
+        "Front shoulder raise",
+        "Lateral shoulder raise",
+        "Med ball chest pass",
+        "Med ball rotational chest pass",
+        "Tricep kickbacks"
+      ],
+      "upper_pull": [
+        "Barbell row (overhand grip)",
+        "Barbell row (reverse grip)",
+        "Dumbbell row",
+        "Wide-grip lat pulldown",
+        "Reverse-grip lat pulldown",
+        "One-arm lat pulldown",
+        "Chest-supported row",
+        "One-arm dumbbell row",
+        "Lat pulldown",
+        "TRX row",
+        "One-arm TRX row",
+        "Rotational TRX row",
+        "Renegade rows",
+        "Reverse flies",
+        "Hammer curls"
+      ],
+      "core": [
+        "Side plank x 30s/side",
+        "Pallof press x 10/side",
+        "Farmer carry x 40 yards",
+        "Side plank",
+        "Plank",
+        "One-foot plank",
+        "TRX plank",
+        "Cable chop",
+        "Low-to-high cable chop",
+        "High-to-low cable chop",
+        "Med ball reverse toss",
+        "Med ball rotational scoop toss",
+        "Walking overhead slam"
+      ]
+    }
+  },
+  "accessory_pairs": [
+    ["Leg curl", "Leg extension"],
+    ["Hammer curls", "Tricep kickbacks"],
+    ["Groin cable", "Band shuffle"],
+    ["Hip flexor cable", "One-leg glute ham bridge"]
+  ],
+  "weekly_load_caps": {
+    "offseason": 250,
+    "preseason": 200,
+    "inseason": 150,
+    "postseason": 150,
+    "return_to_play": 120
+  },
+  "pattern_caps": {
+    "push": 3,
+    "pull": 3,
+    "squat": 3,
+    "hinge": 3,
+    "lateral": 3,
+    "core": 4
+  }
+}

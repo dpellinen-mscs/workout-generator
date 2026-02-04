@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Performance Log</title>
+    <style>
+      body { margin:0; font-family:"Fira Sans",system-ui,-apple-system,sans-serif; background:#0f1115; color:#e7ecf2; }
+      .wrap { max-width: 620px; margin: 0 auto; padding: 24px 20px 48px; }
+      .card { background:#1a1f2b; border-radius:14px; padding:16px; }
+      .grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+      input, textarea { width:100%; padding:8px; border-radius:8px; border:1px solid #2c3547; background:#0f141f; color:#e7ecf2; }
+      button { margin-top:10px; background:#7bd8ff; color:#071018; border:none; border-radius:8px; padding:10px 14px; font-weight:700; cursor:pointer; }
+      a { color:#7bd8ff; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Edit Performance Log</h1>
+      <p><a href="/performance">Back to performance logs</a></p>
+      <div class="card">
+        <form method="post" action="/performance/edit/{{ log.id }}">
+          <div class="grid">
+            <div><label>Date</label><input type="date" name="date" value="{{ log.date }}" /></div>
+            <div><label>Exit velo (mph)</label><input type="number" step="0.1" name="exit_velocity_mph" value="{{ log.exit_velocity_mph if log.exit_velocity_mph is not none else '' }}" /></div>
+            <div><label>Throw velo (mph)</label><input type="number" step="0.1" name="throw_velocity_mph" value="{{ log.throw_velocity_mph if log.throw_velocity_mph is not none else '' }}" /></div>
+            <div><label>60-yard dash (s)</label><input type="number" step="0.01" name="dash_60_time_s" value="{{ log.dash_60_time_s if log.dash_60_time_s is not none else '' }}" /></div>
+            <div><label>Broad jump (in)</label><input type="number" step="0.1" name="broad_jump_in" value="{{ log.broad_jump_in if log.broad_jump_in is not none else '' }}" /></div>
+            <div><label>Lateral broad jump (in)</label><input type="number" step="0.1" name="lateral_broad_jump_in" value="{{ log.lateral_broad_jump_in if log.lateral_broad_jump_in is not none else '' }}" /></div>
+          </div>
+          <div style="margin-top:10px;">
+            <label>Notes</label>
+            <textarea name="notes" rows="2">{{ log.notes or '' }}</textarea>
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
