@@ -229,6 +229,20 @@ def _init_db() -> None:
                 )
                 """
             )
+        if _is_postgres():
+            existing_logs = {
+                row["column_name"]
+                for row in conn.execute(
+                    """
+                    SELECT column_name
+                    FROM information_schema.columns
+                    WHERE table_schema = 'public' AND table_name = 'completed_logs'
+                    """
+                ).fetchall()
+            }
+            if "exercise_id" not in existing_logs:
+                conn.execute("ALTER TABLE completed_logs ADD COLUMN IF NOT EXISTS exercise_id TEXT")
+        else:
             existing_logs = {row["name"] for row in conn.execute("PRAGMA table_info(completed_logs)").fetchall()}
             if "exercise_id" not in existing_logs:
                 conn.execute("ALTER TABLE completed_logs ADD COLUMN exercise_id TEXT")
