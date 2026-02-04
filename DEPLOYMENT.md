@@ -4,6 +4,7 @@ This app is ready to deploy with `gunicorn` and environment-based secrets.
 
 ## Required Env Vars
 
+- `DATABASE_URL`: Postgres connection string
 - `WG_SECRET_KEY`: long random string
 - `WG_ADMIN_CODE`: admin registration code
 - `WG_SECURE_COOKIES`: `1` in production (`0` locally)
@@ -12,6 +13,7 @@ This app is ready to deploy with `gunicorn` and environment-based secrets.
 
 ```bash
 pip install -r requirements.txt
+export DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DBNAME"
 export WG_SECRET_KEY="replace-me"
 export WG_ADMIN_CODE="replace-me"
 export WG_SECURE_COOKIES=0
@@ -27,6 +29,7 @@ Manual settings if needed:
 - Build command: `pip install -r requirements.txt`
 - Start command: `gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT`
 - Env vars:
+  - `DATABASE_URL` (from Render Postgres)
   - `WG_SECRET_KEY` (generated)
   - `WG_ADMIN_CODE` (set manually)
   - `WG_SECURE_COOKIES=1`
