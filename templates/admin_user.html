@@ -31,18 +31,25 @@
               <thead>
                 <tr>
                   <th>Exercise</th>
-                  <th>Category</th>
+                  <th>Pattern</th>
                   <th>Weight</th>
-                  <th>Reps</th>
+                  <th>Reps / Sec</th>
                 </tr>
               </thead>
               <tbody>
                 {% for log in group.entries %}
                 <tr>
                   <td>{{ log.exercise_name }}</td>
-                  <td>{{ log.category }}</td>
+                  <td>{{ display_category_label(log.category) }}</td>
                   <td>{{ log.weight if log.weight is not none else "-" }}</td>
-                  <td>{{ log.reps if log.reps is not none else "-" }}</td>
+                  {% set is_time = is_time_based_exercise(log.exercise_name) %}
+                  <td>
+                    {% if log.reps is not none %}
+                      {{ log.reps }}{% if is_time %} sec{% endif %}
+                    {% else %}
+                      -
+                    {% endif %}
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>

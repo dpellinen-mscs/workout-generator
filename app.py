@@ -38,6 +38,31 @@ TIME_BASED_KEYWORDS = [
     "farmer's carry",
 ]
 
+CATEGORY_LABELS = {
+    "upper_push": "Push",
+    "upper_pull": "Pull",
+    "lower": "Lower Body",
+    "core": "Trunk Stability",
+    "accessory": "Supplemental",
+    "warmup": "Warm-Up",
+}
+
+PATTERN_LABELS = {
+    "push": "Push",
+    "pull": "Pull",
+    "squat": "Squat",
+    "hinge": "Hinge",
+    "lunge": "Lunge / Single-Leg",
+    "single_leg": "Lunge / Single-Leg",
+    "lateral": "Lateral",
+    "carry": "Carry",
+    "rotation": "Rotation / Anti-Rotation",
+    "core": "Trunk Stability",
+    "knee_flexion": "Knee Flexion",
+    "knee_extension": "Knee Extension",
+    "hip_flexion": "Hip Flexion",
+}
+
 
 def is_time_based_exercise(name: str | None) -> bool:
     if not name:
@@ -47,6 +72,8 @@ def is_time_based_exercise(name: str | None) -> bool:
 
 
 app.jinja_env.globals["is_time_based_exercise"] = is_time_based_exercise
+app.jinja_env.globals["display_category_label"] = lambda c: CATEGORY_LABELS.get(c, (c or "").replace("_", " ").title())
+app.jinja_env.globals["display_pattern_label"] = lambda p: PATTERN_LABELS.get((p or "").lower(), (p or "").replace("_", " ").title())
 
 
 def _is_postgres() -> bool:

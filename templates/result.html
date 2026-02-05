@@ -74,29 +74,29 @@
       </div>
 
       <div class="card">
-        <div class="section-title">Warm-up</div>
+        <div class="section-title">Warm-Up</div>
         {% for item in workout.warmup %}
           <div class="line">- {{ item }}</div>
         {% endfor %}
 
-        <div class="section-title">Main Lifts</div>
+        <div class="section-title">Primary Lifts</div>
         {% for label, key in [("Lower", "main_lift_lower"), ("Upper Push", "main_lift_upper_push"), ("Upper Pull", "main_lift_upper_pull")] %}
           {% set block = workout[key] %}
-          <div class="line"><strong>{{ label }}:</strong> {{ block.exercise.name }}</div>
-          <div class="line muted">Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+          <div class="line"><strong>{{ display_category_label(label.lower().replace(' ', '_')) }}:</strong> {{ block.exercise.name }}</div>
+          <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
         {% endfor %}
 
-        <div class="section-title">Core</div>
+        <div class="section-title">Trunk Stability</div>
         <div class="line">{{ workout.core.exercise.name }}</div>
         {% set core_is_time = is_time_based_exercise(workout.core.exercise.name) %}
-        <div class="line muted">Sets {{ workout.core.sets }} | {{ 'Seconds' if core_is_time else 'Reps' }} {{ workout.core.reps }} | Rest {{ workout.core.rest }}</div>
+        <div class="line muted">Pattern {{ display_pattern_label(workout.core.exercise.pattern) }} | Sets {{ workout.core.sets }} | {{ 'Seconds' if core_is_time else 'Reps' }} {{ workout.core.reps }} | Rest {{ workout.core.rest }}</div>
 
         {% if workout.accessories %}
-        <div class="section-title">Accessories</div>
+        <div class="section-title">Supplemental</div>
         {% for block in workout.accessories %}
           <div class="line">- {{ block.exercise.name }}</div>
           {% set acc_is_time = is_time_based_exercise(block.exercise.name) %}
-          <div class="line muted">Sets {{ block.sets }} | {{ 'Seconds' if acc_is_time else 'Reps' }} {{ block.reps }} | Rest {{ block.rest }}</div>
+          <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }} | {{ 'Seconds' if acc_is_time else 'Reps' }} {{ block.reps }} | Rest {{ block.rest }}</div>
         {% endfor %}
         {% endif %}
       </div>
@@ -115,17 +115,17 @@
       </div>
 
       <div class="card">
-        <div class="section-title">Benchmark Recommendation</div>
+        <div class="section-title">Performance Profile</div>
         <div class="line">{{ benchmark.message }}</div>
         {% if benchmark.status == "ok" %}
           <div class="line muted">Height bucket: {{ benchmark.height_bucket }} | Peer count: {{ benchmark.peer_count }}</div>
-          <div class="line muted">Upper focus: <strong>{{ benchmark.upper_focus }}</strong> | Lower focus: <strong>{{ benchmark.lower_focus }}</strong> | Core focus: <strong>{{ benchmark.core_focus }}</strong></div>
+          <div class="line muted">Upper emphasis: <strong>{{ benchmark.upper_focus }}</strong> | Lower emphasis: <strong>{{ benchmark.lower_focus }}</strong> | Trunk emphasis: <strong>{{ benchmark.core_focus }}</strong></div>
           <div class="line muted">Bench ratio: {{ benchmark.bench_ratio }} | Med-ball ratio: {{ benchmark.pass_ratio }}</div>
           <div class="line muted">Deadlift ratio: {{ benchmark.deadlift_ratio }} | Back squat ratio: {{ benchmark.back_squat_ratio }} | Vertical jump ratio: {{ benchmark.vertical_jump_ratio }}</div>
           {% if benchmark.exit_velocity_ratio %}
           <div class="line muted">Exit velo ratio: {{ benchmark.exit_velocity_ratio }} | Peer avg exit velo: {{ benchmark.peer_avg_exit_velocity_mph }} mph</div>
           {% endif %}
-          <div class="line muted">Upper power-to-strength ratio: {{ benchmark.upper_profile_ratio }} | Lower power-to-strength ratio: {{ benchmark.lower_profile_ratio }}</div>
+          <div class="line muted">Upper power-strength index: {{ benchmark.upper_profile_ratio }} | Lower power-strength index: {{ benchmark.lower_profile_ratio }}</div>
           {% if benchmark.rotation_profile_ratio %}
           <div class="line muted">Rotation power-to-strength ratio: {{ benchmark.rotation_profile_ratio }} | Rotation peers: {{ benchmark.rotation_peer_count }}</div>
           <div class="line muted">Rotation peer averages: {{ benchmark.peer_avg_rotational_scoop_toss_ft }} ft toss, {{ benchmark.peer_avg_cable_chop_lbs }} lbs chop</div>
@@ -135,7 +135,7 @@
           <div class="section-title">Recommendation Reasons</div>
           <div class="line">Upper: {{ benchmark.upper_reason }}</div>
           <div class="line">Lower: {{ benchmark.lower_reason }}</div>
-          <div class="line">Core: {{ benchmark.core_reason }}</div>
+          <div class="line">Trunk: {{ benchmark.core_reason }}</div>
           {% if benchmark.exit_velocity_note %}
           <div class="line">Exit Velo: {{ benchmark.exit_velocity_note }}</div>
           {% endif %}
@@ -143,7 +143,7 @@
       </div>
 
       <div class="card">
-        <div class="section-title">Log Completed Workout</div>
+        <div class="section-title">Log Session</div>
         {% if already_logged %}
           <div class="line muted">This workout is already logged.</div>
         {% else %}
@@ -153,7 +153,7 @@
               <input id="log_date" name="log_date" type="date" value="{{ workout_date }}" required />
             </div>
             {% for entry in exercise_entries %}
-              <div class="line" style="margin-top:10px;"><strong>{{ entry.exercise_name }}</strong> <span class="muted">({{ entry.category }})</span></div>
+              <div class="line" style="margin-top:10px;"><strong>{{ entry.exercise_name }}</strong> <span class="muted">({{ display_category_label(entry.category) }})</span></div>
               <div class="line">
                 <input name="weight::{{ entry.exercise_id or entry.exercise_name }}" type="number" step="0.1" placeholder="Weight (lbs)" />
                 {% set is_time = is_time_based_exercise(entry.exercise_name) %}
