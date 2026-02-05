@@ -1863,12 +1863,15 @@ def admin_workouts():
     workouts = []
     for row in rows:
         workout = json.loads(row["workout_json"])
+        lower_block = workout.get("main_lift_lower") or {}
+        upper_push_block = workout.get("main_lift_upper_push") or {}
+        upper_pull_block = workout.get("main_lift_upper_pull") or {}
         workouts.append({
             "id": row["id"],
             "created_at": row["created_at"],
             "user_id": row["user_id"],
             "user_name": row["full_name"] or row["email"],
-            "phase": workout.get("main_lift_lower", {}).get("intensity", "-"),
+            "phase": lower_block.get("intensity") or upper_push_block.get("intensity") or upper_pull_block.get("intensity") or "-",
             "total_load_score": workout.get("total_load_score", "-"),
         })
     return render_template("admin_workouts.html", workouts=workouts)
