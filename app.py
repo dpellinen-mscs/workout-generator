@@ -648,88 +648,7 @@ def _load_exercise_library() -> dict:
     if count == 0:
         seed = json.loads(EXERCISE_LIBRARY_PATH.read_text())
         sort_order = 0
-        with conn:
-            for category, items in seed.items():
-                if not isinstance(items, list):
-                    continue
-                for ex in items:
-                    sort_order += 1
-                    if isinstance(ex, str):
-                        conn.execute(
-                            """
-                            INSERT INTO exercises
-                            (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                            """,
-                            (
-                                f"{category}:{uuid.uuid4().hex[:8]}",
-                                category,
-                                ex,
-                                None,
-                                None,
-                                None,
-                                None,
-                                sort_order,
-                                datetime.now().isoformat(timespec="seconds"),
-                            ),
-                        )
-                        continue
-                    if not isinstance(ex, dict):
-                        continue
-                    ex_id = ex.get("id") or f"{category}:{uuid.uuid4().hex[:8]}"
-                    movement_family = ex.get("movement_family") or _infer_movement_family(ex.get("name", ""))
-                    conn.execute(
-                        """
-                        INSERT INTO exercises
-                        (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                        """,
-                        (
-                            ex_id,
-                            category,
-                            ex.get("name") or "",
-                            movement_family,
-                            ex.get("pattern") or "unknown",
-                            ex.get("muscle_mass") or "medium",
-                            1 if ex.get("unilateral") else 0,
-                            sort_order,
-                            datetime.now().isoformat(timespec="seconds"),
-                        ),
-                    )
-
-    rows = conn.execute(
-        """
-        SELECT id, category, name, movement_family, pattern, muscle_mass, unilateral
-        FROM exercises
-        ORDER BY category, sort_order, name
-        """
-    ).fetchall()
-    conn.close()
-    data: dict[str, list] = {}
-    for row in rows:
-        category = row["category"]
-        if category == "warmup":
-            data.setdefault(category, []).append(row["name"])
-            continue
-        data.setdefault(category, []).append({
-            "id": row["id"],
-            "name": row["name"],
-            "movement_family": row["movement_family"] or _infer_movement_family(row["name"]),
-            "pattern": row["pattern"] or "unknown",
-            "muscle_mass": row["muscle_mass"] or "medium",
-            "unilateral": bool(row["unilateral"]) if row["unilateral"] is not None else False,
-        })
-    # Keep runtime generator in sync without restart.
-    work_gen.EXERCISE_LIBRARY = data
-    return data
-
-
-def _save_exercise_library(data: dict) -> None:
-    conn = _db()
-    with conn:
-        conn.execute("DELETE FROM exercises")
-        sort_order = 0
-        for category, items in data.items():
+        for category, items in seed.items():
             if not isinstance(items, list):
                 continue
             for ex in items:
@@ -776,6 +695,89 @@ def _save_exercise_library(data: dict) -> None:
                         datetime.now().isoformat(timespec="seconds"),
                     ),
                 )
+        conn.raw.commit()
+
+    conn.close()
+    conn = _db()
+    rows = conn.execute(
+        """
+        SELECT id, category, name, movement_family, pattern, muscle_mass, unilateral
+        FROM exercises
+        ORDER BY category, sort_order, name
+        """
+    ).fetchall()
+    conn.close()
+    data: dict[str, list] = {}
+    for row in rows:
+        category = row["category"]
+        if category == "warmup":
+            data.setdefault(category, []).append(row["name"])
+            continue
+        data.setdefault(category, []).append({
+            "id": row["id"],
+            "name": row["name"],
+            "movement_family": row["movement_family"] or _infer_movement_family(row["name"]),
+            "pattern": row["pattern"] or "unknown",
+            "muscle_mass": row["muscle_mass"] or "medium",
+            "unilateral": bool(row["unilateral"]) if row["unilateral"] is not None else False,
+        })
+    # Keep runtime generator in sync without restart.
+    work_gen.EXERCISE_LIBRARY = data
+    return data
+
+
+def _save_exercise_library(data: dict) -> None:
+    conn = _db()
+    conn.execute("DELETE FROM exercises")
+    sort_order = 0
+    for category, items in data.items():
+        if not isinstance(items, list):
+            continue
+        for ex in items:
+            sort_order += 1
+            if isinstance(ex, str):
+                conn.execute(
+                    """
+                    INSERT INTO exercises
+                    (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        f"{category}:{uuid.uuid4().hex[:8]}",
+                        category,
+                        ex,
+                        None,
+                        None,
+                        None,
+                        None,
+                        sort_order,
+                        datetime.now().isoformat(timespec="seconds"),
+                    ),
+                )
+                continue
+            if not isinstance(ex, dict):
+                continue
+            ex_id = ex.get("id") or f"{category}:{uuid.uuid4().hex[:8]}"
+            movement_family = ex.get("movement_family") or _infer_movement_family(ex.get("name", ""))
+            conn.execute(
+                """
+                INSERT INTO exercises
+                (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    ex_id,
+                    category,
+                    ex.get("name") or "",
+                    movement_family,
+                    ex.get("pattern") or "unknown",
+                    ex.get("muscle_mass") or "medium",
+                    1 if ex.get("unilateral") else 0,
+                    sort_order,
+                    datetime.now().isoformat(timespec="seconds"),
+                ),
+            )
+    conn.raw.commit()
     conn.close()
     work_gen.EXERCISE_LIBRARY = data
 
