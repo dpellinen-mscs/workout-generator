@@ -52,6 +52,24 @@ TIME_BASED_KEYWORDS = [
     "farmer's carry",
 ]
 
+PRIMARY_EXCLUDE_KEYWORDS = [
+    "fly",
+    "kickback",
+    "raise",
+    "curl",
+    "band",
+    "trx",
+]
+
+PRIMARY_EXCLUDE_PATTERNS = {
+    "knee_flexion",
+    "knee_extension",
+    "hip_flexion",
+    "lateral",
+}
+
+PRIMARY_EXCLUDE_MUSCLE = {"very_small", "small"}
+
 # -----------------------------
 # 3) Simple “filters” (v1 logic)
 # -----------------------------
@@ -100,6 +118,22 @@ def is_time_based_exercise(name: str | None) -> bool:
 def _name_has_any(name: str, keywords: list[str]) -> bool:
     lowered = name.lower()
     return any(k in lowered for k in keywords)
+
+
+def _primary_candidates(options: list[dict]) -> list[dict]:
+    primary = []
+    for ex in options:
+        name = ex.get("name", "")
+        pattern = (ex.get("pattern") or "").lower()
+        muscle = (ex.get("muscle_mass") or "").lower()
+        if muscle in PRIMARY_EXCLUDE_MUSCLE:
+            continue
+        if pattern in PRIMARY_EXCLUDE_PATTERNS:
+            continue
+        if _name_has_any(name, PRIMARY_EXCLUDE_KEYWORDS):
+            continue
+        primary.append(ex)
+    return primary or options
 
 
 def _push_horizontal(options: list[dict]) -> list[dict]:
@@ -394,7 +428,7 @@ def generate_workout(
     upper_push_power_options = filter_exercises_for_injuries(EXERCISE_LIBRARY.get("upper_push_power", []), injuries)
     upper_pull_power_options = filter_exercises_for_injuries(EXERCISE_LIBRARY.get("upper_pull_power", []), injuries)
 
-    lower_options = EXERCISE_LIBRARY["lower"]
+    lower_options = _primary_candidates(EXERCISE_LIBRARY["lower"])
     if offseason_plan and offseason_plan.get("include_lower", True):
         week_even = datetime.now().isocalendar().week % 2 == 0
         heavy_lower_focus = "squat" if week_even else "hinge"
@@ -436,10 +470,10 @@ def generate_workout(
     lower_mode = offseason_plan["lower"] if offseason_plan else "heavy"
     core_mode = "heavy" if offseason_plan and offseason_plan.get("core_heavy") else "light"
 
-    push_options = upper_push_options
-    pull_options = upper_pull_options
-    push_power_options = upper_push_power_options
-    pull_power_options = upper_pull_power_options
+    push_options = _primary_candidates(upper_push_options)
+    pull_options = _primary_candidates(upper_pull_options)
+    push_power_options = _primary_candidates(upper_push_power_options)
+    pull_power_options = _primary_candidates(upper_pull_power_options)
     if push_mode == "heavy_horizontal":
         push_options = _push_horizontal(upper_push_options) or upper_push_options
         push_power_options = _push_horizontal(upper_push_power_options) or upper_push_power_options
