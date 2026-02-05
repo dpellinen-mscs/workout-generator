@@ -179,6 +179,7 @@ def _init_db() -> None:
                     position TEXT,
                     goal TEXT,
                     phase TEXT,
+                    days_per_week INTEGER,
                     injuries TEXT,
                     is_admin INTEGER DEFAULT 0
                 )
@@ -268,6 +269,7 @@ def _init_db() -> None:
                     position TEXT,
                     goal TEXT,
                     phase TEXT,
+                    days_per_week INTEGER,
                     injuries TEXT,
                     is_admin INTEGER DEFAULT 0
                 )
@@ -386,6 +388,7 @@ def _ensure_user_columns() -> None:
         "position": "TEXT",
         "goal": "TEXT",
         "phase": "TEXT",
+        "days_per_week": "INTEGER",
         "injuries": "TEXT",
         "is_admin": "INTEGER DEFAULT 0",
     }
@@ -432,7 +435,7 @@ def _current_user_profile() -> dict | None:
                standing_vertical_jump_in, rotational_scoop_toss_ft, cable_chop_lbs, max_exit_velocity_mph, med_ball_chest_pass_ft,
                estimated_bench_1rm_lbs, estimated_back_squat_1rm_lbs, estimated_deadlift_1rm_lbs,
                estimated_reverse_lunge_1rm_lbs, estimated_dumbbell_row_1rm_lbs,
-               position, goal, phase, injuries, is_admin
+               position, goal, phase, days_per_week, injuries, is_admin
         FROM users
         WHERE id = ?
         """,
@@ -1082,6 +1085,26 @@ def _save_workout(user_id: str, workout: dict) -> int:
     return int(workout_id)
 
 
+def _recent_workouts(user_id: str, days: int = 7) -> list[dict]:
+    conn = _db()
+    rows = conn.execute(
+        "SELECT created_at, workout_json FROM workouts WHERE user_id = ? ORDER BY created_at DESC LIMIT 50",
+        (user_id,),
+    ).fetchall()
+    conn.close()
+    cutoff = datetime.now() - timedelta(days=days)
+    recent = []
+    for row in rows:
+        created_raw = row.get("created_at") if isinstance(row, dict) else row["created_at"]
+        try:
+            created = datetime.fromisoformat(created_raw)
+        except (TypeError, ValueError):
+            continue
+        if created >= cutoff:
+            recent.append({"created_at": created_raw, "workout_json": row["workout_json"]})
+    return recent
+
+
 def _workout_entries(workout: dict) -> list[dict]:
     entries = []
     for key, category in [
@@ -1158,6 +1181,7 @@ def generate():
         "injuries": [s.strip().lower() for s in (profile.get("injuries") or "").split(",") if s.strip()],
         "goal": (profile.get("goal") or "power").lower(),
         "phase": (profile.get("phase") or "offseason").lower(),
+        "days_per_week": profile.get("days_per_week") or 3,
     }
 
     benchmark_bench = profile.get("estimated_bench_1rm_lbs") or profile.get("max_bench_lbs")
@@ -1174,7 +1198,10 @@ def generate():
         max_exit_velocity_mph=profile.get("max_exit_velocity_mph"),
     )
     history = _fetch_history(user_id)
-    workout = work_gen.generate_workout(athlete, history=history, focus=benchmark)
+    recent_workouts = _recent_workouts(user_id, days=7)
+    days_per_week = athlete.get("days_per_week") or 3
+    day_index = len(recent_workouts) % max(days_per_week, 1)
+    workout = work_gen.generate_workout(athlete, history=history, focus=benchmark, day_index=day_index)
     caps = work_gen.compute_history_caps_from_history(history, athlete["phase"], workout, days=7)
 
     workout_id = _save_workout(user_id, workout)
@@ -1367,6 +1394,7 @@ def register():
         position = request.form.get("position", "").strip().lower()
         goal = request.form.get("goal", "").strip().lower()
         phase = request.form.get("phase", "").strip().lower()
+        days_per_week_raw = request.form.get("days_per_week", "").strip()
         injuries = request.form.get("injuries", "").strip().lower()
         admin_code = request.form.get("admin_code", "").strip()
         errors = []
@@ -1390,6 +1418,10 @@ def register():
         if e: errors.append(e)
         med_ball_chest_pass_ft, e = _validate_float_field(med_ball_raw, "Med ball chest pass", min_val=1)
         if e: errors.append(e)
+        days_per_week, e = _validate_int_field(days_per_week_raw, "Days per week", min_val=2, max_val=7)
+        if e: errors.append(e)
+        if days_per_week is None:
+            days_per_week = 3
         is_admin = 1 if admin_code and admin_code == ADMIN_REGISTRATION_CODE else 0
         if not email or not password:
             return render_template("register.html", error="Email and password are required.")
@@ -1404,8 +1436,8 @@ def register():
                 conn.execute(
                     """
                     INSERT INTO users
-                    (id, email, password_hash, created_at, full_name, dob, height_in, weight_lbs, max_bench_lbs, max_deadlift_lbs, max_back_squat_lbs, standing_vertical_jump_in, rotational_scoop_toss_ft, cable_chop_lbs, max_exit_velocity_mph, med_ball_chest_pass_ft, position, goal, phase, injuries, is_admin)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    (id, email, password_hash, created_at, full_name, dob, height_in, weight_lbs, max_bench_lbs, max_deadlift_lbs, max_back_squat_lbs, standing_vertical_jump_in, rotational_scoop_toss_ft, cable_chop_lbs, max_exit_velocity_mph, med_ball_chest_pass_ft, position, goal, phase, days_per_week, injuries, is_admin)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         user_id,
@@ -1427,6 +1459,7 @@ def register():
                         position,
                         goal,
                         phase,
+                        days_per_week,
                         injuries,
                         is_admin,
                     ),
@@ -1493,6 +1526,7 @@ def profile():
         position = request.form.get("position", "").strip().lower()
         goal = request.form.get("goal", "").strip().lower()
         phase = request.form.get("phase", "").strip().lower()
+        days_per_week_raw = request.form.get("days_per_week", "").strip()
         injuries = request.form.get("injuries", "").strip().lower()
         errors = []
         height_in, e = _validate_float_field(height_in_raw, "Height", min_val=36, max_val=96)
@@ -1515,6 +1549,10 @@ def profile():
         if e: errors.append(e)
         med_ball_chest_pass_ft, e = _validate_float_field(med_ball_raw, "Med ball chest pass", min_val=1)
         if e: errors.append(e)
+        days_per_week, e = _validate_int_field(days_per_week_raw, "Days per week", min_val=2, max_val=7)
+        if e: errors.append(e)
+        if days_per_week is None:
+            days_per_week = 3
         if errors:
             profile = _current_user_profile()
             return render_template("profile.html", profile=profile, error=" ".join(errors))
@@ -1524,7 +1562,7 @@ def profile():
                 """
                 UPDATE users
                 SET full_name = ?, dob = ?, height_in = ?, weight_lbs = ?, max_bench_lbs = ?, max_deadlift_lbs = ?, max_back_squat_lbs = ?, standing_vertical_jump_in = ?, rotational_scoop_toss_ft = ?, cable_chop_lbs = ?, max_exit_velocity_mph = ?, med_ball_chest_pass_ft = ?,
-                    position = ?, goal = ?, phase = ?, injuries = ?
+                    position = ?, goal = ?, phase = ?, days_per_week = ?, injuries = ?
                 WHERE id = ?
                 """,
                 (
@@ -1543,6 +1581,7 @@ def profile():
                     position,
                     goal,
                     phase,
+                    days_per_week,
                     injuries,
                     user_id,
                 ),

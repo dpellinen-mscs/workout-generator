@@ -75,6 +75,12 @@
             <option value="postseason" {% if profile.phase == "postseason" %}selected{% endif %}>Post-season</option>
             <option value="return_to_play" {% if profile.phase == "return_to_play" %}selected{% endif %}>Return to play</option>
           </select>
+          <label for="days_per_week">Days per week</label>
+          <select id="days_per_week" name="days_per_week">
+            {% for d in [2,3,4,5,6,7] %}
+            <option value="{{ d }}" {% if profile.days_per_week == d %}selected{% endif %}>{{ d }}</option>
+            {% endfor %}
+          </select>
           <label for="injuries">Injuries (comma separated)</label>
           <input id="injuries" name="injuries" type="text" value="{{ profile.injuries or '' }}" />
           <button type="submit">Save profile</button>
