@@ -44,6 +44,13 @@ ROTATION = STYLE["rotation"]
 ACCESSORY_PAIRS = STYLE["accessory_pairs"]
 WEEKLY_LOAD_CAPS = STYLE["weekly_load_caps"]
 PATTERN_CAPS = STYLE["pattern_caps"]
+TIME_BASED_KEYWORDS = [
+    "plank",
+    "side bridge",
+    "farmer carry",
+    "farmers carry",
+    "farmer's carry",
+]
 
 # -----------------------------
 # 3) Simple “filters” (v1 logic)
@@ -81,6 +88,13 @@ def compute_load_score(intensity: str, exercise: dict) -> int:
     intensity_score = INTENSITY_SCALE.get(intensity, 2)
     muscle_score = MUSCLE_MASS_SCALE.get(exercise.get("muscle_mass", "medium"), 3)
     return intensity_score * muscle_score
+
+
+def is_time_based_exercise(name: str | None) -> bool:
+    if not name:
+        return False
+    value = name.lower()
+    return any(keyword in value for keyword in TIME_BASED_KEYWORDS)
 
 # -----------------------------
 # 3.5) Input helpers (v1.1)
@@ -358,13 +372,19 @@ def generate_workout(athlete: dict, history: list[dict] | None = None, focus: st
         "accessories": [],
     }
 
+    if is_time_based_exercise(workout["core"]["exercise"].get("name")):
+        workout["core"]["reps"] = "20–30 sec"
+
     accessories = pick_accessory_pair(history)
     for ex in accessories:
-        workout["accessories"].append({
+        block = {
             "exercise": ex,
             "intensity": "light",
             **ACCESSORY_PRESCRIPTION,
-        })
+        }
+        if is_time_based_exercise(ex.get("name")):
+            block["reps"] = "20–30 sec"
+        workout["accessories"].append(block)
 
     workout["load_scores"] = {
         "lower": compute_load_score(workout["main_lift_lower"]["intensity"], workout["main_lift_lower"]["exercise"]),

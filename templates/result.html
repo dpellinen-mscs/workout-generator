@@ -88,13 +88,15 @@
 
         <div class="section-title">Core</div>
         <div class="line">{{ workout.core.exercise.name }}</div>
-        <div class="line muted">Sets {{ workout.core.sets }} | Reps {{ workout.core.reps }} | Rest {{ workout.core.rest }}</div>
+        {% set core_is_time = is_time_based_exercise(workout.core.exercise.name) %}
+        <div class="line muted">Sets {{ workout.core.sets }} | {{ 'Seconds' if core_is_time else 'Reps' }} {{ workout.core.reps }} | Rest {{ workout.core.rest }}</div>
 
         {% if workout.accessories %}
         <div class="section-title">Accessories</div>
         {% for block in workout.accessories %}
           <div class="line">- {{ block.exercise.name }}</div>
-          <div class="line muted">Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }}</div>
+          {% set acc_is_time = is_time_based_exercise(block.exercise.name) %}
+          <div class="line muted">Sets {{ block.sets }} | {{ 'Seconds' if acc_is_time else 'Reps' }} {{ block.reps }} | Rest {{ block.rest }}</div>
         {% endfor %}
         {% endif %}
       </div>
