@@ -29,7 +29,7 @@
           <select name="category" required>
             {% for category, items in library.items() %}
             {% if category != "warmup" %}
-            <option value="{{ category }}">{{ category }}</option>
+            <option value="{{ category }}">{{ display_category_label(category) }}</option>
             {% endif %}
             {% endfor %}
           </select>
@@ -39,7 +39,12 @@
             <option value="{{ mf }}">{{ mf }}</option>
             {% endfor %}
           </select>
-          <input name="pattern" placeholder="movement pattern" required />
+          <select name="pattern" required>
+            {% set pattern_options = ["squat","hinge","lunge","push_horizontal","push_vertical","pull_horizontal","pull_vertical","carry","rotation","trunk_stability","lateral","knee_flexion","knee_extension","hip_flexion"] %}
+            {% for p in pattern_options %}
+            <option value="{{ p }}">{{ display_pattern_label(p) }}</option>
+            {% endfor %}
+          </select>
           <select name="muscle_mass">
             <option value="very_small">very_small</option>
             <option value="small">small</option>
@@ -58,7 +63,7 @@
       {% for category, items in library.items() %}
       {% if category != "warmup" %}
       <div class="card">
-        <h3>{{ category }}</h3>
+        <h3>{{ display_category_label(category) }}</h3>
         {% for ex in items %}
         <form method="post" action="/admin/exercises/update" class="row">
           <input type="hidden" name="category" value="{{ category }}" />
@@ -70,7 +75,15 @@
             <option value="{{ mf }}" {% if (ex.movement_family or "general") == mf %}selected{% endif %}>{{ mf }}</option>
             {% endfor %}
           </select>
-          <input name="pattern" value="{{ ex.pattern }}" />
+          <select name="pattern">
+            {% set pattern_options = ["squat","hinge","lunge","push_horizontal","push_vertical","pull_horizontal","pull_vertical","carry","rotation","trunk_stability","lateral","knee_flexion","knee_extension","hip_flexion"] %}
+            {% if ex.pattern and ex.pattern not in pattern_options %}
+            <option value="{{ ex.pattern }}" selected>{{ display_pattern_label(ex.pattern) }}</option>
+            {% endif %}
+            {% for p in pattern_options %}
+            <option value="{{ p }}" {% if ex.pattern == p %}selected{% endif %}>{{ display_pattern_label(p) }}</option>
+            {% endfor %}
+          </select>
           <select name="muscle_mass">
             {% for mm in ["very_small", "small", "medium", "large", "very_large"] %}
             <option value="{{ mm }}" {% if ex.muscle_mass == mm %}selected{% endif %}>{{ mm }}</option>
