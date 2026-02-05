@@ -127,27 +127,27 @@ def _offseason_day_plan(days_per_week: int, day_index: int) -> dict | None:
         return None
     if days_per_week == 4:
         template = [
-            {"push": "heavy_horizontal", "pull": "heavy_horizontal", "lower": "light", "core_heavy": False, "carry": False, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "single_leg", "core_heavy": True, "carry": False, "extra_pull": True},
-            {"push": "heavy_horizontal", "pull": "heavy_vertical", "lower": "light", "core_heavy": False, "carry": False, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "heavy", "core_heavy": False, "carry": True, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "heavy_horizontal", "pull": "heavy_horizontal", "lower": "light", "core_heavy": True, "rotation_heavy": False, "carry": False, "extra_pull": False},
+            {"include_push": False, "include_pull": True, "include_lower": True, "push": "light", "pull": "light", "lower": "single_leg", "core_heavy": True, "rotation_heavy": True, "carry": False, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "heavy_horizontal", "pull": "heavy_vertical", "lower": "light", "core_heavy": False, "rotation_heavy": False, "carry": False, "extra_pull": False},
+            {"include_push": False, "include_pull": True, "include_lower": True, "push": "light", "pull": "light", "lower": "heavy", "core_heavy": False, "rotation_heavy": False, "carry": True, "extra_pull": True},
         ]
     elif days_per_week == 5:
         template = [
-            {"push": "heavy_horizontal", "pull": "heavy_horizontal", "lower": "light", "core_heavy": False, "carry": False, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "single_leg", "core_heavy": True, "carry": False, "extra_pull": True},
-            {"push": "heavy_horizontal", "pull": "heavy_vertical", "lower": "light", "core_heavy": False, "carry": False, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "heavy", "core_heavy": False, "carry": True, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "light", "core_heavy": False, "carry": True, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "heavy_horizontal", "pull": "heavy_horizontal", "lower": "light", "core_heavy": True, "rotation_heavy": False, "carry": False, "extra_pull": False},
+            {"include_push": False, "include_pull": True, "include_lower": True, "push": "light", "pull": "light", "lower": "single_leg", "core_heavy": True, "rotation_heavy": True, "carry": False, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "heavy_horizontal", "pull": "heavy_vertical", "lower": "light", "core_heavy": False, "rotation_heavy": False, "carry": False, "extra_pull": False},
+            {"include_push": False, "include_pull": True, "include_lower": True, "push": "light", "pull": "light", "lower": "heavy", "core_heavy": False, "rotation_heavy": False, "carry": True, "extra_pull": True},
+            {"include_push": False, "include_pull": True, "include_lower": False, "push": "light", "pull": "light", "lower": "light", "core_heavy": False, "rotation_heavy": True, "carry": True, "extra_pull": True},
         ]
     else:
         template = [
-            {"push": "heavy_horizontal", "pull": "heavy_horizontal", "lower": "light", "core_heavy": False, "carry": False, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "single_leg", "core_heavy": True, "carry": False, "extra_pull": True},
-            {"push": "heavy_horizontal", "pull": "heavy_vertical", "lower": "light", "core_heavy": False, "carry": False, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "heavy", "core_heavy": False, "carry": True, "extra_pull": True},
-            {"push": "light", "pull": "light", "lower": "light", "core_heavy": False, "carry": True, "extra_pull": True},
-            {"push": "light", "pull": "heavy_horizontal", "lower": "light", "core_heavy": True, "carry": False, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "heavy_horizontal", "pull": "heavy_horizontal", "lower": "light", "core_heavy": True, "rotation_heavy": False, "carry": False, "extra_pull": False},
+            {"include_push": False, "include_pull": True, "include_lower": True, "push": "light", "pull": "light", "lower": "single_leg", "core_heavy": True, "rotation_heavy": True, "carry": False, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "heavy_horizontal", "pull": "heavy_vertical", "lower": "light", "core_heavy": False, "rotation_heavy": False, "carry": False, "extra_pull": False},
+            {"include_push": False, "include_pull": True, "include_lower": True, "push": "light", "pull": "light", "lower": "heavy", "core_heavy": False, "rotation_heavy": False, "carry": True, "extra_pull": True},
+            {"include_push": False, "include_pull": True, "include_lower": False, "push": "light", "pull": "light", "lower": "light", "core_heavy": False, "rotation_heavy": True, "carry": True, "extra_pull": True},
+            {"include_push": True, "include_pull": True, "include_lower": False, "push": "light", "pull": "heavy_horizontal", "lower": "light", "core_heavy": True, "rotation_heavy": False, "carry": False, "extra_pull": False},
         ]
     return template[day_index % len(template)]
 
@@ -395,7 +395,7 @@ def generate_workout(
     upper_pull_power_options = filter_exercises_for_injuries(EXERCISE_LIBRARY.get("upper_pull_power", []), injuries)
 
     lower_options = EXERCISE_LIBRARY["lower"]
-    if offseason_plan:
+    if offseason_plan and offseason_plan.get("include_lower", True):
         week_even = datetime.now().isocalendar().week % 2 == 0
         heavy_lower_focus = "squat" if week_even else "hinge"
         if offseason_plan["lower"] == "single_leg":
@@ -404,13 +404,15 @@ def generate_workout(
             lower_options = [ex for ex in lower_options if ex.get("pattern") == heavy_lower_focus and not ex.get("unilateral")]
             if not lower_options:
                 lower_options = [ex for ex in EXERCISE_LIBRARY["lower"] if ex.get("pattern") == heavy_lower_focus]
-    lower_exercise = _pick_main_exercise(
-        "lower",
-        lower_options,
-        history,
-        focus,
-        EXERCISE_LIBRARY.get("lower_power", []),
-    )
+    lower_exercise = None
+    if offseason_plan is None or offseason_plan.get("include_lower", True):
+        lower_exercise = _pick_main_exercise(
+            "lower",
+            lower_options,
+            history,
+            focus,
+            EXERCISE_LIBRARY.get("lower_power", []),
+        )
     lower_is_unilateral = lower_exercise.get("unilateral", False)
 
     # Maintain unilateral/bilateral balance across the session:
@@ -432,7 +434,7 @@ def generate_workout(
     push_mode = offseason_plan["push"] if offseason_plan else "heavy_horizontal"
     pull_mode = offseason_plan["pull"] if offseason_plan else "heavy_horizontal"
     lower_mode = offseason_plan["lower"] if offseason_plan else "heavy"
-    core_mode = "heavy" if offseason_plan and offseason_plan["core_heavy"] else "light"
+    core_mode = "heavy" if offseason_plan and offseason_plan.get("core_heavy") else "light"
 
     push_options = upper_push_options
     pull_options = upper_pull_options
@@ -461,14 +463,35 @@ def generate_workout(
     elif upper_pull_uni:
         unilateral_slot = "pull"
 
+    core_options = EXERCISE_LIBRARY["core"]
+    if offseason_plan and offseason_plan.get("rotation_heavy"):
+        rot_keys = ["rotational", "chop", "pallof"]
+        rot_options = [ex for ex in core_options if _name_has_any(ex.get("name", ""), rot_keys)]
+        if rot_options:
+            core_options = rot_options
+
     workout = {
         "warmup": EXERCISE_LIBRARY["warmup"],
-        "main_lift_lower": {
+        "main_lift_lower": None,
+        "main_lift_upper_push": None,
+        "main_lift_upper_pull": None,
+        "core": {
+            "exercise": _pick_main_exercise("core", core_options, history, focus, EXERCISE_LIBRARY.get("core_power", [])),
+            "intensity": _intensity_for(core_mode, "light"),
+            **CORE_PRESCRIPTION,
+        },
+        "accessories": [],
+    }
+
+    if lower_exercise is not None:
+        workout["main_lift_lower"] = {
             "exercise": lower_exercise,
             "intensity": _intensity_for("heavy" if lower_mode in ("heavy", "single_leg") else "light", phase_intensity),
             **prescription,
-        },
-        "main_lift_upper_push": {
+        }
+
+    if offseason_plan is None or offseason_plan.get("include_push", True):
+        workout["main_lift_upper_push"] = {
             "exercise": _pick_main_exercise(
                 "upper_push",
                 upper_push_uni if unilateral_slot == "push" else (upper_push_bi or push_options),
@@ -478,8 +501,10 @@ def generate_workout(
             ),
             "intensity": _intensity_for(push_mode, phase_intensity),
             **prescription,
-        },
-        "main_lift_upper_pull": {
+        }
+
+    if offseason_plan is None or offseason_plan.get("include_pull", True):
+        workout["main_lift_upper_pull"] = {
             "exercise": _pick_main_exercise(
                 "upper_pull",
                 upper_pull_uni if unilateral_slot == "pull" else (upper_pull_bi or pull_options),
@@ -489,14 +514,7 @@ def generate_workout(
             ),
             "intensity": _intensity_for(pull_mode, phase_intensity),
             **prescription,
-        },
-        "core": {
-            "exercise": _pick_main_exercise("core", EXERCISE_LIBRARY["core"], history, focus, EXERCISE_LIBRARY.get("core_power", [])),
-            "intensity": _intensity_for(core_mode, "light"),
-            **CORE_PRESCRIPTION,
-        },
-        "accessories": [],
-    }
+        }
 
     if is_time_based_exercise(workout["core"]["exercise"].get("name")):
         workout["core"]["reps"] = "20–30 sec"
@@ -526,26 +544,29 @@ def generate_workout(
             carry_ex = pick_one("core", carry_options, history)
             workout["accessories"].append({
                 "exercise": carry_ex,
-                "intensity": "heavy" if offseason_plan["carry"] else "light",
+                "intensity": "heavy",
                 **ACCESSORY_PRESCRIPTION,
             })
 
-    workout["load_scores"] = {
-        "lower": compute_load_score(workout["main_lift_lower"]["intensity"], workout["main_lift_lower"]["exercise"]),
-        "upper_push": compute_load_score(workout["main_lift_upper_push"]["intensity"], workout["main_lift_upper_push"]["exercise"]),
-        "upper_pull": compute_load_score(workout["main_lift_upper_pull"]["intensity"], workout["main_lift_upper_pull"]["exercise"]),
-        "core": compute_load_score(workout["core"]["intensity"], workout["core"]["exercise"]),
-    }
+    workout["load_scores"] = {}
+    if workout.get("main_lift_lower"):
+        workout["load_scores"]["lower"] = compute_load_score(workout["main_lift_lower"]["intensity"], workout["main_lift_lower"]["exercise"])
+    if workout.get("main_lift_upper_push"):
+        workout["load_scores"]["upper_push"] = compute_load_score(workout["main_lift_upper_push"]["intensity"], workout["main_lift_upper_push"]["exercise"])
+    if workout.get("main_lift_upper_pull"):
+        workout["load_scores"]["upper_pull"] = compute_load_score(workout["main_lift_upper_pull"]["intensity"], workout["main_lift_upper_pull"]["exercise"])
+    workout["load_scores"]["core"] = compute_load_score(workout["core"]["intensity"], workout["core"]["exercise"])
     for idx, block in enumerate(workout["accessories"], start=1):
         key = f"accessory_{idx}"
         workout["load_scores"][key] = compute_load_score(block["intensity"], block["exercise"])
     workout["total_load_score"] = sum(workout["load_scores"].values())
-    workout["suggested_weights"] = {
-        "lower": suggest_weight(history, workout["main_lift_lower"]["exercise"]["name"]),
-        "upper_push": suggest_weight(history, workout["main_lift_upper_push"]["exercise"]["name"]),
-        "upper_pull": suggest_weight(history, workout["main_lift_upper_pull"]["exercise"]["name"]),
-        "core": None,
-    }
+    workout["suggested_weights"] = {"core": None}
+    if workout.get("main_lift_lower"):
+        workout["suggested_weights"]["lower"] = suggest_weight(history, workout["main_lift_lower"]["exercise"]["name"])
+    if workout.get("main_lift_upper_push"):
+        workout["suggested_weights"]["upper_push"] = suggest_weight(history, workout["main_lift_upper_push"]["exercise"]["name"])
+    if workout.get("main_lift_upper_pull"):
+        workout["suggested_weights"]["upper_pull"] = suggest_weight(history, workout["main_lift_upper_pull"]["exercise"]["name"])
     for idx, block in enumerate(workout["accessories"], start=1):
         key = f"accessory_{idx}"
         workout["suggested_weights"][key] = suggest_weight(history, block["exercise"]["name"])
@@ -721,9 +742,12 @@ def compute_history_caps_from_history(history: list[dict], phase: str, workout: 
             total_load += compute_load_score(entry_intensity, ex)
 
     # Add today's workout impact
-    total_load += workout["total_load_score"]
+    total_load += workout.get("total_load_score", 0)
     for key in ["main_lift_lower", "main_lift_upper_push", "main_lift_upper_pull", "core"]:
-        ex = workout[key]["exercise"]
+        block = workout.get(key)
+        if not block:
+            continue
+        ex = block["exercise"]
         pattern = _pattern_of_exercise(ex)
         if pattern in pattern_counts:
             pattern_counts[pattern] += 1

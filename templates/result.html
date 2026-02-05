@@ -82,8 +82,10 @@
         <div class="section-title">Primary Lifts</div>
         {% for label, key in [("Lower", "main_lift_lower"), ("Upper Push", "main_lift_upper_push"), ("Upper Pull", "main_lift_upper_pull")] %}
           {% set block = workout[key] %}
-          <div class="line"><strong>{{ display_category_label(label.lower().replace(' ', '_')) }}:</strong> {{ block.exercise.name }}</div>
-          <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+          {% if block %}
+            <div class="line"><strong>{{ display_category_label(label.lower().replace(' ', '_')) }}:</strong> {{ block.exercise.name }}</div>
+            <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+          {% endif %}
         {% endfor %}
 
         <div class="section-title">Trunk Stability</div>
