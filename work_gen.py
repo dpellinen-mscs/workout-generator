@@ -136,6 +136,19 @@ def _primary_candidates(options: list[dict]) -> list[dict]:
     return primary or options
 
 
+def is_primary_exercise(ex: dict) -> bool:
+    name = ex.get("name", "")
+    pattern = (ex.get("pattern") or "").lower()
+    muscle = (ex.get("muscle_mass") or "").lower()
+    if muscle in PRIMARY_EXCLUDE_MUSCLE:
+        return False
+    if pattern in PRIMARY_EXCLUDE_PATTERNS:
+        return False
+    if _name_has_any(name, PRIMARY_EXCLUDE_KEYWORDS):
+        return False
+    return True
+
+
 def _push_horizontal(options: list[dict]) -> list[dict]:
     keys = ["bench", "incline", "decline", "push-up", "chest fly"]
     return [ex for ex in options if _name_has_any(ex.get("name", ""), keys)]
@@ -318,7 +331,8 @@ def pick_accessory_pair(history: list[dict]) -> list[dict]:
     name_to_ex = {}
     for group in ["upper_push", "upper_pull", "lower", "core"]:
         for ex in EXERCISE_LIBRARY.get(group, []):
-            name_to_ex[ex["name"]] = ex
+            if not is_primary_exercise(ex):
+                name_to_ex[ex["name"]] = ex
     last_used = _last_used_map(history)
 
     scored_pairs = []
@@ -335,6 +349,8 @@ def pick_accessory_pair(history: list[dict]) -> list[dict]:
     exercises = []
     for name in chosen:
         ex = name_to_ex.get(name, {"name": name, "pattern": "unknown", "muscle_mass": "small"})
+        if is_primary_exercise(ex):
+            continue
         exercises.append(ex)
     return exercises
 
@@ -554,7 +570,15 @@ def generate_workout(
         workout["core"]["reps"] = "20–30 sec"
 
     accessories = pick_accessory_pair(history)
+    used_names = set()
+    for key in ["main_lift_lower", "main_lift_upper_push", "main_lift_upper_pull", "core"]:
+        block = workout.get(key)
+        if block and block.get("exercise"):
+            used_names.add(block["exercise"].get("name"))
+
     for ex in accessories:
+        if ex.get("name") in used_names:
+            continue
         block = {
             "exercise": ex,
             "intensity": "light",
@@ -565,22 +589,28 @@ def generate_workout(
         workout["accessories"].append(block)
 
     if offseason_plan and offseason_plan.get("extra_pull"):
-        bonus_pull = pick_one("upper_pull", EXERCISE_LIBRARY.get("upper_pull", []), history)
-        workout["accessories"].append({
-            "exercise": bonus_pull,
-            "intensity": "light",
-            **ACCESSORY_PRESCRIPTION,
-        })
+        accessory_pull_options = [ex for ex in EXERCISE_LIBRARY.get("upper_pull", []) if not is_primary_exercise(ex)]
+        if accessory_pull_options:
+            bonus_pull = pick_one("upper_pull", accessory_pull_options, history)
+            if bonus_pull.get("name") not in used_names:
+                workout["accessories"].append({
+                    "exercise": bonus_pull,
+                    "intensity": "light",
+                    **ACCESSORY_PRESCRIPTION,
+                })
+                used_names.add(bonus_pull.get("name"))
 
     if offseason_plan and offseason_plan.get("carry"):
         carry_options = [ex for ex in EXERCISE_LIBRARY.get("core", []) if ex.get("pattern") == "carry"]
         if carry_options:
             carry_ex = pick_one("core", carry_options, history)
-            workout["accessories"].append({
-                "exercise": carry_ex,
-                "intensity": "heavy",
-                **ACCESSORY_PRESCRIPTION,
-            })
+            if carry_ex.get("name") not in used_names:
+                workout["accessories"].append({
+                    "exercise": carry_ex,
+                    "intensity": "heavy",
+                    **ACCESSORY_PRESCRIPTION,
+                })
+                used_names.add(carry_ex.get("name"))
 
     workout["load_scores"] = {}
     if workout.get("main_lift_lower"):
