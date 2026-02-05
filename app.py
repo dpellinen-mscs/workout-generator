@@ -38,6 +38,18 @@ TIME_BASED_KEYWORDS = [
     "farmer's carry",
 ]
 
+WARMUP_VERSION = 2
+WARMUP_SEQUENCE = [
+    "SMR: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30–60s each)",
+    "Static: 90/90 hip stretch 15–20s/side",
+    "Static: Half-kneeling hip flexor 15–20s/side",
+    "Mobility: Shoulder ER/IR (band or cable) x 10/side",
+    "Mobility: Wall ankle mobilizations x 8/side",
+    "Activation: X-band walks x 12/side",
+    "Activation: Band pull-aparts x 15",
+    "Activation: Dead bug x 8/side",
+]
+
 CATEGORY_LABELS = {
     "upper_push": "Push",
     "upper_pull": "Pull",
@@ -583,6 +595,51 @@ def _group_logs_by_workout(logs: list[dict]) -> list[dict]:
 
 def _load_exercise_library() -> dict:
     conn = _db()
+    # Ensure warm-up sequence is updated once after migrations.
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS app_meta (
+            key TEXT PRIMARY KEY,
+            value TEXT
+        )
+        """
+    )
+    meta = conn.execute("SELECT value FROM app_meta WHERE key = 'warmup_version'").fetchone()
+    current_version = int(meta["value"]) if meta and meta["value"] and str(meta["value"]).isdigit() else 0
+    if current_version < WARMUP_VERSION:
+        with conn:
+            conn.execute("DELETE FROM exercises WHERE category = ?", ("warmup",))
+            sort_order = 0
+            for item in WARMUP_SEQUENCE:
+                sort_order += 1
+                conn.execute(
+                    """
+                    INSERT INTO exercises
+                    (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        f"warmup:{uuid.uuid4().hex[:8]}",
+                        "warmup",
+                        item,
+                        None,
+                        None,
+                        None,
+                        None,
+                        sort_order,
+                        datetime.now().isoformat(timespec="seconds"),
+                    ),
+                )
+            if _is_postgres():
+                conn.execute(
+                    "INSERT INTO app_meta (key, value) VALUES ('warmup_version', ?) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
+                    (str(WARMUP_VERSION),),
+                )
+            else:
+                conn.execute(
+                    "INSERT OR REPLACE INTO app_meta (key, value) VALUES ('warmup_version', ?)",
+                    (str(WARMUP_VERSION),),
+                )
     count_row = conn.execute("SELECT COUNT(*) AS cnt FROM exercises").fetchone()
     count = count_row["cnt"] if count_row else 0
     if count == 0:
