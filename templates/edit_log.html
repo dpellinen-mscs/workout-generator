@@ -25,7 +25,8 @@
           <input id="date" name="date" type="date" value="{{ log.date }}" />
           <label for="weight">Weight</label>
           <input id="weight" name="weight" type="number" step="0.1" value="{{ log.weight if log.weight is not none else '' }}" />
-          <label for="reps">Reps</label>
+          {% set is_time = is_time_based_exercise(log.exercise_name) %}
+          <label for="reps">{{ 'Seconds' if is_time else 'Reps' }}</label>
           <input id="reps" name="reps" type="number" step="1" value="{{ log.reps if log.reps is not none else '' }}" />
           <button type="submit">Save changes</button>
         </form>

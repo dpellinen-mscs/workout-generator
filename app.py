@@ -30,6 +30,24 @@ app.config.update(
     MAX_CONTENT_LENGTH=1 * 1024 * 1024,
 )
 
+TIME_BASED_KEYWORDS = [
+    "plank",
+    "side bridge",
+    "farmer carry",
+    "farmers carry",
+    "farmer's carry",
+]
+
+
+def is_time_based_exercise(name: str | None) -> bool:
+    if not name:
+        return False
+    value = name.lower()
+    return any(keyword in value for keyword in TIME_BASED_KEYWORDS)
+
+
+app.jinja_env.globals["is_time_based_exercise"] = is_time_based_exercise
+
 
 def _is_postgres() -> bool:
     return DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql://")

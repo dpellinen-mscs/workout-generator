@@ -154,7 +154,8 @@
               <div class="line" style="margin-top:10px;"><strong>{{ entry.exercise_name }}</strong> <span class="muted">({{ entry.category }})</span></div>
               <div class="line">
                 <input name="weight::{{ entry.exercise_id or entry.exercise_name }}" type="number" step="0.1" placeholder="Weight (lbs)" />
-                <input name="reps::{{ entry.exercise_id or entry.exercise_name }}" type="number" step="1" placeholder="Reps" />
+                {% set is_time = is_time_based_exercise(entry.exercise_name) %}
+                <input name="reps::{{ entry.exercise_id or entry.exercise_name }}" type="number" step="1" placeholder="{{ 'Seconds' if is_time else 'Reps' }}" />
               </div>
             {% endfor %}
             <div class="line" style="margin-top:12px;">
