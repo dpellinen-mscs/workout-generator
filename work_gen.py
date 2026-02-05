@@ -413,7 +413,7 @@ def generate_workout(
             focus,
             EXERCISE_LIBRARY.get("lower_power", []),
         )
-    lower_is_unilateral = lower_exercise.get("unilateral", False)
+    lower_is_unilateral = lower_exercise.get("unilateral", False) if lower_exercise else False
 
     # Maintain unilateral/bilateral balance across the session:
     # always try to include exactly one unilateral upper-body movement if possible.
