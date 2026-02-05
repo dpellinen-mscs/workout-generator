@@ -38,12 +38,12 @@ TIME_BASED_KEYWORDS = [
     "farmer's carry",
 ]
 
-WARMUP_VERSION = 2
+WARMUP_VERSION = 3
 WARMUP_SEQUENCE = [
-    "SMR: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30–60s each)",
-    "Static: 90/90 hip stretch 15–20s/side",
-    "Static: Half-kneeling hip flexor 15–20s/side",
-    "Mobility: Shoulder ER/IR (band or cable) x 10/side",
+    "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30–60s each)",
+    "90/90 hip stretch 15–20s/side",
+    "Half-kneeling hip flexor stretch 15–20s/side",
+    "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
     "Mobility: Wall ankle mobilizations x 8/side",
     "Activation: X-band walks x 12/side",
     "Activation: Band pull-aparts x 15",
