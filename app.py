@@ -398,6 +398,8 @@ def _ensure_user_columns() -> None:
                 conn.execute(f"ALTER TABLE users ADD COLUMN IF NOT EXISTS {name} {col_type}")
             else:
                 conn.execute(f"ALTER TABLE users ADD COLUMN {name} {col_type}")
+    if _is_postgres():
+        conn.raw.commit()
     # Backfill from legacy field name if present.
     if (not _is_postgres()) and "cable_chop_distance_ft" in existing and "cable_chop_lbs" in {row["name"] for row in conn.execute("PRAGMA table_info(users)").fetchall()}:
         conn.execute(
