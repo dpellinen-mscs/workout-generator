@@ -340,12 +340,25 @@ def generate_workout(athlete: dict, history: list[dict] | None = None, focus: st
     )
     lower_is_unilateral = lower_exercise.get("unilateral", False)
 
-    # Maintain unilateral/bilateral balance across the session
-    if lower_is_unilateral:
-        upper_push_options = [ex for ex in upper_push_options if not ex.get("unilateral")]
-        upper_pull_options = [ex for ex in upper_pull_options if not ex.get("unilateral")]
-        upper_push_power_options = [ex for ex in upper_push_power_options if not ex.get("unilateral")]
-        upper_pull_power_options = [ex for ex in upper_pull_power_options if not ex.get("unilateral")]
+    # Maintain unilateral/bilateral balance across the session:
+    # always try to include exactly one unilateral upper-body movement if possible.
+    def _split_unilateral(options: list[dict]) -> tuple[list[dict], list[dict]]:
+        unilateral = [ex for ex in options if ex.get("unilateral")]
+        bilateral = [ex for ex in options if not ex.get("unilateral")]
+        return unilateral, bilateral
+
+    upper_push_uni, upper_push_bi = _split_unilateral(upper_push_options)
+    upper_pull_uni, upper_pull_bi = _split_unilateral(upper_pull_options)
+    upper_push_power_uni, upper_push_power_bi = _split_unilateral(upper_push_power_options)
+    upper_pull_power_uni, upper_pull_power_bi = _split_unilateral(upper_pull_power_options)
+
+    unilateral_slot = None
+    if upper_push_uni and upper_pull_uni:
+        unilateral_slot = random.choice(["push", "pull"])
+    elif upper_push_uni:
+        unilateral_slot = "push"
+    elif upper_pull_uni:
+        unilateral_slot = "pull"
 
     workout = {
         "warmup": EXERCISE_LIBRARY["warmup"],
@@ -355,12 +368,24 @@ def generate_workout(athlete: dict, history: list[dict] | None = None, focus: st
             **prescription,
         },
         "main_lift_upper_push": {
-            "exercise": _pick_main_exercise("upper_push", upper_push_options, history, focus, upper_push_power_options),
+            "exercise": _pick_main_exercise(
+                "upper_push",
+                upper_push_uni if unilateral_slot == "push" else (upper_push_bi or upper_push_options),
+                history,
+                focus,
+                upper_push_power_uni if unilateral_slot == "push" else (upper_push_power_bi or upper_push_power_options),
+            ),
             "intensity": phase_intensity,
             **prescription,
         },
         "main_lift_upper_pull": {
-            "exercise": _pick_main_exercise("upper_pull", upper_pull_options, history, focus, upper_pull_power_options),
+            "exercise": _pick_main_exercise(
+                "upper_pull",
+                upper_pull_uni if unilateral_slot == "pull" else (upper_pull_bi or upper_pull_options),
+                history,
+                focus,
+                upper_pull_power_uni if unilateral_slot == "pull" else (upper_pull_power_bi or upper_pull_power_options),
+            ),
             "intensity": phase_intensity,
             **prescription,
         },
