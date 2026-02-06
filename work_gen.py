@@ -58,7 +58,6 @@ PRIMARY_EXCLUDE_KEYWORDS = [
     "raise",
     "curl",
     "band",
-    "trx",
 ]
 
 PRIMARY_EXCLUDE_PATTERNS = {
