@@ -39,6 +39,7 @@ TIME_BASED_KEYWORDS = [
 ]
 
 WARMUP_VERSION = 3
+EXERCISE_FIX_VERSION = 1
 WARMUP_SEQUENCE = [
     "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30–60s each)",
     "90/90 hip stretch 15–20s/side",
@@ -645,6 +646,27 @@ def _load_exercise_library() -> dict:
                     "INSERT OR REPLACE INTO app_meta (key, value) VALUES ('warmup_version', ?)",
                     (str(WARMUP_VERSION),),
                 )
+
+    fix_meta = conn.execute("SELECT value FROM app_meta WHERE key = 'exercise_fix_version'").fetchone()
+    fix_version = int(fix_meta["value"]) if fix_meta and fix_meta["value"] and str(fix_meta["value"]).isdigit() else 0
+    if fix_version < EXERCISE_FIX_VERSION:
+        conn.execute(
+            """
+            UPDATE exercises
+            SET pattern = 'trunk_stability'
+            WHERE lower(name) LIKE '%renegade row%'
+            """
+        )
+        if _is_postgres():
+            conn.execute(
+                "INSERT INTO app_meta (key, value) VALUES ('exercise_fix_version', ?) ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value",
+                (str(EXERCISE_FIX_VERSION),),
+            )
+        else:
+            conn.execute(
+                "INSERT OR REPLACE INTO app_meta (key, value) VALUES ('exercise_fix_version', ?)",
+                (str(EXERCISE_FIX_VERSION),),
+            )
     count_row = conn.execute("SELECT COUNT(*) AS cnt FROM exercises").fetchone()
     count = count_row["cnt"] if count_row else 0
     if count == 0:

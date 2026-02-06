@@ -114,6 +114,25 @@ def is_time_based_exercise(name: str | None) -> bool:
     return any(keyword in value for keyword in TIME_BASED_KEYWORDS)
 
 
+def _is_rotation_exercise(name: str | None) -> bool:
+    if not name:
+        return False
+    value = name.lower()
+    return any(k in value for k in ["rotational", "rotation", "chop", "pallof", "scoop"])
+
+
+def _trunk_prescription(exercise_name: str | None, intensity: str) -> dict:
+    if is_time_based_exercise(exercise_name):
+        rest = "60–90 sec" if intensity == "heavy" else "30–45 sec"
+        return {"reps": "20–30 sec", "rest": rest}
+    if _is_rotation_exercise(exercise_name):
+        rest = "60–90 sec" if intensity == "heavy" else "45–60 sec"
+        return {"reps": "6–10", "rest": rest}
+    # Default trunk stability (loaded) reps
+    rest = "60–90 sec" if intensity == "heavy" else "45–60 sec"
+    return {"reps": "8–12", "rest": rest}
+
+
 def _name_has_any(name: str, keywords: list[str]) -> bool:
     lowered = name.lower()
     return any(k in lowered for k in keywords)
@@ -532,6 +551,10 @@ def generate_workout(
         "accessories": [],
     }
 
+    trunk_overrides = _trunk_prescription(workout["core"]["exercise"].get("name"), workout["core"]["intensity"])
+    workout["core"]["reps"] = trunk_overrides["reps"]
+    workout["core"]["rest"] = trunk_overrides["rest"]
+
     if lower_exercise is not None:
         workout["main_lift_lower"] = {
             "exercise": lower_exercise,
@@ -565,8 +588,7 @@ def generate_workout(
             **prescription,
         }
 
-    if is_time_based_exercise(workout["core"]["exercise"].get("name")):
-        workout["core"]["reps"] = "20–30 sec"
+    # trunk prescription already applied above
 
     accessories = pick_accessory_pair(history)
     used_names = set()
