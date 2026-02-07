@@ -654,8 +654,9 @@ def _load_exercise_library() -> dict:
             """
             UPDATE exercises
             SET pattern = 'trunk_stability'
-            WHERE lower(name) LIKE '%renegade row%'
-            """
+            WHERE lower(name) LIKE ?
+            """,
+            ("%renegade row%",),
         )
         if _is_postgres():
             conn.execute(
