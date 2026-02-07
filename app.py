@@ -2026,6 +2026,38 @@ def admin_workout_detail(workout_id: int):
     )
 
 
+@app.route("/admin/workout/<int:workout_id>/json", methods=["GET"])
+def admin_workout_detail_json(workout_id: int):
+    _init_db()
+    _ensure_user_columns()
+    if not _get_user_id():
+        return redirect(url_for("login"))
+    if not _is_admin():
+        return redirect(url_for("index"))
+
+    conn = _db()
+    row = conn.execute(
+        """
+        SELECT w.id, w.created_at, w.workout_json, u.email, u.full_name
+        FROM workouts w
+        JOIN users u ON u.id = w.user_id
+        WHERE w.id = ?
+        """,
+        (workout_id,),
+    ).fetchone()
+    conn.close()
+    if not row:
+        return redirect(url_for("admin_workouts"))
+    workout = json.loads(row["workout_json"])
+    return render_template(
+        "admin_workout_json.html",
+        workout_id=workout_id,
+        created_at=row["created_at"],
+        user_name=row["full_name"] or row["email"],
+        workout=workout,
+    )
+
+
 @app.route("/admin/user/<user_id>", methods=["GET"])
 def admin_user_detail(user_id: str):
     _init_db()

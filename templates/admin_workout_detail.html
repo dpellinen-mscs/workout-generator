@@ -11,19 +11,45 @@
       .muted { color:#a7b0bf; }
       a { color:#7bd8ff; }
       pre { white-space: pre-wrap; background:#111723; border-radius:10px; padding:12px; }
+      .section-title { font-weight:700; margin-top:14px; color:#7bd8ff; }
     </style>
   </head>
   <body>
     <div class="wrap">
       <h1>Workout {{ workout_id }}</h1>
-      <p><a href="/admin/workouts">Back to all workouts</a></p>
+      <p><a href="/admin/workouts">Back to all workouts</a> | <a href="/admin/workout/{{ workout_id }}/json">View JSON</a></p>
       <div class="card">
         <p><strong>User:</strong> {{ user_name }}</p>
         <p class="muted"><strong>Created:</strong> {{ created_at }}</p>
       </div>
       <div class="card">
-        <h3>Workout JSON</h3>
-        <pre>{{ workout | tojson(indent=2) }}</pre>
+        <div class="section-title">Warm-Up</div>
+        {% for item in workout.warmup %}
+          <div class="line">- {{ item }}</div>
+        {% endfor %}
+
+        <div class="section-title">Primary Lifts</div>
+        {% for label, key in [("Lower", "main_lift_lower"), ("Upper Push", "main_lift_upper_push"), ("Upper Pull", "main_lift_upper_pull")] %}
+          {% set block = workout[key] %}
+          {% if block %}
+            <div class="line"><strong>{{ display_category_label(label.lower().replace(' ', '_')) }}:</strong> {{ block.exercise.name }}</div>
+            <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }} | Reps {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+          {% endif %}
+        {% endfor %}
+
+        <div class="section-title">Trunk Stability</div>
+        <div class="line">{{ workout.core.exercise.name }}</div>
+        {% set core_is_time = is_time_based_exercise(workout.core.exercise.name) %}
+        <div class="line muted">Pattern {{ display_pattern_label(workout.core.exercise.pattern) }} | Sets {{ workout.core.sets }}{% if workout.core.reps %} | {{ 'Hold' if core_is_time else 'Reps' }} {{ workout.core.reps }}{% endif %} | Rest {{ workout.core.rest }} | Intensity {{ workout.core.intensity }}</div>
+
+        {% if workout.accessories %}
+        <div class="section-title">Supplemental</div>
+        {% for block in workout.accessories %}
+          <div class="line">- {{ block.exercise.name }}</div>
+          {% set acc_is_time = is_time_based_exercise(block.exercise.name) %}
+          <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }}{% if block.reps %} | {{ 'Hold' if acc_is_time else 'Reps' }} {{ block.reps }}{% endif %} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+        {% endfor %}
+        {% endif %}
       </div>
     </div>
   </body>

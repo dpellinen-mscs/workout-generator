@@ -35,7 +35,7 @@
               <td>{{ w.created_at }}</td>
               <td>{{ w.user_name }}</td>
               <td>{{ w.total_load_score }}</td>
-              <td><a href="/admin/workout/{{ w.id }}">View</a></td>
+              <td><a href="/admin/workout/{{ w.id }}">View</a> | <a href="/admin/workout/{{ w.id }}/json">View JSON</a></td>
             </tr>
             {% endfor %}
           </tbody>
