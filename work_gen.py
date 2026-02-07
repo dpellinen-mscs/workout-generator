@@ -123,14 +123,11 @@ def _is_rotation_exercise(name: str | None) -> bool:
 
 def _trunk_prescription(exercise_name: str | None, intensity: str) -> dict:
     if is_time_based_exercise(exercise_name):
-        rest = "60–90 sec" if intensity == "heavy" else "30–45 sec"
-        return {"reps": "20–30 sec", "rest": rest}
+        return {"reps": "Hold (loaded)", "rest": "2–3 min"}
     if _is_rotation_exercise(exercise_name):
-        rest = "60–90 sec" if intensity == "heavy" else "45–60 sec"
-        return {"reps": "6–10", "rest": rest}
+        return {"reps": "6–10", "rest": "2–3 min"}
     # Default trunk stability (loaded) reps
-    rest = "60–90 sec" if intensity == "heavy" else "45–60 sec"
-    return {"reps": "8–12", "rest": rest}
+    return {"reps": "8–12", "rest": "2–3 min"}
 
 
 def _name_has_any(name: str, keywords: list[str]) -> bool:
@@ -606,7 +603,8 @@ def generate_workout(
             **ACCESSORY_PRESCRIPTION,
         }
         if is_time_based_exercise(ex.get("name")):
-            block["reps"] = "20–30 sec"
+            block["reps"] = "Hold (loaded)"
+            block["rest"] = "2–3 min"
         workout["accessories"].append(block)
 
     if offseason_plan and offseason_plan.get("extra_pull"):
@@ -630,6 +628,8 @@ def generate_workout(
                     "exercise": carry_ex,
                     "intensity": "heavy",
                     **ACCESSORY_PRESCRIPTION,
+                    "reps": "Hold (loaded)",
+                    "rest": "2–3 min",
                 })
                 used_names.add(carry_ex.get("name"))
 
