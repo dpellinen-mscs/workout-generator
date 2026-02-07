@@ -499,7 +499,8 @@ def generate_workout(
     push_mode = offseason_plan["push"] if offseason_plan else "heavy_horizontal"
     pull_mode = offseason_plan["pull"] if offseason_plan else "heavy_horizontal"
     lower_mode = offseason_plan["lower"] if offseason_plan else "heavy"
-    core_mode = "heavy" if offseason_plan and offseason_plan.get("core_heavy") else "light"
+    core_mode = "heavy" if offseason_plan and (offseason_plan.get("core_heavy") or offseason_plan.get("rotation_heavy")) else "light"
+
 
     push_options = _primary_candidates(upper_push_options)
     pull_options = _primary_candidates(upper_pull_options)
