@@ -72,6 +72,9 @@
         {{ athlete.position }} | {{ athlete.goal }} | {{ athlete.phase }} |
         Injuries: {{ athlete.injuries | join(", ") if athlete.injuries else "None" }}
       </div>
+      {% if split_days_per_week %}
+      <div class="muted">Split day: {{ split_day_index + 1 }} of {{ split_days_per_week }}</div>
+      {% endif %}
 
       <div class="card">
         <div class="section-title">Warm-Up</div>

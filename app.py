@@ -1245,6 +1245,8 @@ def generate():
         caps=caps,
         benchmark=benchmark,
         workout_date=datetime.now().strftime("%Y-%m-%d"),
+        split_day_index=day_index,
+        split_days_per_week=days_per_week,
     )
 
 
@@ -1310,6 +1312,8 @@ def log_workout_web(workout_id: int):
             caps=caps,
             benchmark=benchmark,
             workout_date=request.form.get("log_date") or datetime.now().strftime("%Y-%m-%d"),
+            split_day_index=None,
+            split_days_per_week=None,
         )
 
     log_date = request.form.get("log_date", "").strip() or datetime.now().strftime("%Y-%m-%d")
@@ -1355,6 +1359,8 @@ def log_workout_web(workout_id: int):
             benchmark=benchmark,
             workout_date=log_date,
             error=form_error,
+            split_day_index=None,
+            split_days_per_week=None,
         )
 
     conn = _db()
@@ -1396,6 +1402,8 @@ def log_workout_web(workout_id: int):
         caps=caps,
         benchmark=benchmark,
         workout_date=log_date,
+        split_day_index=None,
+        split_days_per_week=None,
     )
 
 
