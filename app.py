@@ -1132,6 +1132,13 @@ def _recent_workouts(user_id: str, days: int = 7) -> list[dict]:
     return recent
 
 
+def _workout_count(user_id: str) -> int:
+    conn = _db()
+    row = conn.execute("SELECT COUNT(*) AS cnt FROM workouts WHERE user_id = ?", (user_id,)).fetchone()
+    conn.close()
+    return int(row["cnt"]) if row and row.get("cnt") is not None else 0
+
+
 def _workout_entries(workout: dict) -> list[dict]:
     entries = []
     for key, category in [
@@ -1225,9 +1232,8 @@ def generate():
         max_exit_velocity_mph=profile.get("max_exit_velocity_mph"),
     )
     history = _fetch_history(user_id)
-    recent_workouts = _recent_workouts(user_id, days=7)
     days_per_week = athlete.get("days_per_week") or 3
-    day_index = len(recent_workouts) % max(days_per_week, 1)
+    day_index = _workout_count(user_id) % max(days_per_week, 1)
     workout = work_gen.generate_workout(athlete, history=history, focus=benchmark, day_index=day_index)
     caps = work_gen.compute_history_caps_from_history(history, athlete["phase"], workout, days=7)
 
