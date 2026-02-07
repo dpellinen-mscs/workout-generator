@@ -94,14 +94,14 @@
         <div class="section-title">Trunk Stability</div>
         <div class="line">{{ workout.core.exercise.name }}</div>
         {% set core_is_time = is_time_based_exercise(workout.core.exercise.name) %}
-        <div class="line muted">Pattern {{ display_pattern_label(workout.core.exercise.pattern) }} | Sets {{ workout.core.sets }} | {{ 'Hold' if core_is_time else 'Reps' }} {{ workout.core.reps }} | Rest {{ workout.core.rest }} | Intensity {{ workout.core.intensity }}</div>
+        <div class="line muted">Pattern {{ display_pattern_label(workout.core.exercise.pattern) }} | Sets {{ workout.core.sets }}{% if workout.core.reps %} | {{ 'Hold' if core_is_time else 'Reps' }} {{ workout.core.reps }}{% endif %} | Rest {{ workout.core.rest }} | Intensity {{ workout.core.intensity }}</div>
 
         {% if workout.accessories %}
         <div class="section-title">Supplemental</div>
         {% for block in workout.accessories %}
           <div class="line">- {{ block.exercise.name }}</div>
           {% set acc_is_time = is_time_based_exercise(block.exercise.name) %}
-          <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }} | {{ 'Hold' if acc_is_time else 'Reps' }} {{ block.reps }} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
+          <div class="line muted">Pattern {{ display_pattern_label(block.exercise.pattern) }} | Sets {{ block.sets }}{% if block.reps %} | {{ 'Hold' if acc_is_time else 'Reps' }} {{ block.reps }}{% endif %} | Rest {{ block.rest }} | Intensity {{ block.intensity }}</div>
         {% endfor %}
         {% endif %}
       </div>
