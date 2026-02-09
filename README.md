@@ -32,6 +32,14 @@ Browser -> Flask app -> Postgres
 
 Exercise library and coaching logic live in the database and drive the generator.
 
+```mermaid
+flowchart LR
+  U["Athlete / Coach (Browser)"] --> W["Flask App (Render)"]
+  W --> D["Postgres (Render)"]
+  W --> G["Workout Engine (work_gen.py)"]
+  G --> W
+```
+
 ## How It Works (Short Version)
 1. Athlete profile inputs are stored in Postgres.
 2. The generator in `work_gen.py` builds a workout using rules (phase, split, rotation, load caps).
