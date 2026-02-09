@@ -1,8 +1,8 @@
 """
-Workout Generator v1
-- No APIs
-- No database
-- Just: athlete profile -> simple logic -> printed workout
+Workout Generator
+- Rule-based training logic (baseball performance)
+- Used by the Flask app (see app.py)
+- Exercise library + coaching style config drive selections
 """
 
 import json
