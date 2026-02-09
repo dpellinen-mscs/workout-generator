@@ -4,7 +4,7 @@ A rule-based baseball performance workout generator that turns athlete data into
 
 ## Live Demo
 - App: https://workout-generator-xtpb.onrender.com
-- Demo video: demo video link here
+- Demo video: https://www.loom.com/share/d662ef81fb3d42c685bfd3b51d195daf
 
 ## What It Does
 - Generates sport-specific workouts using NSCA-style movement patterns
