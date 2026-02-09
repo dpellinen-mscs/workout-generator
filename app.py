@@ -1545,6 +1545,23 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/account/delete", methods=["POST"])
+def delete_account():
+    _init_db()
+    user_id = _get_user_id()
+    if not user_id:
+        return redirect(url_for("login"))
+    conn = _db()
+    with conn:
+        conn.execute("DELETE FROM completed_logs WHERE user_id = ?", (user_id,))
+        conn.execute("DELETE FROM performance_logs WHERE user_id = ?", (user_id,))
+        conn.execute("DELETE FROM workouts WHERE user_id = ?", (user_id,))
+        conn.execute("DELETE FROM users WHERE id = ?", (user_id,))
+    conn.close()
+    session.pop("user_id", None)
+    return redirect(url_for("login"))
+
+
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     _init_db()

@@ -283,6 +283,13 @@ def _last_used_map(history: list[dict]) -> dict:
     return last_used
 
 
+def _get_category(*names: str) -> list:
+    for name in names:
+        if name in EXERCISE_LIBRARY:
+            return EXERCISE_LIBRARY.get(name, [])
+    return []
+
+
 def _history_for_category(history: list[dict], category_name: str) -> list[dict]:
     rows = [h for h in history if h.get("category") == category_name]
     rows.sort(key=lambda r: r.get("date", ""))
@@ -344,8 +351,13 @@ def pick_accessory_pair(history: list[dict]) -> list[dict]:
     if not ACCESSORY_PAIRS:
         return []
     name_to_ex = {}
-    for group in ["upper_push", "upper_pull", "lower", "core"]:
-        for ex in EXERCISE_LIBRARY.get(group, []):
+    for group in [
+        _get_category("upper_push", "push"),
+        _get_category("upper_pull", "pull"),
+        _get_category("lower", "lower_body"),
+        _get_category("core", "trunk_stability"),
+    ]:
+        for ex in group:
             if not is_primary_exercise(ex):
                 name_to_ex[ex["name"]] = ex
     last_used = _last_used_map(history)
@@ -454,12 +466,22 @@ def generate_workout(
     history = history if history is not None else load_history()
 
     # Filter upper options based on injuries (v1 minimal logic)
-    upper_push_options = filter_exercises_for_injuries(EXERCISE_LIBRARY["upper_push"], injuries)
-    upper_pull_options = filter_exercises_for_injuries(EXERCISE_LIBRARY["upper_pull"], injuries)
-    upper_push_power_options = filter_exercises_for_injuries(EXERCISE_LIBRARY.get("upper_push_power", []), injuries)
-    upper_pull_power_options = filter_exercises_for_injuries(EXERCISE_LIBRARY.get("upper_pull_power", []), injuries)
+    upper_push_base = _get_category("upper_push", "push")
+    upper_pull_base = _get_category("upper_pull", "pull")
+    upper_push_power_base = _get_category("upper_push_power", "push_power")
+    upper_pull_power_base = _get_category("upper_pull_power", "pull_power")
+    lower_base = _get_category("lower", "lower_body")
+    lower_power_base = _get_category("lower_power", "lower_body_power")
+    core_base = _get_category("core", "trunk_stability")
+    core_power_base = _get_category("core_power", "trunk_stability_power")
+    warmup_base = _get_category("warmup")
 
-    lower_options = _primary_candidates(EXERCISE_LIBRARY["lower"])
+    upper_push_options = filter_exercises_for_injuries(upper_push_base, injuries)
+    upper_pull_options = filter_exercises_for_injuries(upper_pull_base, injuries)
+    upper_push_power_options = filter_exercises_for_injuries(upper_push_power_base, injuries)
+    upper_pull_power_options = filter_exercises_for_injuries(upper_pull_power_base, injuries)
+
+    lower_options = _primary_candidates(lower_base)
     if offseason_plan and offseason_plan.get("include_lower", True):
         week_even = datetime.now().isocalendar().week % 2 == 0
         heavy_lower_focus = "squat" if week_even else "hinge"
@@ -468,7 +490,7 @@ def generate_workout(
         elif offseason_plan["lower"] == "heavy":
             lower_options = [ex for ex in lower_options if ex.get("pattern") == heavy_lower_focus and not ex.get("unilateral")]
             if not lower_options:
-                lower_options = [ex for ex in EXERCISE_LIBRARY["lower"] if ex.get("pattern") == heavy_lower_focus]
+                lower_options = [ex for ex in lower_base if ex.get("pattern") == heavy_lower_focus]
     lower_exercise = None
     if offseason_plan is None or offseason_plan.get("include_lower", True):
         lower_exercise = _pick_main_exercise(
@@ -476,7 +498,7 @@ def generate_workout(
             lower_options,
             history,
             focus,
-            EXERCISE_LIBRARY.get("lower_power", []),
+            lower_power_base,
         )
     lower_is_unilateral = lower_exercise.get("unilateral", False) if lower_exercise else False
 
@@ -529,7 +551,7 @@ def generate_workout(
     elif upper_pull_uni:
         unilateral_slot = "pull"
 
-    core_options = EXERCISE_LIBRARY["core"]
+    core_options = core_base
     if offseason_plan and offseason_plan.get("rotation_heavy"):
         rot_keys = ["rotational", "chop", "pallof"]
         rot_options = [ex for ex in core_options if _name_has_any(ex.get("name", ""), rot_keys)]
@@ -537,12 +559,12 @@ def generate_workout(
             core_options = rot_options
 
     workout = {
-        "warmup": EXERCISE_LIBRARY["warmup"],
+        "warmup": warmup_base,
         "main_lift_lower": None,
         "main_lift_upper_push": None,
         "main_lift_upper_pull": None,
         "core": {
-            "exercise": _pick_main_exercise("core", core_options, history, focus, EXERCISE_LIBRARY.get("core_power", [])),
+            "exercise": _pick_main_exercise("core", core_options, history, focus, core_power_base),
             "intensity": _intensity_for(core_mode, "light"),
             **CORE_PRESCRIPTION,
         },
@@ -609,7 +631,7 @@ def generate_workout(
         workout["accessories"].append(block)
 
     if offseason_plan and offseason_plan.get("extra_pull"):
-        accessory_pull_options = [ex for ex in EXERCISE_LIBRARY.get("upper_pull", []) if not is_primary_exercise(ex)]
+        accessory_pull_options = [ex for ex in upper_pull_base if not is_primary_exercise(ex)]
         if accessory_pull_options:
             bonus_pull = pick_one("upper_pull", accessory_pull_options, history)
             if bonus_pull.get("name") not in used_names:
