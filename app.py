@@ -1136,7 +1136,9 @@ def _workout_count(user_id: str) -> int:
     conn = _db()
     row = conn.execute("SELECT COUNT(*) AS cnt FROM workouts WHERE user_id = ?", (user_id,)).fetchone()
     conn.close()
-    return int(row["cnt"]) if row and row.get("cnt") is not None else 0
+    if not row:
+        return 0
+    return int(row["cnt"]) if row["cnt"] is not None else 0
 
 
 def _workout_entries(workout: dict) -> list[dict]:
