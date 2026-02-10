@@ -68,5 +68,5 @@ Dan Pellinen is a former professional baseball player with a passion for fitness
 He became a 200hr Yoga Teacher and incorporated yogic philosophies into his training methodology, eventually publishing "The Yoga Baseball Method".  After layoffs in the fitness industry he turned to tech, earning his A.S. in Software & Web Development.  He now combines his expertise in fitness, sports performance, and software development with his passion for problem-solving to address real problems in fitness and athletic performance.
 
 *Connect on:
-LinkedIn: https://www.linkedin.com/in/dan-pellinen?utm_source=share_via&utm_content=profile&utm_medium=member_ios
+LinkedIn: https://www.linkedin.com/in/dan-pellinen/
 GitHub:https://github.com/dpellinen-mscs?tab=repositories
