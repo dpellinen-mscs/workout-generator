@@ -1,6 +1,6 @@
 # Workout Generator (Baseball Performance)
 
-A full-stack web app that automates the generation of personalized, periodized training plans for baseball players and uses data to address real training needs.  Built by a former pro baseball player and personal trainer to address the issues with generalized, training programs.
+A full-stack web app that automates the generation of personalized, periodized training plans for baseball players and uses data to address real training needs.  Built by a former pro baseball player and personal trainer to address the issues with generalized training programs.
 
 ## Live Demo
 - Live App: https://workout-generator-xtpb.onrender.com
@@ -67,3 +67,7 @@ This project demonstrates full-stack delivery, domain knowledge, and production 
 Dan Pellinen is a former professional baseball player with a passion for fitness, athletic performance, and tech.  After being drafted by Cleveland in the 2013 MLB Draft, he played college baseball and earned his B.S. in Exercise Science.  He then played Independent Professional Baseball and became a Certified Personal Trainer, expanding his knowledge of performance development while directly applying this info to his clients.  
 
 He became a 200hr Yoga Teacher and incorporated yogic philosophies into his training methodology, eventually publishing "The Yoga Baseball Method".  After layoffs in the fitness industry he turned to tech, earning his A.S. in Software & Web Development.  He now combines his expertise in fitness, sports performance, and software development with his passion for problem-solving to address real problems in fitness and athletic performance.
+
+*Connect on:
+LinkedIn: https://www.linkedin.com/in/dan-pellinen?utm_source=share_via&utm_content=profile&utm_medium=member_ios
+GitHub:https://github.com/dpellinen-mscs?tab=repositories
