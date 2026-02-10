@@ -35,7 +35,7 @@ Exercise library and coaching logic live in the database and drive the generator
 ```mermaid
 flowchart LR
   U["Athlete / Coach (Browser)"] --> W["Flask App (Render)"]
-  W --> D["Postgres (Render)"]
+  W <--> D["Postgres (Render)"]
   W --> G["Workout Engine (work_gen.py)"]
   G --> W
 ```
