@@ -36,8 +36,7 @@ Exercise library and coaching logic live in the database and drive the generator
 flowchart LR
   U["Athlete / Coach (Browser)"] --> W["Flask App (Render)"]
   W <--> D["Postgres (Render)"]
-  W --> G["Workout Engine (work_gen.py)"]
-  G --> W
+  W <--> G["Workout Engine (work_gen.py)"]
 ```
 
 ## How It Works (Short Version)
