@@ -7,10 +7,10 @@ A full-stack web app that automates the generation of personalized, periodized t
 - Demo Video: https://www.loom.com/share/d662ef81fb3d42c685bfd3b51d195daf
 
 ## What It Does
-Problem:
+**Problem:**
 Generic workout templates don't address the varying needs of individual athletes during the specific phases of their season and career and can't adapt to injuries or performance in real time.  Manual program design is time-consuming and hard to scale.
 
-Solution:
+**Solution:**
 This application transforms training expertise and individual athlete data into rule-based logic for accurate, repeatable program generation.  It allows the athletes to input, address, and discover their personal training needs.  It enables coaches to monitor athlete progress and manage the exercise library without touching code.
 
 ## Features
