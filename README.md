@@ -55,6 +55,12 @@ export WG_ADMIN_CODE="coach-admin-123"
 python3 app.py
 ```
 
+## Run with Docker
+```bash
+docker compose up --build
+```
+Then open `http://localhost:8000`.
+
 ## Admin Access
 Use the admin code during registration to create an admin user:
 - Admin code: `coach-admin-123` 

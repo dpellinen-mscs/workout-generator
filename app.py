@@ -1,4 +1,5 @@
 import json
+import time
 import os
 import sqlite3
 import traceback
@@ -610,7 +611,13 @@ def _load_exercise_library() -> dict:
         )
         """
     )
-    meta = conn.execute("SELECT value FROM app_meta WHERE key = 'warmup_version'").fetchone()
+    try:
+        meta = conn.execute("SELECT value FROM app_meta WHERE key = 'warmup_version'").fetchone()
+    except Exception:
+        # Postgres container can restart during init; retry once with a fresh connection.
+        conn.close()
+        conn = _db()
+        meta = conn.execute("SELECT value FROM app_meta WHERE key = 'warmup_version'").fetchone()
     current_version = int(meta["value"]) if meta and meta["value"] and str(meta["value"]).isdigit() else 0
     if current_version < WARMUP_VERSION:
         with conn:
@@ -647,7 +654,12 @@ def _load_exercise_library() -> dict:
                     (str(WARMUP_VERSION),),
                 )
 
-    fix_meta = conn.execute("SELECT value FROM app_meta WHERE key = 'exercise_fix_version'").fetchone()
+    try:
+        fix_meta = conn.execute("SELECT value FROM app_meta WHERE key = 'exercise_fix_version'").fetchone()
+    except Exception:
+        conn.close()
+        conn = _db()
+        fix_meta = conn.execute("SELECT value FROM app_meta WHERE key = 'exercise_fix_version'").fetchone()
     fix_version = int(fix_meta["value"]) if fix_meta and fix_meta["value"] and str(fix_meta["value"]).isdigit() else 0
     if fix_version < EXERCISE_FIX_VERSION:
         conn.execute(
@@ -668,59 +680,87 @@ def _load_exercise_library() -> dict:
                 "INSERT OR REPLACE INTO app_meta (key, value) VALUES ('exercise_fix_version', ?)",
                 (str(EXERCISE_FIX_VERSION),),
             )
-    count_row = conn.execute("SELECT COUNT(*) AS cnt FROM exercises").fetchone()
-    count = count_row["cnt"] if count_row else 0
-    if count == 0:
+    try:
+        count_row = conn.execute("SELECT COUNT(*) AS cnt FROM exercises").fetchone()
+        count = count_row["cnt"] if count_row else 0
+        non_warmup_row = conn.execute(
+            "SELECT COUNT(*) AS cnt FROM exercises WHERE category != 'warmup'"
+        ).fetchone()
+        non_warmup = non_warmup_row["cnt"] if non_warmup_row else 0
+    except Exception:
+        conn.close()
+        time.sleep(0.2)
+        conn = _db()
+        count_row = conn.execute("SELECT COUNT(*) AS cnt FROM exercises").fetchone()
+        count = count_row["cnt"] if count_row else 0
+        non_warmup_row = conn.execute(
+            "SELECT COUNT(*) AS cnt FROM exercises WHERE category != 'warmup'"
+        ).fetchone()
+        non_warmup = non_warmup_row["cnt"] if non_warmup_row else 0
+
+    if count == 0 or non_warmup == 0:
+        conn.execute("DELETE FROM exercises")
         seed = json.loads(EXERCISE_LIBRARY_PATH.read_text())
-        sort_order = 0
-        for category, items in seed.items():
-            if not isinstance(items, list):
-                continue
-            for ex in items:
-                sort_order += 1
-                if isinstance(ex, str):
-                    conn.execute(
-                        """
-                        INSERT INTO exercises
-                        (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                        """,
-                        (
-                            f"{category}:{uuid.uuid4().hex[:8]}",
-                            category,
-                            ex,
-                            None,
-                            None,
-                            None,
-                            None,
-                            sort_order,
-                            datetime.now().isoformat(timespec="seconds"),
-                        ),
-                    )
-                    continue
-                if not isinstance(ex, dict):
-                    continue
-                ex_id = ex.get("id") or f"{category}:{uuid.uuid4().hex[:8]}"
-                movement_family = ex.get("movement_family") or _infer_movement_family(ex.get("name", ""))
-                conn.execute(
-                    """
-                    INSERT INTO exercises
-                    (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
-                    (
-                        ex_id,
-                        category,
-                        ex.get("name") or "",
-                        movement_family,
-                        ex.get("pattern") or "unknown",
-                        ex.get("muscle_mass") or "medium",
-                        1 if ex.get("unilateral") else 0,
-                        sort_order,
-                        datetime.now().isoformat(timespec="seconds"),
-                    ),
-                )
-        conn.raw.commit()
+        for attempt in range(2):
+            try:
+                sort_order = 0
+                for category, items in seed.items():
+                    if not isinstance(items, list):
+                        continue
+                    for ex in items:
+                        sort_order += 1
+                        if isinstance(ex, str):
+                            conn.execute(
+                                """
+                                INSERT INTO exercises
+                                (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                """,
+                                (
+                                    f"{category}:{uuid.uuid4().hex[:8]}",
+                                    category,
+                                    ex,
+                                    None,
+                                    None,
+                                    None,
+                                    None,
+                                    sort_order,
+                                    datetime.now().isoformat(timespec="seconds"),
+                                ),
+                            )
+                            continue
+                        if not isinstance(ex, dict):
+                            continue
+                        ex_id = ex.get("id") or f"{category}:{uuid.uuid4().hex[:8]}"
+                        movement_family = ex.get("movement_family") or _infer_movement_family(ex.get("name", ""))
+                        conn.execute(
+                            """
+                            INSERT INTO exercises
+                            (id, category, name, movement_family, pattern, muscle_mass, unilateral, sort_order, created_at)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            """,
+                            (
+                                ex_id,
+                                category,
+                                ex.get("name") or "",
+                                movement_family,
+                                ex.get("pattern") or "unknown",
+                                ex.get("muscle_mass") or "medium",
+                                1 if ex.get("unilateral") else 0,
+                                sort_order,
+                                datetime.now().isoformat(timespec="seconds"),
+                            ),
+                        )
+                conn.raw.commit()
+                break
+            except Exception:
+                conn.close()
+                time.sleep(0.3)
+                conn = _db()
+                count_row = conn.execute("SELECT COUNT(*) AS cnt FROM exercises").fetchone()
+                count = count_row["cnt"] if count_row else 0
+                if count:
+                    break
 
     conn.close()
     conn = _db()
