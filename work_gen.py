@@ -6,7 +6,7 @@ Workout Generator
 """
 
 import json
-import hashlib
+import uuid
 import random
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -803,7 +803,8 @@ def _weekly_warnings(phase: str, total_load: int, pattern_counts: dict) -> list[
 
 
 def _recent_history_from(history: list[dict], days: int = 7) -> list[dict]:
-    cutoff = datetime.now().date() - timedelta(days=days - 1)
+    today = datetime.now().date()
+    cutoff = today - timedelta(days=days - 1)
     recent = []
     for entry in history:
         date_str = entry.get("date")
@@ -811,19 +812,35 @@ def _recent_history_from(history: list[dict], days: int = 7) -> list[dict]:
             continue
         try:
             entry_date = datetime.strptime(date_str, "%Y-%m-%d").date()
-        except ValueError:
+        except (TypeError, ValueError):
             continue
-        if entry_date >= cutoff:
+        if cutoff <= entry_date <= today:
             recent.append(entry)
     return recent
 
 
 def _pattern_lookup() -> dict:
     lookup = {}
-    for key in ["upper_push", "upper_pull", "lower", "core"]:
-        for ex in EXERCISE_LIBRARY.get(key, []):
+    for exercises in EXERCISE_LIBRARY.values():
+        for ex in exercises:
+            if not isinstance(ex, dict):
+                continue
             lookup[ex["name"]] = _pattern_of_exercise(ex)
     return lookup
+
+
+def workout_blocks(workout: dict):
+    """Yield the scored blocks in the same order as completion logging."""
+    for key, category in [
+        ("main_lift_lower", "lower"),
+        ("main_lift_upper_push", "upper_push"),
+        ("main_lift_upper_pull", "upper_pull"),
+        ("core", "core"),
+    ]:
+        if workout.get(key):
+            yield category, workout[key]
+    for block in workout.get("accessories", []):
+        yield "accessory", block
 
 
 def compute_history_caps_from_history(history: list[dict], phase: str, workout: dict, days: int = 7) -> dict:
@@ -831,39 +848,35 @@ def compute_history_caps_from_history(history: list[dict], phase: str, workout: 
     pattern_counts = {p: 0 for p in PATTERN_CAPS}
     total_load = 0
 
-    name_to_pattern = _pattern_lookup()
     name_to_ex = {}
-    for group in ["upper_push", "upper_pull", "lower", "core"]:
-        for ex in EXERCISE_LIBRARY.get(group, []):
+    id_to_ex = {}
+    for exercises in EXERCISE_LIBRARY.values():
+        for ex in exercises:
+            if not isinstance(ex, dict):
+                continue
             name_to_ex[ex["name"]] = ex
+            if ex.get("id"):
+                id_to_ex[ex["id"]] = ex
     for entry in recent:
-        name = entry.get("exercise_name")
-        if not name:
+        ex = entry.get("exercise") or id_to_ex.get(entry.get("exercise_id")) or name_to_ex.get(entry.get("exercise_name"))
+        if not ex:
             continue
-        pattern = name_to_pattern.get(name)
+        pattern = _pattern_of_exercise(ex)
         if pattern in pattern_counts:
             pattern_counts[pattern] += 1
-        ex = name_to_ex.get(name)
-        if ex:
-            entry_phase = entry.get("phase", phase)
-            entry_intensity = get_phase_intensity(entry_phase)
-            total_load += compute_load_score(entry_intensity, ex)
+        entry_intensity = entry.get("intensity") or get_phase_intensity(entry.get("phase", phase))
+        total_load += compute_load_score(entry_intensity, ex)
 
-    # Add today's workout impact
-    total_load += workout.get("total_load_score", 0)
-    for key in ["main_lift_lower", "main_lift_upper_push", "main_lift_upper_pull", "core"]:
-        block = workout.get(key)
-        if not block:
-            continue
-        ex = block["exercise"]
-        pattern = _pattern_of_exercise(ex)
-        if pattern in pattern_counts:
-            pattern_counts[pattern] += 1
-    for block in workout.get("accessories", []):
-        ex = block["exercise"]
-        pattern = _pattern_of_exercise(ex)
-        if pattern in pattern_counts:
-            pattern_counts[pattern] += 1
+    # Identity is a session identity, never a hash of exercise contents. Check
+    # all history so an old or invalid-dated completion is not a new plan.
+    workout_id = workout.get("workout_id")
+    logged = workout_id is not None and any(entry.get("workout_id") == workout_id for entry in history)
+    if not logged:
+        total_load += workout.get("total_load_score", 0)
+        for _, block in workout_blocks(workout):
+            pattern = _pattern_of_exercise(block["exercise"])
+            if pattern in pattern_counts:
+                pattern_counts[pattern] += 1
 
     warnings = _weekly_warnings(phase, total_load, pattern_counts)
     return {
@@ -895,16 +908,16 @@ def save_workout_to_json(athlete: dict, workout: dict) -> Path:
     workouts_dir = Path(__file__).parent / "workouts"
     workouts_dir.mkdir(exist_ok=True)
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     safe_position = athlete["position"].replace(" ", "_")
     filename = f"workout_{safe_position}_{timestamp}.json"
     path = workouts_dir / filename
 
+    workout_id = workout.setdefault("workout_id", str(uuid.uuid4()))
     payload = {
         "athlete": athlete,
         "workout": workout,
     }
-    workout_id = hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
     data = {
         **payload,
         "workout_id": workout_id,

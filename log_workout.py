@@ -66,6 +66,12 @@ def load_workout(path: Path) -> dict:
 
 def _workout_id_from_file(path: Path) -> str:
     content = path.read_text()
+    data = json.loads(content)
+    # Older files used content hashes in history; their top-level ID was a
+    # different hash. Only the new nested session identity supersedes that.
+    workout_id = data.get("workout", {}).get("workout_id")
+    if workout_id:
+        return workout_id
     return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
 
@@ -109,7 +115,8 @@ def main() -> None:
     history_path = Path(__file__).parent / "workouts" / "history.jsonl"
     workout_id = _workout_id_from_file(workout_path)
     if _history_contains_workout_id(history_path, workout_id):
-        print("Warning: This workout appears to have already been logged.")
+        print("This workout has already been logged.")
+        return
 
     data = load_workout(workout_path)
     workout = data.get("workout", {})
@@ -142,6 +149,8 @@ def main() -> None:
             "phase": athlete.get("phase"),
             "position": athlete.get("position"),
             "workout_id": workout_id,
+            "exercise": block.get("exercise", {}),
+            "intensity": block.get("intensity"),
         })
 
     for block in workout.get("accessories", []):
@@ -159,6 +168,8 @@ def main() -> None:
             "phase": athlete.get("phase"),
             "position": athlete.get("position"),
             "workout_id": workout_id,
+            "exercise": block.get("exercise", {}),
+            "intensity": block.get("intensity"),
         })
 
     history_path = append_history(entries)
