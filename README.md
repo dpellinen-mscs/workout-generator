@@ -2,9 +2,9 @@
 
 A full-stack web app that automates the generation of personalized, periodized training plans for baseball players and uses data to address real training needs.  Built by a former pro baseball player and personal trainer to address the issues with generalized training programs.
 
-## Live Demo
-- Live App: https://workout-generator-xtpb.onrender.com
-- Demo Video: https://www.loom.com/share/d662ef81fb3d42c685bfd3b51d195daf
+## Demo
+- Demo video: https://www.loom.com/share/d662ef81fb3d42c685bfd3b51d195daf
+- Run locally: see [DEPLOYMENT.md](DEPLOYMENT.md) (`docker compose up` with the included docker-compose.yml, or `pip install -r requirements.txt` and the Gunicorn command there)
 
 ## What It Does
 **Problem:**
@@ -76,3 +76,6 @@ He became a 200hr Yoga Teacher and incorporated yogic philosophies into his trai
 *Connect on:
 * Connect on: [LinkedIn](https://www.linkedin.com/in/dan-pellinen/)
 * GitHub: [dpellinen-mscs](https://github.com/dpellinen-mscs?tab=repositories)
+
+## License
+MIT, see [LICENSE](LICENSE).
