@@ -23,7 +23,7 @@ This application transforms training expertise and individual athlete data into 
 ## Tech Stack
 - Backend: Python, Flask
 - Database: Postgres
-- Deployment: Render
+- Deployment: Docker Compose and Gunicorn (Render configuration included; no live instance is maintained)
 - Server: Gunicorn
 - Frontend: Server-rendered HTML/CSS
 
@@ -34,8 +34,8 @@ Exercise library and coaching logic live in the database and drive the generator
 
 ```mermaid
 flowchart LR
-  U["Athlete / Coach (Browser)"] --> W["Flask App (Render)"]
-  W <--> D["Postgres (Render)"]
+  U["Athlete / Coach (Browser)"] --> W["Flask App"]
+  W <--> D["Postgres"]
   W <--> G["Workout Engine (work_gen.py)"]
 ```
 
@@ -66,10 +66,10 @@ Use the admin code during registration to create an admin user:
 - Admin code: `coach-admin-123` 
 
 ## Project Goals
-This project demonstrates full-stack delivery, domain knowledge, and production deployment for sports performance software.
+This project demonstrates full-stack delivery and domain knowledge for sports performance software, packaged for deployment with Docker and Gunicorn.
 
 ## About the Developer
-Dan Pellinen is a former professional baseball player with a passion for fitness, athletic performance, and tech.  After being drafted by Cleveland in the 2013 MLB Draft, he played college baseball and earned his B.S. in Exercise Science.  He then played Independent Professional Baseball and became a Certified Personal Trainer, expanding his knowledge of performance development while directly applying this info to his clients.  
+Dan Pellinen is a former professional baseball player with a passion for fitness, athletic performance, and tech.  After being drafted by Cleveland in the 2013 MLB Draft, he played college baseball and earned his B.S. in Health Management.  He then played Independent Professional Baseball and became a Certified Personal Trainer, expanding his knowledge of performance development while directly applying this info to his clients.  
 
 He became a 200hr Yoga Teacher and incorporated yogic philosophies into his training methodology, eventually publishing "The Yoga Baseball Method".  After layoffs in the fitness industry he turned to tech, earning his A.S. in Software & Web Development.  He now combines his expertise in fitness, sports performance, and software development with his passion for problem-solving to address real problems in fitness and athletic performance.
 
