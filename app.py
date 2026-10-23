@@ -545,11 +545,57 @@ def _validate_int_field(
 def _fetch_history(user_id: str) -> list[dict]:
     conn = _db()
     rows = conn.execute(
-        "SELECT date, exercise_id, exercise_name, category, phase, weight, reps FROM completed_logs WHERE user_id = ?",
+        """
+        SELECT l.workout_id, l.date, l.exercise_id, l.exercise_name, l.category,
+               l.phase, l.weight, l.reps, w.workout_json
+        FROM completed_logs l
+        LEFT JOIN workouts w ON w.id = l.workout_id AND w.user_id = l.user_id
+        WHERE l.user_id = ? ORDER BY l.id
+        """,
         (user_id,),
     ).fetchall()
     conn.close()
-    return [dict(row) for row in rows]
+    history = []
+    remaining_blocks = {}
+    for row in rows:
+        entry = dict(row)
+        saved = entry.pop("workout_json")
+        workout_id = entry["workout_id"]
+        if workout_id not in remaining_blocks:
+            try:
+                workout = json.loads(saved) if saved else {}
+            except (TypeError, ValueError):
+                workout = {}
+            remaining_blocks[workout_id] = list(work_gen.workout_blocks(workout)) if isinstance(workout, dict) else []
+        blocks = remaining_blocks[workout_id]
+        def matches_block(category, block):
+            exercise = block.get("exercise", {})
+            same_exercise = (
+                entry["exercise_id"] == exercise.get("id")
+                if entry["exercise_id"] and exercise.get("id")
+                else entry["exercise_name"] == exercise.get("name")
+            )
+            return category == entry["category"] and same_exercise
+
+        candidates = [(index, block) for index, (category, block) in enumerate(blocks)
+                      if matches_block(category, block)]
+        remaining_rows = sum(
+            candidate["workout_id"] == workout_id
+            and candidate["category"] == entry["category"]
+            and (candidate["exercise_id"] == entry["exercise_id"]
+                 if candidate["exercise_id"] and entry["exercise_id"]
+                 else candidate["exercise_name"] == entry["exercise_name"])
+            for candidate in rows[len(history):]
+        )
+        # A deleted repeated block loses its positional identity. Guessing the
+        # first surviving match can silently change light to heavy or vice versa.
+        if len(candidates) == remaining_rows and candidates:
+            index, block = candidates[0]
+            entry["exercise"] = block.get("exercise", {})
+            entry["intensity"] = block.get("intensity")
+            blocks.pop(index)
+        history.append(entry)
+    return history
 
 
 def _fetch_completed_logs(user_id: str) -> list[dict]:
@@ -1215,7 +1261,9 @@ def _fetch_workout(user_id: str, workout_id: int) -> dict | None:
     conn.close()
     if not row:
         return None
-    return json.loads(row["workout_json"])
+    workout = json.loads(row["workout_json"])
+    workout["workout_id"] = workout_id
+    return workout
 
 
 def _is_workout_logged(user_id: str, workout_id: int) -> bool:
@@ -1280,6 +1328,7 @@ def generate():
     caps = work_gen.compute_history_caps_from_history(history, athlete["phase"], workout, days=7)
 
     workout_id = _save_workout(user_id, workout)
+    workout["workout_id"] = workout_id
     exercise_entries = _workout_entries(workout)
 
     return render_template(
