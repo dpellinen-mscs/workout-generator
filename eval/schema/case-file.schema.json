@@ -133,6 +133,46 @@
             "back",
             "hip"
           ]
+        },
+        "main_lifts_avoid_history": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "lower",
+              "upper_push",
+              "upper_pull"
+            ]
+          }
+        },
+        "accessory_pair_differs_from_previous": {
+          "type": "boolean",
+          "const": true
+        },
+        "repeated_run_equals": {
+          "type": "boolean",
+          "const": true
+        },
+        "main_lift_names": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "lower": {
+              "type": "string",
+              "minLength": 1
+            },
+            "upper_push": {
+              "type": "string",
+              "minLength": 1
+            },
+            "upper_pull": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },
@@ -208,7 +248,8 @@
               "enum": [
                 "single",
                 "days",
-                "injury_filter"
+                "injury_filter",
+                "rotation"
               ]
             }
           }

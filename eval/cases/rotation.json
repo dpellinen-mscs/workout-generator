@@ -1,0 +1,282 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "rotation-001",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "category": "lower",
+          "exercise_name": "Barbell back squat"
+        }
+      ],
+      "day_index": 0,
+      "seed": 2,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "main_lifts_avoid_history": [
+          "lower"
+        ]
+      },
+      "notes": "The supplied history is one rotation block. The requested eval rule forbids a repeated main lift inside it; the configured block_length of 4 repeats the same lift before it advances.",
+      "finding": "F-007"
+    },
+    {
+      "id": "rotation-002",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-22",
+          "category": "lower",
+          "exercise_name": "Barbell back squat"
+        },
+        {
+          "date": "2026-10-23",
+          "category": "lower",
+          "exercise_name": "Barbell back squat"
+        },
+        {
+          "date": "2026-10-24",
+          "category": "lower",
+          "exercise_name": "Barbell back squat"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower",
+          "exercise_name": "Barbell back squat"
+        }
+      ],
+      "day_index": 0,
+      "seed": 2,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "main_lift_names": {
+          "lower": "Barbell front squat"
+        },
+        "main_lifts_avoid_history": [
+          "lower"
+        ]
+      },
+      "notes": "After four consecutive back-squat uses, the configured rotation advances to front squat."
+    },
+    {
+      "id": "rotation-003",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-001",
+          "category": "accessory",
+          "exercise_name": "Leg curl"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-001",
+          "category": "accessory",
+          "exercise_name": "Leg extension"
+        }
+      ],
+      "day_index": 0,
+      "seed": 2,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "accessory_pair_differs_from_previous": true
+      },
+      "notes": "A single prior pair has a recent date; unused pairs must be preferred."
+    },
+    {
+      "id": "rotation-004",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-001",
+          "category": "accessory",
+          "exercise_name": "Hammer curls"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-001",
+          "category": "accessory",
+          "exercise_name": "Tricep kickbacks"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-002",
+          "category": "accessory",
+          "exercise_name": "Groin cable"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-002",
+          "category": "accessory",
+          "exercise_name": "Band shuffle"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-003",
+          "category": "accessory",
+          "exercise_name": "Hip flexor cable"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-003",
+          "category": "accessory",
+          "exercise_name": "One-leg glute ham bridge"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-004",
+          "category": "accessory",
+          "exercise_name": "Leg curl"
+        },
+        {
+          "date": "2026-10-25",
+          "session_id": "synthetic-004",
+          "category": "accessory",
+          "exercise_name": "Leg extension"
+        }
+      ],
+      "day_index": 0,
+      "seed": 2,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "accessory_pair_differs_from_previous": true
+      },
+      "notes": "Four sessions share a date. History rows are in session order, and synthetic-004 is the previous session. Date-only pair scores tie and allow the previous pair.",
+      "finding": "F-008"
+    },
+    {
+      "id": "rotation-005",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 2,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "repeated_run_equals": true
+      },
+      "notes": "Replay uses random.seed(2) before each generate_workout call and restores the caller random state. The audit also fixes work_gen.datetime at 2026-10-26T12:00:00. The engine has no seed parameter; callers can seed the Python random module."
+    },
+    {
+      "id": "rotation-006",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "category": "upper_push",
+          "exercise_name": "Barbell bench press"
+        }
+      ],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "main_lifts_avoid_history": [
+          "upper_push"
+        ]
+      },
+      "notes": "The supplied history is one rotation block. The requested eval rule forbids a repeated main lift inside it; the configured block_length of 4 repeats the same lift before it advances.",
+      "finding": "F-007"
+    },
+    {
+      "id": "rotation-007",
+      "tags": [
+        "rotation"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "category": "upper_pull",
+          "exercise_name": "Barbell row (overhand grip)"
+        }
+      ],
+      "day_index": 0,
+      "seed": 2,
+      "scenario": {
+        "kind": "rotation"
+      },
+      "expect": {
+        "main_lifts_avoid_history": [
+          "upper_pull"
+        ]
+      },
+      "notes": "The supplied history is one rotation block. The requested eval rule forbids a repeated main lift inside it; the configured block_length of 4 repeats the same lift before it advances.",
+      "finding": "F-007"
+    }
+  ]
+}

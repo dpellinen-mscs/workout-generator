@@ -75,3 +75,10 @@ This coarse token cannot establish that all support items are available.
 
 The manual review file identifies 20 common selections from synthetic profiles.
 Warmup entries contain metadata in the library. Generator output keeps the original warmup text.
+
+Rotation cases treat the supplied history as one block.
+The requested no-repeat constraint differs from the configured four-use policy.
+The owner requires the no-repeat rule. F-007 records the conflict.
+The fixture defines the block boundary. Real history has no block boundary field.
+Accessory fixtures use synthetic session IDs and row order to identify the previous pair when dates tie.
+The engine has no seed argument. Callers can reset Python random state to reproduce a session.
