@@ -6,6 +6,8 @@
 | F-002 | wrong-program | open | library-001 |
 | F-003 | wrong-program | open | days-offseason-2-distinct, days-offseason-3-distinct, days-inseason-2-distinct, days-inseason-3-distinct, days-inseason-4-distinct, days-inseason-5-distinct, days-inseason-6-distinct |
 | F-004 | wrong-program | open | days-offseason-2-limit, days-offseason-3-limit, days-offseason-4-limit, days-offseason-5-limit, days-offseason-6-limit, days-inseason-2-limit, days-inseason-3-limit, days-inseason-4-limit, days-inseason-5-limit, days-inseason-6-limit |
+| F-005 | blocks-use | open | injury-shoulder-military, injury-shoulder-core-power |
+| F-006 | blocks-use | open | injury-elbow-patterns, injury-knee-patterns, injury-back-hinge, injury-hip-patterns |
 
 ## F-001: The generator ignores available equipment
 
@@ -66,3 +68,33 @@
 - Observed: Both phases return workouts at day_index == days_per_week and days_per_week + 1. This affects every tested 2- through 6-day schedule. Off-season plans with at least 4 days wrap to the start of the day template.
 - Expected: A request at or after days_per_week must return no session or reject the day index.
 - Notes: ValueError and IndexError are accepted index rejections only for requests outside the schedule. Errors at a valid index remain hard failures.
+
+## F-005: The shoulder filter permits excluded overhead exercises
+
+- Severity: blocks-use
+- Status: open
+- Case(s): eval/cases/injury_exclusions.json#injury-shoulder-military, eval/cases/injury_exclusions.json#injury-shoulder-core-power
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 6, 'injuries': ['shoulder']}
+  import work_gen, random; random.seed(0)
+  work_gen.generate_workout(athlete, history=[{'exercise_name': 'Barbell military press', 'category': 'upper_push', 'date': '2026-10-25'}], focus=None, day_index=5)
+  ```
+- Observed: The six-day shoulder profile receives Barbell military press on day 5. Power focus also selects Walking overhead slam on day 0.
+- Expected: The program must exclude each reviewed shoulder exercise ID in the case contract.
+- Notes: The core power pool bypasses the injury filter. Military presses survive its name checks. The catalog uses reviewed IDs because current metadata cannot identify overhead movements.
+
+## F-006: The generator ignores four stated injury restriction profiles
+
+- Severity: blocks-use
+- Status: open
+- Case(s): eval/cases/injury_exclusions.json#injury-elbow-patterns, eval/cases/injury_exclusions.json#injury-knee-patterns, eval/cases/injury_exclusions.json#injury-back-hinge, eval/cases/injury_exclusions.json#injury-hip-patterns
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 3, 'injuries': ['elbow']}
+  import work_gen, random; random.seed(0)
+  work_gen.generate_workout(athlete, history=[], focus=None, day_index=0)
+  ```
+- Observed: Elbow, knee, back, and hip profiles receive push or pull, squat or knee extension, hinge, and lateral exercises respectively.
+- Expected: Each program must exclude the movement patterns and families that its synthetic profile prohibits.
+- Notes: The case catalog defines explicit scenario restrictions. It does not define medical exclusions for all athletes with each injury. The engine only implements a shoulder filter.

@@ -1,0 +1,191 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "injury-shoulder-military",
+      "tags": [
+        "injury",
+        "shoulder"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": [
+          "shoulder"
+        ]
+      },
+      "history": [
+        {
+          "exercise_name": "Barbell military press",
+          "category": "upper_push",
+          "date": "2026-10-25"
+        }
+      ],
+      "day_index": 5,
+      "seed": 0,
+      "expect": {
+        "no_excluded_exercises": "shoulder"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude the reviewed overhead press, landmine press, vertical pull, and overhead slam exercise IDs. This is not a rule for all shoulder injuries. The filter does not remove this reviewed overhead exercise. Its name has no overhead token.",
+      "finding": "F-005"
+    },
+    {
+      "id": "injury-shoulder-core-power",
+      "tags": [
+        "injury",
+        "shoulder"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": [
+          "shoulder"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 4,
+      "expect": {
+        "no_excluded_exercises": "shoulder"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude the reviewed overhead press, landmine press, vertical pull, and overhead slam exercise IDs. This is not a rule for all shoulder injuries. The core power pool does not pass through the injury filter.",
+      "focus": "power_speed_priority",
+      "finding": "F-005"
+    },
+    {
+      "id": "injury-elbow-patterns",
+      "tags": [
+        "injury",
+        "elbow"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [
+          "elbow"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "no_excluded_exercises": "elbow"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude every prescribed exercise with the push or pull pattern. This is not a rule for all elbow injuries.",
+      "finding": "F-006"
+    },
+    {
+      "id": "injury-knee-patterns",
+      "tags": [
+        "injury",
+        "knee"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [
+          "knee"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "no_excluded_exercises": "knee"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude every prescribed exercise with the squat or knee_extension pattern. This is not a rule for all knee injuries.",
+      "finding": "F-006"
+    },
+    {
+      "id": "injury-back-hinge",
+      "tags": [
+        "injury",
+        "back"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [
+          "back"
+        ]
+      },
+      "history": [
+        {
+          "exercise_name": "Barbell deadlift",
+          "category": "lower",
+          "date": "2026-10-25"
+        }
+      ],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "no_excluded_exercises": "back"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude every prescribed exercise with the hinge pattern or deadlift movement family. This is not a rule for all back injuries.",
+      "finding": "F-006"
+    },
+    {
+      "id": "injury-hip-patterns",
+      "tags": [
+        "injury",
+        "hip"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [
+          "hip"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 6,
+      "expect": {
+        "no_excluded_exercises": "hip"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude every prescribed exercise with the hip_flexion or lateral pattern. This is not a rule for all hip injuries.",
+      "finding": "F-006"
+    },
+    {
+      "id": "injury-shoulder-pulldown-filter",
+      "tags": [
+        "injury",
+        "shoulder"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [
+          "shoulder"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "no_excluded_exercises": "shoulder"
+      },
+      "notes": "Synthetic coach-supplied scenario restriction: Exclude the reviewed overhead press, landmine press, vertical pull, and overhead slam exercise IDs. This is not a rule for all shoulder injuries. Direct filter observation: all four reviewed vertical pull IDs are removed from upper_pull. This does not claim whole-program injury coverage.",
+      "scenario": {
+        "kind": "injury_filter",
+        "categories": [
+          "upper_pull"
+        ]
+      }
+    }
+  ]
+}
