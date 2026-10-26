@@ -1,0 +1,33 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "equip-001",
+      "tags": [
+        "equipment"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "all_exercises_use_only": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "finding": "F-001",
+      "notes": "The engine accepts equipment but does not read it."
+    }
+  ]
+}

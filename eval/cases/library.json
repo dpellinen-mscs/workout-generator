@@ -1,0 +1,62 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "library-001",
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "library_categories_nonempty": [
+          "upper_pull_power"
+        ]
+      },
+      "finding": "F-002",
+      "notes": "The owner requires a nonempty requested category. This library audit records the absent power pull options and the silent base fallback.",
+      "focus": "power_speed_priority"
+    },
+    {
+      "id": "library-002",
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "library_categories_nonempty": [
+          "lower",
+          "upper_push",
+          "upper_pull",
+          "core"
+        ]
+      },
+      "notes": "Control: base categories contain exercises."
+    }
+  ]
+}
