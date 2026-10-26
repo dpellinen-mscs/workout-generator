@@ -138,6 +138,10 @@ def validate_corpus(cases_dir: Path | str = DEFAULT_CASES_DIR) -> list[str]:
                 athlete = case.get("athlete")
                 if profile and isinstance(athlete, dict) and isinstance(athlete.get("injuries"), list) and profile not in athlete["injuries"]:
                     errors.append(f"{location}.expect.no_excluded_exercises: profile must be in athlete.injuries")
+                scenario = case.get("scenario", {})
+                for name in ("weekly_load_within_cap", "pattern_counts_within_caps", "session_load_scores_match"):
+                    if name in case["expect"] and isinstance(scenario, dict) and scenario.get("kind") != "caps_week":
+                        errors.append(f"{location}.expect.{name}: requires generated caps_week observations")
     return errors
 
 

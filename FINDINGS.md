@@ -10,6 +10,9 @@
 | F-006 | blocks-use | open | injury-elbow-patterns, injury-knee-patterns, injury-back-hinge, injury-hip-patterns |
 | F-007 | wrong-program | open | rotation-001, rotation-006, rotation-007 |
 | F-008 | wrong-program | open | rotation-004 |
+| F-009 | wrong-program | open | 8 load cases |
+| F-010 | wrong-program | open | 20 load cases |
+| F-011 | wrong-program | open | 3 power-history cases |
 
 ## F-001: The generator ignores available equipment
 
@@ -45,7 +48,16 @@
 
 - Severity: wrong-program
 - Status: open
-- Case(s): eval/cases/days.json#days-offseason-2-distinct, eval/cases/days.json#days-offseason-3-distinct, eval/cases/days.json#days-inseason-2-distinct, eval/cases/days.json#days-inseason-3-distinct, eval/cases/days.json#days-inseason-4-distinct, eval/cases/days.json#days-inseason-5-distinct, eval/cases/days.json#days-inseason-6-distinct
+- Case(s):
+  ```text
+  eval/cases/days.json#days-offseason-2-distinct
+  eval/cases/days.json#days-offseason-3-distinct
+  eval/cases/days.json#days-inseason-2-distinct
+  eval/cases/days.json#days-inseason-3-distinct
+  eval/cases/days.json#days-inseason-4-distinct
+  eval/cases/days.json#days-inseason-5-distinct
+  eval/cases/days.json#days-inseason-6-distinct
+  ```
 - Repro:
   ```python
   athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 3, "injuries": []}
@@ -60,7 +72,19 @@
 
 - Severity: wrong-program
 - Status: open
-- Case(s): eval/cases/days.json#days-offseason-2-limit, eval/cases/days.json#days-offseason-3-limit, eval/cases/days.json#days-offseason-4-limit, eval/cases/days.json#days-offseason-5-limit, eval/cases/days.json#days-offseason-6-limit, eval/cases/days.json#days-inseason-2-limit, eval/cases/days.json#days-inseason-3-limit, eval/cases/days.json#days-inseason-4-limit, eval/cases/days.json#days-inseason-5-limit, eval/cases/days.json#days-inseason-6-limit
+- Case(s):
+  ```text
+  eval/cases/days.json#days-offseason-2-limit
+  eval/cases/days.json#days-offseason-3-limit
+  eval/cases/days.json#days-offseason-4-limit
+  eval/cases/days.json#days-offseason-5-limit
+  eval/cases/days.json#days-offseason-6-limit
+  eval/cases/days.json#days-inseason-2-limit
+  eval/cases/days.json#days-inseason-3-limit
+  eval/cases/days.json#days-inseason-4-limit
+  eval/cases/days.json#days-inseason-5-limit
+  eval/cases/days.json#days-inseason-6-limit
+  ```
 - Repro:
   ```python
   athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 3, "injuries": []}
@@ -130,3 +154,80 @@
 - Observed: All four accessory pairs share the latest date. Seed 2 selects Leg curl and Leg extension again from the four tied pairs.
 - Expected: Consecutive sessions must use different accessory pairs when another configured pair is available.
 - Notes: All four configured pairs have the same most-recent date. Pair scoring uses date strings and chooses at random among the tied pairs. The engine does not use the supplied session order to exclude the previous pair.
+
+## F-009: Six requested sessions exceed configured weekly load caps
+
+- Severity: wrong-program
+- Status: open
+- Case(s):
+  ```text
+  eval/cases/load_caps.json#load-week-preseason-power
+  eval/cases/load_caps.json#load-week-preseason-speed
+  eval/cases/load_caps.json#load-week-preseason-hypertrophy
+  eval/cases/load_caps.json#load-week-preseason-general
+  eval/cases/load_caps.json#load-week-return_to_play-power
+  eval/cases/load_caps.json#load-week-return_to_play-speed
+  eval/cases/load_caps.json#load-week-return_to_play-hypertrophy
+  eval/cases/load_caps.json#load-week-return_to_play-general
+  ```
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'preseason', 'days_per_week': 6, 'injuries': []}
+  import random, work_gen
+  sessions = [(random.seed(1), work_gen.generate_workout(athlete, history=[], day_index=i))[1] for i in range(6)]
+  ```
+- Observed: Preseason weekly load is 204 above a cap of 200. Return-to-play weekly load is 126 above a cap of 120. All four goals show these results.
+- Expected: The sum of prescribed session loads must not exceed the configured weekly cap.
+- Notes: The audit sums six separate calls with history=[] and seed 1 per call on 2026-10-26. The generator does not enforce caps. No separate session cap exists.
+
+## F-010: Six requested sessions exceed configured pattern caps
+
+- Severity: wrong-program
+- Status: open
+- Case(s):
+  ```text
+  eval/cases/load_caps.json#load-pattern-offseason-power
+  eval/cases/load_caps.json#load-pattern-offseason-speed
+  eval/cases/load_caps.json#load-pattern-offseason-hypertrophy
+  eval/cases/load_caps.json#load-pattern-offseason-general
+  eval/cases/load_caps.json#load-pattern-preseason-power
+  eval/cases/load_caps.json#load-pattern-preseason-speed
+  eval/cases/load_caps.json#load-pattern-preseason-hypertrophy
+  eval/cases/load_caps.json#load-pattern-preseason-general
+  eval/cases/load_caps.json#load-pattern-inseason-power
+  eval/cases/load_caps.json#load-pattern-inseason-speed
+  eval/cases/load_caps.json#load-pattern-inseason-hypertrophy
+  eval/cases/load_caps.json#load-pattern-inseason-general
+  eval/cases/load_caps.json#load-pattern-postseason-power
+  eval/cases/load_caps.json#load-pattern-postseason-speed
+  eval/cases/load_caps.json#load-pattern-postseason-hypertrophy
+  eval/cases/load_caps.json#load-pattern-postseason-general
+  eval/cases/load_caps.json#load-pattern-return_to_play-power
+  eval/cases/load_caps.json#load-pattern-return_to_play-speed
+  eval/cases/load_caps.json#load-pattern-return_to_play-hypertrophy
+  eval/cases/load_caps.json#load-pattern-return_to_play-general
+  ```
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 6, 'injuries': []}
+  import random, work_gen
+  sessions = [(random.seed(1), work_gen.generate_workout(athlete, history=[], day_index=i))[1] for i in range(6)]
+  ```
+- Observed: Offseason counts include pull 9 above 3, core 8 above 4, and lateral 6 above 3. Other phases prescribe squat, push, and pull 6 above 3, and core 6 above 4.
+- Expected: Weekly prescribed exercise counts must stay within each configured pattern cap.
+- Notes: The audit counts six separate calls with history=[] and seed 1 per call. Counts include all prescribed blocks, with carry under core. The generator does not enforce pattern caps.
+
+## F-011: History totals omit power-category exercises
+
+- Severity: wrong-program
+- Status: open
+- Case(s): eval/cases/load_caps.json#load-history-power-upper_push_power, eval/cases/load_caps.json#load-history-power-lower_power, eval/cases/load_caps.json#load-history-power-core_power
+- Repro:
+  ```python
+  athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 3, "injuries": []}
+  import work_gen; history = [{"date": "2026-10-25", "category": "upper_push_power", "exercise_name": "Med ball chest pass", "phase": "offseason"}] * 28
+  work_gen.compute_history_caps_from_history(history, athlete["phase"], {"total_load_score": 0, "accessories": []})
+  ```
+- Observed: Power exercise history contributes zero load and no pattern warnings. The base-category history controls count load correctly.
+- Expected: Every logged library exercise must contribute its configured load and pattern count to the weekly totals.
+- Notes: The history lookup omits all power categories. The case runner fixes the date at 2026-10-26.
