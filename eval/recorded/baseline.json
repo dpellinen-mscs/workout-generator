@@ -29066,6 +29066,2042 @@
       }
     },
     {
+      "id": "library-003",
+      "input_sha256": "8b7c5bd5c33574d35b39177f594a9a44d01fc74d3f7bd084c6a676f3466a04f9",
+      "observation": {
+        "library_mutation": {
+          "action": "empty_category",
+          "category": "lower",
+          "before_count": 19,
+          "after_count": 0
+        },
+        "library_problems": [
+          {
+            "kind": "empty",
+            "category": "lower"
+          }
+        ],
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 0,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        },
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "[No available exercises in 'lower' after filtering]"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "unknown",
+                "muscle_mass": "small"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "unknown",
+                "muscle_mass": "small"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 9,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 2,
+            "accessory_2": 2
+          },
+          "total_load_score": 36,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "rejection": null
+      },
+      "result": {
+        "id": "library-003",
+        "status": "known",
+        "checks": {
+          "library_problem_reported": [
+            "lower: empty category has no actionable generator report"
+          ]
+        },
+        "finding": "F-013",
+        "error": null
+      }
+    },
+    {
+      "id": "library-004",
+      "input_sha256": "be3037998d968c1791de59a1a398b9ffa95bed52f6bd62460f0b2efc4601c7cb",
+      "observation": {
+        "library_mutation": {
+          "action": "remove_key",
+          "category": "lower",
+          "before": {
+            "name": "Barbell back squat",
+            "pattern": "squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          },
+          "after": {
+            "name": "Barbell back squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          }
+        },
+        "library_problems": [
+          {
+            "kind": "missing_key",
+            "category": "lower",
+            "key": "pattern",
+            "exercise_id": "lower:8ee2f0a8"
+          }
+        ],
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        },
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "knee_flexion",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:9556320b",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "knee_extension",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:fe44a089",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 15,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 3,
+            "accessory_2": 3
+          },
+          "total_load_score": 44,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "rejection": null
+      },
+      "result": {
+        "id": "library-004",
+        "status": "known",
+        "checks": {
+          "library_problem_reported": [
+            "lower: pattern has no actionable generator report"
+          ]
+        },
+        "finding": "F-014",
+        "error": null
+      }
+    },
+    {
+      "id": "library-005",
+      "input_sha256": "39732625d1fb69193a2d201ffd23b2950b1554b775423eae19a421573e823d9b",
+      "observation": {
+        "library_mutation": {
+          "action": "remove_key",
+          "category": "lower",
+          "before": {
+            "name": "Barbell back squat",
+            "pattern": "squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          },
+          "after": {
+            "name": "Barbell back squat",
+            "pattern": "squat",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          }
+        },
+        "library_problems": [
+          {
+            "kind": "missing_key",
+            "category": "lower",
+            "key": "muscle_mass",
+            "exercise_id": "lower:8ee2f0a8"
+          }
+        ],
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        },
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "knee_flexion",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:9556320b",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "knee_extension",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:fe44a089",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 9,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 3,
+            "accessory_2": 3
+          },
+          "total_load_score": 38,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "rejection": null
+      },
+      "result": {
+        "id": "library-005",
+        "status": "known",
+        "checks": {
+          "library_problem_reported": [
+            "lower: muscle_mass has no actionable generator report"
+          ]
+        },
+        "finding": "F-014",
+        "error": null
+      }
+    },
+    {
+      "id": "library-006",
+      "input_sha256": "7a0ee95e292faf7c2b859d7791fd66b4ed707c87daa7e5050a3c18d0f1c70218",
+      "observation": {
+        "library_mutation": {
+          "action": "remove_key",
+          "category": "lower",
+          "before": {
+            "name": "Barbell back squat",
+            "pattern": "squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          },
+          "after": {
+            "pattern": "squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          }
+        },
+        "library_problems": [
+          {
+            "kind": "missing_key",
+            "category": "lower",
+            "key": "name",
+            "exercise_id": "lower:8ee2f0a8"
+          }
+        ],
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        },
+        "workout": null,
+        "rejection": {
+          "type": "KeyError",
+          "message": "'name'"
+        }
+      },
+      "result": {
+        "id": "library-006",
+        "status": "known",
+        "checks": {
+          "library_problem_reported": [
+            "lower: name has no actionable generator report"
+          ]
+        },
+        "finding": "F-014",
+        "error": null
+      }
+    },
+    {
+      "id": "library-007",
+      "input_sha256": "723725a2b4489f375c89fe7eedcded33a0a12e6c92f85bfa826ecadea87d122c",
+      "observation": {
+        "library_mutation": {
+          "action": "duplicate_id",
+          "category": "lower",
+          "before": {
+            "name": "Barbell back squat",
+            "pattern": "squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "lower:8ee2f0a8",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          },
+          "source": {
+            "category": "upper_push",
+            "name": "Barbell bench press",
+            "pattern": "push",
+            "muscle_mass": "large",
+            "unilateral": false,
+            "id": "upper_push:783795dd",
+            "movement_family": "bench_press",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          },
+          "after": {
+            "name": "Barbell back squat",
+            "pattern": "squat",
+            "muscle_mass": "very_large",
+            "unilateral": false,
+            "id": "upper_push:783795dd",
+            "movement_family": "back_squat",
+            "equipment": [
+              "barbell",
+              "other"
+            ]
+          }
+        },
+        "library_problems": [
+          {
+            "kind": "duplicate_id",
+            "category": "lower",
+            "source_category": "upper_push",
+            "id": "upper_push:783795dd"
+          }
+        ],
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        },
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "back_squat",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "knee_flexion",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:9556320b",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "knee_extension",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:fe44a089",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 15,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 3,
+            "accessory_2": 3
+          },
+          "total_load_score": 44,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "rejection": null
+      },
+      "result": {
+        "id": "library-007",
+        "status": "known",
+        "checks": {
+          "library_problem_reported": [
+            "lower: upper_push:783795dd has no actionable generator report"
+          ]
+        },
+        "finding": "F-015",
+        "error": null
+      }
+    },
+    {
+      "id": "library-008",
+      "input_sha256": "1a0bb6719c67b25185c25bba129eba189ec292c43aa2612ca40d3ae8a2acc35e",
+      "observation": {
+        "library_mutation": {
+          "action": "control"
+        },
+        "library_problems": [],
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        },
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "knee_flexion",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:9556320b",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "knee_extension",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:fe44a089",
+                "movement_family": "general",
+                "equipment": [
+                  "machine"
+                ]
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 15,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 3,
+            "accessory_2": 3
+          },
+          "total_load_score": 44,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "rejection": null,
+        "catalog_entries": [
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:3084af60",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Alternating dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:a86261cd",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "One-sided dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:04da3b95",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Incline barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:f738a80d",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Incline dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:442de963",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Incline alternating dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:7bcc5f78",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Incline one-sided dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:14f78249",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Decline barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:11cf3775",
+              "movement_family": "bench_press",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Decline dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:6b9ce32a",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Decline alternating dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:6ba4e0e9",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Decline one-sided dumbbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:2fce1fa6",
+              "movement_family": "bench_press",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Barbell military press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:02942e5a",
+              "movement_family": "general",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Dumbbell military press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:828c1a00",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Alternating dumbbell military press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:9485d0d9",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "One-sided dumbbell military press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:2a08c0dd",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Push-up",
+              "pattern": "push",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "upper_push:7cb203d7",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Half-kneeling landmine press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_push:2e10adb3",
+              "movement_family": "general",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Dumbbell chest fly",
+              "pattern": "push",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "upper_push:6f456f92",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Front shoulder raise",
+              "pattern": "push",
+              "muscle_mass": "small",
+              "unilateral": false,
+              "id": "upper_push:bce7adc2",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Lateral shoulder raise",
+              "pattern": "push",
+              "muscle_mass": "small",
+              "unilateral": false,
+              "id": "upper_push:bf44e98e",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_push",
+            "exercise": {
+              "name": "Tricep kickbacks",
+              "pattern": "push",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "upper_push:8ab76ea9",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_push_power",
+            "exercise": {
+              "name": "Med ball chest pass",
+              "pattern": "push",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "upper_push_power:31bb5057",
+              "movement_family": "general",
+              "equipment": [
+                "med_ball"
+              ]
+            }
+          },
+          {
+            "category": "upper_push_power",
+            "exercise": {
+              "name": "Med ball rotational chest pass",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_push_power:a8053166",
+              "movement_family": "general",
+              "equipment": [
+                "med_ball"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Barbell row (overhand grip)",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_pull:fe9c984a",
+              "movement_family": "general",
+              "equipment": [
+                "barbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Barbell row (reverse grip)",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_pull:1e4d5b9c",
+              "movement_family": "general",
+              "equipment": [
+                "barbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Dumbbell row",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_pull:e9c63d55",
+              "movement_family": "dumbbell_row",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Wide-grip lat pulldown",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_pull:ee023997",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Reverse-grip lat pulldown",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_pull:bbfb9794",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "One-arm lat pulldown",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_pull:06fc9b2c",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Chest-supported row",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_pull:9d651399",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "One-arm dumbbell row",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": true,
+              "id": "upper_pull:28058d51",
+              "movement_family": "dumbbell_row",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Lat pulldown",
+              "pattern": "pull",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_pull:79307fad",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "upper_pull:500506f8",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "One-arm TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:d0444315",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Renegade rows",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:1bf7481e",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Reverse flies",
+              "pattern": "pull",
+              "muscle_mass": "small",
+              "unilateral": false,
+              "id": "upper_pull:1d931376",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "upper_pull",
+            "exercise": {
+              "name": "Hammer curls",
+              "pattern": "pull",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "upper_pull:2289d1bb",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Split squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": true,
+              "id": "lower:6fb7e2c6",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Reverse lunge",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": true,
+              "id": "lower:a06225bc",
+              "movement_family": "reverse_lunge",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Forward lunge",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": true,
+              "id": "lower:57612ac1",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Barbell front squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:74f23d68",
+              "movement_family": "general",
+              "equipment": [
+                "barbell",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Barbell deadlift",
+              "pattern": "hinge",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:fff3bb51",
+              "movement_family": "deadlift",
+              "equipment": [
+                "barbell"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Trap bar deadlift",
+              "pattern": "hinge",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:c8621ff1",
+              "movement_family": "deadlift",
+              "equipment": [
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Cable shuffle",
+              "pattern": "lateral",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "lower:02f21739",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Band shuffle",
+              "pattern": "lateral",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "lower:452cd098",
+              "movement_family": "general",
+              "equipment": [
+                "band"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Single-leg straight-leg deadlift",
+              "pattern": "hinge",
+              "muscle_mass": "very_large",
+              "unilateral": true,
+              "id": "lower:926e410e",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Barbell straight-leg deadlift",
+              "pattern": "hinge",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "lower:b0029739",
+              "movement_family": "general",
+              "equipment": [
+                "barbell"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Leg curl",
+              "pattern": "knee_flexion",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "lower:9556320b",
+              "movement_family": "general",
+              "equipment": [
+                "machine"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Leg extension",
+              "pattern": "knee_extension",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "lower:fe44a089",
+              "movement_family": "general",
+              "equipment": [
+                "machine"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Leg press",
+              "pattern": "squat",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "lower:b2117ad7",
+              "movement_family": "general",
+              "equipment": [
+                "machine"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Goblet squat",
+              "pattern": "squat",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "lower:86a3d49b",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Hip flexor cable",
+              "pattern": "hip_flexion",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "lower:ca90a265",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Groin cable",
+              "pattern": "lateral",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "lower:dc499ca7",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "Glute ham bridge",
+              "pattern": "hinge",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "lower:803e0890",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "lower",
+            "exercise": {
+              "name": "One-leg glute ham bridge",
+              "pattern": "hinge",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "lower:bcb60eee",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "lower_power",
+            "exercise": {
+              "id": "lower_power:33607553",
+              "name": "reactive box jump",
+              "movement_family": "general",
+              "pattern": "squat",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Side plank",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:90fa71e8",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Plank",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": false,
+              "id": "core:63f5ec6d",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "One-foot plank",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:1792ae8f",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "TRX plank",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": false,
+              "id": "core:a5e65b9c",
+              "movement_family": "general",
+              "equipment": [
+                "bodyweight",
+                "other"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Pallof press x 10/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:d2cced8d",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Farmer carry x 40 yards",
+              "pattern": "carry",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "core:467f39c3",
+              "movement_family": "general",
+              "equipment": [
+                "dumbbell"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Cable chop",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "core:d43dc689",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "Low-to-high cable chop",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "core:53c71bc3",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "core",
+            "exercise": {
+              "name": "High-to-low cable chop",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "core:500c300d",
+              "movement_family": "general",
+              "equipment": [
+                "cable"
+              ]
+            }
+          },
+          {
+            "category": "core_power",
+            "exercise": {
+              "name": "Med ball reverse toss",
+              "pattern": "hinge",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "core_power:5b2be236",
+              "movement_family": "general",
+              "equipment": [
+                "med_ball"
+              ]
+            }
+          },
+          {
+            "category": "core_power",
+            "exercise": {
+              "name": "Med ball rotational scoop toss",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "core_power:11cf9a55",
+              "movement_family": "general",
+              "equipment": [
+                "med_ball"
+              ]
+            }
+          },
+          {
+            "category": "core_power",
+            "exercise": {
+              "name": "Walking overhead slam",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "core_power:9fa5c79e",
+              "movement_family": "general",
+              "equipment": [
+                "med_ball"
+              ]
+            }
+          }
+        ]
+      },
+      "result": {
+        "id": "library-008",
+        "status": "pass",
+        "checks": {
+          "library_metadata_complete": []
+        },
+        "finding": null,
+        "error": null
+      }
+    },
+    {
       "id": "load-week-offseason-power",
       "input_sha256": "6be4b7d7ed0b1218ce0d7313faeea83120ba2331a6a9c5beb00a00e66c250066",
       "observation": {

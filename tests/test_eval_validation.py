@@ -122,3 +122,9 @@ def test_generated_cap_check_cannot_score_constructed_counts(tmp_path, case):
     case["expect"] = {"pattern_counts_within_caps": {"pull": 3}}
     write_cases(tmp_path, [case])
     assert any("requires generated caps_week" in error for error in validation.validate_corpus(tmp_path))
+
+
+def test_known_failure_requires_a_public_finding_record(tmp_path, case):
+    case["finding"] = "F-999"
+    write_cases(tmp_path, [case])
+    assert any("no record in FINDINGS.md" in error for error in validation.validate_corpus(tmp_path))

@@ -55,6 +55,11 @@ def test_regression_on_passing_check_in_known_case():
     assert score.score_drops([new], [old]) == ["unit-001: a"]
 
 
+def test_known_case_cannot_disappear_from_the_corpus():
+    old = {"id": "unit-001", "checks": {"a": ["known"]}, "error": None}
+    assert score.score_drops([], [old]) == ["unit-001: case absent"]
+
+
 def test_replay_requires_matching_inputs():
     import pytest
     cases = score.load_cases()

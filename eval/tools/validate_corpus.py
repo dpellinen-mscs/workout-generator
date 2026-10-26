@@ -18,6 +18,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CASES_DIR = ROOT / "eval" / "cases"
 SCHEMA_PATH = ROOT / "eval" / "schema" / "case-file.schema.json"
+FINDINGS_PATH = ROOT / "FINDINGS.md"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -112,6 +113,7 @@ def validate_corpus(cases_dir: Path | str = DEFAULT_CASES_DIR) -> list[str]:
     documents, errors = _read_documents(Path(cases_dir))
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     known_checks = _known_checks()
+    finding_ids = set(re.findall(r"^## (F-[0-9]{3}):", FINDINGS_PATH.read_text(), re.MULTILINE))
     ids: dict[str, str] = {}
     for path, document in documents:
         errors.extend(_validate(document, schema, schema, str(path)))
@@ -122,6 +124,8 @@ def validate_corpus(cases_dir: Path | str = DEFAULT_CASES_DIR) -> list[str]:
                 continue
             location = f"{path}.cases[{index}]"
             case_id = case.get("id")
+            if isinstance(case.get("finding"), str) and case["finding"] not in finding_ids:
+                errors.append(f"{location}.finding: no record in FINDINGS.md for {case['finding']}")
             if isinstance(case_id, str):
                 if case_id in ids:
                     errors.append(f"{location}: duplicate case id {case_id!r}; first at {ids[case_id]}")

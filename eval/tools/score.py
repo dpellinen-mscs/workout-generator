@@ -19,6 +19,7 @@ from eval.tools.days import CHECKS as DAY_CHECKS, observe_days
 from eval.tools.injury import no_excluded_exercises, observe_injury
 from eval.tools.rotation import ROTATION_CHECKS, observe_rotation
 from eval.tools.load_checks import LOAD_CHECKS, observe_caps
+from eval.tools.library import CHECKS as LIBRARY_CHECKS, observe_library
 from eval.tools.roundtrip import (
     observe_roundtrip, observe_flask_roundtrip, json_roundtrip_preserved,
     text_prescriptions_preserved, flask_workout_preserved, completed_log_edit_preserved,
@@ -64,6 +65,7 @@ CHECKS.update(DAY_CHECKS)
 CHECKS["no_excluded_exercises"] = no_excluded_exercises
 CHECKS.update(ROTATION_CHECKS)
 CHECKS.update(LOAD_CHECKS)
+CHECKS.update(LIBRARY_CHECKS)
 CHECKS.update({
     "json_roundtrip_preserved": json_roundtrip_preserved,
     "text_prescriptions_preserved": text_prescriptions_preserved,
@@ -112,6 +114,8 @@ def generate_case(case, day_index):
 
 
 def observe(case):
+    if case.get("scenario", {}).get("kind") == "library":
+        return observe_library(case, lambda index: generate_case(case, index))
     if case.get("scenario", {}).get("kind") in {"caps_week", "caps_warning", "caps_history"}:
         with patch.object(work_gen, "datetime", AuditDateTime):
             return observe_caps(case, work_gen, lambda index: generate_case(case, index))
@@ -180,7 +184,8 @@ def replay(cases, recording):
 
 def score_drops(results, baseline_results):
     current = {row["id"]: row for row in results}
-    return [f"{old['id']}: {name}" for old in baseline_results
+    missing = [f"{old['id']}: case absent" for old in baseline_results if old["id"] not in current]
+    return missing + [f"{old['id']}: {name}" for old in baseline_results if old["id"] in current
             for name, violations in old["checks"].items() if not violations
             and (old["id"] not in current or current[old["id"]]["error"]
                  or name not in current[old["id"]]["checks"]

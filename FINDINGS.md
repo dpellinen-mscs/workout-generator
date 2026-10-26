@@ -14,6 +14,9 @@
 | F-010 | wrong-program | open | 20 load cases |
 | F-011 | wrong-program | open | 3 power-history cases |
 | F-012 | blocks-use | open | 5 split-day text exports |
+| F-013 | blocks-use | open | library-003 |
+| F-014 | wrong-program | open | library-004, library-005, library-006 |
+| F-015 | wrong-program | open | library-007 |
 
 ## F-001: The generator ignores available equipment
 
@@ -174,8 +177,8 @@
 - Repro:
   ```python
   athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'preseason', 'days_per_week': 6, 'injuries': []}
-  import random, work_gen
-  sessions = [(random.seed(1), work_gen.generate_workout(athlete, history=[], day_index=i))[1] for i in range(6)]
+  import random, work_gen; from unittest.mock import patch; from eval.tools.score import AuditDateTime
+  with patch.object(work_gen, "datetime", AuditDateTime): sessions = [(random.seed(1), work_gen.generate_workout(athlete, history=[], day_index=i))[1] for i in range(6)]
   ```
 - Observed: Preseason weekly load is 204 above a cap of 200. Return-to-play weekly load is 126 above a cap of 120. All four goals show these results.
 - Expected: The sum of prescribed session loads must not exceed the configured weekly cap.
@@ -211,8 +214,8 @@
 - Repro:
   ```python
   athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 6, 'injuries': []}
-  import random, work_gen
-  sessions = [(random.seed(1), work_gen.generate_workout(athlete, history=[], day_index=i))[1] for i in range(6)]
+  import random, work_gen; from unittest.mock import patch; from eval.tools.score import AuditDateTime
+  with patch.object(work_gen, "datetime", AuditDateTime): sessions = [(random.seed(1), work_gen.generate_workout(athlete, history=[], day_index=i))[1] for i in range(6)]
   ```
 - Observed: Offseason counts include pull 9 above 3, core 8 above 4, and lateral 6 above 3. Other phases prescribe squat, push, and pull 6 above 3, and core 6 above 4.
 - Expected: Weekly prescribed exercise counts must stay within each configured pattern cap.
@@ -226,8 +229,8 @@
 - Repro:
   ```python
   athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 3, "injuries": []}
-  import work_gen; history = [{"date": "2026-10-25", "category": "upper_push_power", "exercise_name": "Med ball chest pass", "phase": "offseason"}] * 28
-  work_gen.compute_history_caps_from_history(history, athlete["phase"], {"total_load_score": 0, "accessories": []})
+  import work_gen; history = [{"date": "2026-10-25", "category": "upper_push_power", "exercise_name": "Med ball chest pass", "phase": "offseason"}] * 28; from unittest.mock import patch; from eval.tools.score import AuditDateTime
+  with patch.object(work_gen, "datetime", AuditDateTime): work_gen.compute_history_caps_from_history(history, athlete["phase"], {"total_load_score": 0, "accessories": []})
   ```
 - Observed: Power exercise history contributes zero load and no pattern warnings. The base-category history controls count load correctly.
 - Expected: Every logged library exercise must contribute its configured load and pattern count to the weekly totals.
@@ -254,3 +257,48 @@
 - Observed: All four offseason split days raise TypeError when text export indexes an absent main block. JSON save and load preserve the complete workout.
 - Expected: Text export must preserve every prescribed exercise, set, rep, and order. An absent main slot must not prevent export.
 - Notes: This blocks command-line text export. SQLite save and completed-log edit preserve prescriptions. The eval runner calls the formatter after persistence. The web app has no text export or saved-program edit route.
+
+## F-013: An empty required category becomes a prescribed placeholder
+
+- Severity: blocks-use
+- Status: open
+- Case(s): eval/cases/library.json#library-003
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 3, 'injuries': [], 'equipment': ['dumbbell', 'bodyweight']}
+  import work_gen, random; from copy import deepcopy; from unittest.mock import patch; random.seed(0); library = deepcopy(work_gen.EXERCISE_LIBRARY); library["lower"] = []
+  with patch.object(work_gen, "EXERCISE_LIBRARY", library): work_gen.generate_workout(athlete, history=[], day_index=0)
+  ```
+- Observed: The lower main block contains [No available exercises in 'lower' after filtering], with 4 sets, 3–5 reps, and load score 9.
+- Expected: An empty required category must cause a clear error or a usable documented fallback. A placeholder must not receive a prescription.
+- Notes: The case changes a temporary library copy. The source library stays intact.
+
+## F-014: Missing library fields lack clear handling
+
+- Severity: wrong-program
+- Status: open
+- Case(s): eval/cases/library.json#library-004, eval/cases/library.json#library-005, eval/cases/library.json#library-006
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 3, 'injuries': [], 'equipment': ['dumbbell', 'bodyweight']}
+  import work_gen, random; from copy import deepcopy; from unittest.mock import patch; random.seed(0); library = deepcopy(work_gen.EXERCISE_LIBRARY); del next(e for e in library["lower"] if e["id"] == "lower:8ee2f0a8")["pattern"]
+  with patch.object(work_gen, "EXERCISE_LIBRARY", library): work_gen.generate_workout(athlete, history=[], day_index=0)
+  ```
+- Observed: A missing pattern passes silently. Missing muscle_mass reduces lower load from 15 to 9. Missing name raises only a bare KeyError.
+- Expected: A required field must be present. A rejection must identify its category and key, or the generator must supply a usable documented fallback.
+- Notes: The observer captures only the confirmed missing-name error. Unrelated errors fail the eval.
+
+## F-015: The generator accepts duplicate exercise IDs
+
+- Severity: wrong-program
+- Status: open
+- Case(s): eval/cases/library.json#library-007
+- Repro:
+  ```python
+  athlete = {'position': 'RHP', 'goal': 'power', 'phase': 'offseason', 'days_per_week': 3, 'injuries': [], 'equipment': ['dumbbell', 'bodyweight']}
+  import work_gen, random; from copy import deepcopy; from unittest.mock import patch; random.seed(0); library = deepcopy(work_gen.EXERCISE_LIBRARY); next(e for e in library["lower"] if e["id"] == "lower:8ee2f0a8")["id"] = "upper_push:783795dd"
+  with patch.object(work_gen, "EXERCISE_LIBRARY", library): work_gen.generate_workout(athlete, history=[], day_index=0)
+  ```
+- Observed: The selected Barbell back squat and Barbell bench press both use upper_push:783795dd, without a warning.
+- Expected: Exercise IDs must be unique. Reject a collision or supply a usable documented fallback that identifies it.
+- Notes: The fixture duplicates an ID in a temporary copy. No source library data changes.
