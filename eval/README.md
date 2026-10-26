@@ -99,3 +99,10 @@ The fixed date covers an even calendar week. The audit does not claim all week p
 Round-trip cases use temporary JSON files and an isolated SQLite database.
 The Flask edit route changes completed logs. It does not edit saved prescriptions.
 The audit verifies the existing route and reports the missing program-edit path as a scope difference.
+
+Library fault cases change temporary copies only.
+A fallback warning must include usable prescriptions and a replacement in the affected slot.
+Warning-only output and prescribed placeholders fail the check.
+Unrelated exceptions remain hard failures.
+The validator requires a public record for every known finding ID.
+CI rejects the removal of a recorded case, including a known case.

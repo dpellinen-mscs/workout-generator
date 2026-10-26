@@ -57,6 +57,205 @@
         ]
       },
       "notes": "Control: base categories contain exercises."
+    },
+    {
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "id": "library-003",
+      "scenario": {
+        "kind": "library",
+        "library": {
+          "action": "empty_category",
+          "category": "lower"
+        }
+      },
+      "expect": {
+        "library_problem_reported": true
+      },
+      "finding": "F-013",
+      "notes": "A temporary empty required lower category must produce a clear rejection or an output warning. A placeholder with sets and reps is not a usable exercise."
+    },
+    {
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "id": "library-004",
+      "scenario": {
+        "kind": "library",
+        "library": {
+          "action": "remove_key",
+          "category": "lower",
+          "exercise_id": "lower:8ee2f0a8",
+          "key": "pattern"
+        }
+      },
+      "expect": {
+        "library_problem_reported": true
+      },
+      "finding": "F-014",
+      "notes": "Remove pattern from the selected back squat in a temporary library. The generator must identify the missing field and its category."
+    },
+    {
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "id": "library-005",
+      "scenario": {
+        "kind": "library",
+        "library": {
+          "action": "remove_key",
+          "category": "lower",
+          "exercise_id": "lower:8ee2f0a8",
+          "key": "muscle_mass"
+        }
+      },
+      "expect": {
+        "library_problem_reported": true
+      },
+      "finding": "F-014",
+      "notes": "Remove muscle_mass from the selected back squat in a temporary library. A load-score default must not hide absent required data."
+    },
+    {
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "id": "library-006",
+      "scenario": {
+        "kind": "library",
+        "library": {
+          "action": "remove_key",
+          "category": "lower",
+          "exercise_id": "lower:8ee2f0a8",
+          "key": "name"
+        }
+      },
+      "expect": {
+        "library_problem_reported": true
+      },
+      "finding": "F-014",
+      "notes": "Remove name from one lower entry in a temporary library. A raw KeyError without its category does not give a clear repair location."
+    },
+    {
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "id": "library-007",
+      "scenario": {
+        "kind": "library",
+        "library": {
+          "action": "duplicate_id",
+          "category": "lower",
+          "exercise_id": "lower:8ee2f0a8",
+          "source_category": "upper_push",
+          "source_id": "upper_push:783795dd"
+        }
+      },
+      "expect": {
+        "library_problem_reported": true
+      },
+      "finding": "F-015",
+      "notes": "Give the selected back squat the selected bench press id in a temporary library. The generator must identify the collision."
+    },
+    {
+      "tags": [
+        "library"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "dumbbell",
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "id": "library-008",
+      "scenario": {
+        "kind": "library",
+        "library": {
+          "action": "control"
+        }
+      },
+      "expect": {
+        "library_metadata_complete": true
+      },
+      "notes": "Control: all 72 non-warmup entries contain the required metadata and have distinct global ids. The optional empty power-pull category is covered separately."
     }
   ]
 }

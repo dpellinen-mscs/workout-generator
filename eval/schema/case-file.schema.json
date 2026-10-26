@@ -248,6 +248,14 @@
         "completed_log_edit_preserved": {
           "type": "boolean",
           "const": true
+        },
+        "library_problem_reported": {
+          "type": "boolean",
+          "const": true
+        },
+        "library_metadata_complete": {
+          "type": "boolean",
+          "const": true
         }
       }
     },
@@ -524,6 +532,168 @@
                       "minimum": 0
                     }
                   }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "library"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "library"
+                },
+                "library": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "required": [
+                        "action"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "action": {
+                          "type": "string",
+                          "const": "control"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "action",
+                        "category"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "action": {
+                          "type": "string",
+                          "const": "empty_category"
+                        },
+                        "category": {
+                          "type": "string",
+                          "minLength": 1,
+                          "enum": [
+                            "upper_push",
+                            "upper_push_power",
+                            "upper_pull",
+                            "upper_pull_power",
+                            "lower",
+                            "lower_power",
+                            "core",
+                            "core_power",
+                            "warmup"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "action",
+                        "category",
+                        "exercise_id",
+                        "key"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "action": {
+                          "type": "string",
+                          "const": "remove_key"
+                        },
+                        "category": {
+                          "type": "string",
+                          "minLength": 1,
+                          "enum": [
+                            "upper_push",
+                            "upper_push_power",
+                            "upper_pull",
+                            "upper_pull_power",
+                            "lower",
+                            "lower_power",
+                            "core",
+                            "core_power",
+                            "warmup"
+                          ]
+                        },
+                        "exercise_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "key": {
+                          "type": "string",
+                          "enum": [
+                            "name",
+                            "pattern",
+                            "muscle_mass",
+                            "unilateral",
+                            "id",
+                            "movement_family",
+                            "equipment"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "action",
+                        "category",
+                        "exercise_id",
+                        "source_category",
+                        "source_id"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "action": {
+                          "type": "string",
+                          "const": "duplicate_id"
+                        },
+                        "category": {
+                          "type": "string",
+                          "minLength": 1,
+                          "enum": [
+                            "upper_push",
+                            "upper_push_power",
+                            "upper_pull",
+                            "upper_pull_power",
+                            "lower",
+                            "lower_power",
+                            "core",
+                            "core_power",
+                            "warmup"
+                          ]
+                        },
+                        "exercise_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "source_category": {
+                          "type": "string",
+                          "minLength": 1,
+                          "enum": [
+                            "upper_push",
+                            "upper_push_power",
+                            "upper_pull",
+                            "upper_pull_power",
+                            "lower",
+                            "lower_power",
+                            "core",
+                            "core_power",
+                            "warmup"
+                          ]
+                        },
+                        "source_id": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
