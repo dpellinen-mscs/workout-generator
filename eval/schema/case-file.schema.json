@@ -206,6 +206,7 @@
             "kind": {
               "type": "string",
               "enum": [
+                "single",
                 "days",
                 "injury_filter"
               ]
