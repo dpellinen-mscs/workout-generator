@@ -232,6 +232,22 @@
         "history_load_equals": {
           "type": "integer",
           "minimum": 0
+        },
+        "json_roundtrip_preserved": {
+          "type": "boolean",
+          "const": true
+        },
+        "text_prescriptions_preserved": {
+          "type": "boolean",
+          "const": true
+        },
+        "flask_workout_preserved": {
+          "type": "boolean",
+          "const": true
+        },
+        "completed_log_edit_preserved": {
+          "type": "boolean",
+          "const": true
         }
       }
     },
@@ -456,6 +472,56 @@
                     },
                     "accessories": {
                       "type": "array"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "roundtrip"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "edit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "flask_roundtrip"
+                },
+                "edit": {
+                  "type": "object",
+                  "required": [
+                    "date",
+                    "weight",
+                    "reps"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                    },
+                    "weight": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "reps": {
+                      "type": "integer",
+                      "minimum": 0
                     }
                   }
                 }

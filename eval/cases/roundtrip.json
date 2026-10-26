@@ -1,0 +1,392 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "roundtrip-offseason-power",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-offseason-speed",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-offseason-hypertrophy",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-offseason-general",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-inseason-power",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-inseason-speed",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-inseason-hypertrophy",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-inseason-general",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "Every warm-up and exercise name, set count, rep target, and order must survive JSON save/load and text export."
+    },
+    {
+      "id": "roundtrip-split-day-0",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text",
+        "split"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "finding": "F-012",
+      "notes": "The split schedule has absent main slots. The text exporter must preserve all prescribed exercises without requiring absent slots."
+    },
+    {
+      "id": "roundtrip-split-day-1",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text",
+        "split"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 1,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "finding": "F-012",
+      "notes": "The split schedule has absent main slots. The text exporter must preserve all prescribed exercises without requiring absent slots."
+    },
+    {
+      "id": "roundtrip-split-day-2",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text",
+        "split"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 2,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "finding": "F-012",
+      "notes": "The split schedule has absent main slots. The text exporter must preserve all prescribed exercises without requiring absent slots."
+    },
+    {
+      "id": "roundtrip-split-day-3",
+      "tags": [
+        "roundtrip",
+        "json",
+        "text",
+        "split"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 3,
+      "seed": 0,
+      "scenario": {
+        "kind": "roundtrip"
+      },
+      "expect": {
+        "json_roundtrip_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "finding": "F-012",
+      "notes": "The split schedule has absent main slots. The text exporter must preserve all prescribed exercises without requiring absent slots."
+    },
+    {
+      "id": "roundtrip-flask-fullbody",
+      "tags": [
+        "roundtrip",
+        "flask",
+        "sqlite",
+        "completed-log"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "flask_roundtrip",
+        "edit": {
+          "date": "2026-10-27",
+          "weight": 55.0,
+          "reps": 7
+        }
+      },
+      "expect": {
+        "flask_workout_preserved": true,
+        "completed_log_edit_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "The existing Flask edit route changes a completed log. It must preserve the saved prescription. No saved-program edit route exists."
+    },
+    {
+      "id": "roundtrip-flask-split",
+      "tags": [
+        "roundtrip",
+        "flask",
+        "sqlite",
+        "completed-log"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 1,
+      "seed": 0,
+      "scenario": {
+        "kind": "flask_roundtrip",
+        "edit": {
+          "date": "2026-10-27",
+          "weight": 55.0,
+          "reps": 7
+        }
+      },
+      "expect": {
+        "flask_workout_preserved": true,
+        "completed_log_edit_preserved": true,
+        "text_prescriptions_preserved": true
+      },
+      "notes": "The existing Flask edit route changes a completed log. It must preserve the saved prescription. No saved-program edit route exists.",
+      "finding": "F-012"
+    }
+  ]
+}

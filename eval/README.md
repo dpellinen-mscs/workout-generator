@@ -39,7 +39,8 @@ A check returns a list of violations. An empty list means pass.
 A failed case with a `finding` is `known`. A failed case without a finding is `fail`.
 The scorer exits with 1 for `fail`.
 It exits with 0 for `pass` and `known`.
-An execution error always fails the run.
+An unexpected execution error always fails the run.
+A fault scenario can capture its confirmed error as raw evidence.
 
 Pytest uses strict xfail for known cases. A complete fix causes XPASS and fails CI until the finding marker changes.
 
@@ -94,3 +95,7 @@ Load scores use configured intensity and muscle mass. They exclude set and rep v
 The four goals therefore produce the same load in each phase for this sample.
 The 20 phase and goal profiles produce three distinct six-session sequences.
 The fixed date covers an even calendar week. The audit does not claim all week parities or history window edges.
+
+Round-trip cases use temporary JSON files and an isolated SQLite database.
+The Flask edit route changes completed logs. It does not edit saved prescriptions.
+The audit verifies the existing route and reports the missing program-edit path as a scope difference.
