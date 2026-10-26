@@ -1,0 +1,450 @@
+{
+  "format_version": 1,
+  "source_sha256": {
+    "work_gen.py": "f3a5eeff0db262b70216e0094d4998748f5d567a9a055cfb0e14f96f3a5c5acc",
+    "exercise_library.json": "6616638bdbea5178c7c3d8c9c8414e3243762b8ed972c16ba6d7e1099d99abb8",
+    "coaching_style.json": "68c7070a4a83af49951db2e81d315b99314c29eab9fdae35f553e31de3935a2c"
+  },
+  "cases": [
+    {
+      "id": "equip-001",
+      "input_sha256": "4c3b2f385f6028210874ad6eb99721dcad35466b9b8442248823b8ad4d0d9a02",
+      "observation": {
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general"
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "knee_flexion",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:9556320b",
+                "movement_family": "general"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "knee_extension",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:fe44a089",
+                "movement_family": "general"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 15,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 3,
+            "accessory_2": 3
+          },
+          "total_load_score": 44,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        }
+      },
+      "result": {
+        "id": "equip-001",
+        "status": "known",
+        "checks": {
+          "all_exercises_use_only": [
+            "Barbell back squat: equipment metadata absent",
+            "Barbell bench press: equipment metadata absent",
+            "Rotational TRX row: equipment metadata absent",
+            "Side plank x 30s/side: equipment metadata absent",
+            "Leg curl: equipment metadata absent",
+            "Leg extension: equipment metadata absent",
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each): equipment metadata absent",
+            "90/90 hip stretch 15\u201320s/side: equipment metadata absent",
+            "Half-kneeling hip flexor stretch 15\u201320s/side: equipment metadata absent",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side: equipment metadata absent",
+            "Mobility: Wall ankle mobilizations x 8/side: equipment metadata absent",
+            "Activation: X-band walks x 12/side: equipment metadata absent",
+            "Activation: Band pull-aparts x 15: equipment metadata absent",
+            "Activation: Dead bug x 8/side: equipment metadata absent"
+          ]
+        },
+        "finding": "F-001",
+        "error": null
+      }
+    },
+    {
+      "id": "library-001",
+      "input_sha256": "4695ab3abd716cd185660cb0cab2224644225dce47cbd140ebe07edef578ee75",
+      "observation": {
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Med ball chest pass",
+              "pattern": "push",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "upper_push_power:31bb5057",
+              "movement_family": "general"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Walking overhead slam",
+              "pattern": "core",
+              "muscle_mass": "medium",
+              "unilateral": false,
+              "id": "core_power:9fa5c79e",
+              "movement_family": "general"
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "8\u201312",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Groin cable",
+                "pattern": "lateral",
+                "muscle_mass": "small",
+                "unilateral": true,
+                "id": "lower:dc499ca7",
+                "movement_family": "general"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Band shuffle",
+                "pattern": "lateral",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:452cd098",
+                "movement_family": "general"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 15,
+            "upper_push": 9,
+            "upper_pull": 9,
+            "core": 3,
+            "accessory_1": 2,
+            "accessory_2": 3
+          },
+          "total_load_score": 41,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        }
+      },
+      "result": {
+        "id": "library-001",
+        "status": "known",
+        "checks": {
+          "library_categories_nonempty": [
+            "upper_pull_power: category is empty"
+          ]
+        },
+        "finding": "F-002",
+        "error": null
+      }
+    },
+    {
+      "id": "library-002",
+      "input_sha256": "d7223ac2797123c14f4c2b81a7be9eeddc209bfa0ca623abf94f7b8f8415c0b0",
+      "observation": {
+        "workout": {
+          "warmup": [
+            "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30\u201360s each)",
+            "90/90 hip stretch 15\u201320s/side",
+            "Half-kneeling hip flexor stretch 15\u201320s/side",
+            "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+            "Mobility: Wall ankle mobilizations x 8/side",
+            "Activation: X-band walks x 12/side",
+            "Activation: Band pull-aparts x 15",
+            "Activation: Dead bug x 8/side"
+          ],
+          "main_lift_lower": {
+            "exercise": {
+              "name": "Barbell back squat",
+              "pattern": "squat",
+              "muscle_mass": "very_large",
+              "unilateral": false,
+              "id": "lower:8ee2f0a8",
+              "movement_family": "back_squat"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_push": {
+            "exercise": {
+              "name": "Barbell bench press",
+              "pattern": "push",
+              "muscle_mass": "large",
+              "unilateral": false,
+              "id": "upper_push:783795dd",
+              "movement_family": "bench_press"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "main_lift_upper_pull": {
+            "exercise": {
+              "name": "Rotational TRX row",
+              "pattern": "pull",
+              "muscle_mass": "medium",
+              "unilateral": true,
+              "id": "upper_pull:3bbe1bd3",
+              "movement_family": "general"
+            },
+            "intensity": "heavy",
+            "sets": 4,
+            "reps": "3\u20135",
+            "rest": "2\u20133 min"
+          },
+          "core": {
+            "exercise": {
+              "name": "Side plank x 30s/side",
+              "pattern": "core",
+              "muscle_mass": "small",
+              "unilateral": true,
+              "id": "core:93eaaee0",
+              "movement_family": "general"
+            },
+            "intensity": "light",
+            "sets": 3,
+            "reps": "",
+            "rest": "2\u20133 min"
+          },
+          "accessories": [
+            {
+              "exercise": {
+                "name": "Leg curl",
+                "pattern": "knee_flexion",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:9556320b",
+                "movement_family": "general"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            },
+            {
+              "exercise": {
+                "name": "Leg extension",
+                "pattern": "knee_extension",
+                "muscle_mass": "medium",
+                "unilateral": false,
+                "id": "lower:fe44a089",
+                "movement_family": "general"
+              },
+              "intensity": "light",
+              "sets": 2,
+              "reps": "10\u201315",
+              "rest": "45\u201360 sec"
+            }
+          ],
+          "load_scores": {
+            "lower": 15,
+            "upper_push": 12,
+            "upper_pull": 9,
+            "core": 2,
+            "accessory_1": 3,
+            "accessory_2": 3
+          },
+          "total_load_score": 44,
+          "suggested_weights": {
+            "core": null,
+            "lower": null,
+            "upper_push": null,
+            "upper_pull": null,
+            "accessory_1": null,
+            "accessory_2": null
+          }
+        },
+        "category_sizes": {
+          "warmup": 8,
+          "upper_push": 22,
+          "upper_push_power": 2,
+          "upper_pull": 15,
+          "upper_pull_power": 0,
+          "lower": 19,
+          "lower_power": 1,
+          "core": 10,
+          "core_power": 3
+        }
+      },
+      "result": {
+        "id": "library-002",
+        "status": "pass",
+        "checks": {
+          "library_categories_nonempty": []
+        },
+        "finding": null,
+        "error": null
+      }
+    }
+  ]
+}
