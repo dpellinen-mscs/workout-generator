@@ -1,0 +1,209 @@
+{
+  "reviewed_on": "2026-10-26",
+  "scope": "Exactly 20 most selected main, core, and accessory names in a fixed synthetic sample; warmups are excluded from the ranking.",
+  "sample": {
+    "position": "RHP",
+    "phases": [
+      "offseason",
+      "inseason"
+    ],
+    "goals": [
+      "power",
+      "speed",
+      "hypertrophy",
+      "general"
+    ],
+    "days_per_week": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "day_index": "0 through days_per_week - 1",
+    "history": [],
+    "random_seeds": "0 through 9, reset before each session",
+    "fixed_now": [
+      "2026-10-19",
+      "2026-10-26"
+    ],
+    "sessions": 3200
+  },
+  "limitations": [
+    "These counts describe a synthetic sample. They do not describe owner or athlete usage.",
+    "Each equipment list states all requirements for one library version. The list does not encode alternatives.",
+    "Other combines distinct items. Availability of a box does not imply availability of a bench, rack, trap bar, or TRX straps.",
+    "Unnamed loads use explicit library choices. A different version needs a separate entry or a richer equipment model.",
+    "The shoulder-rotation warmup uses the band option. Its text still permits a cable option.",
+    "Trap bar deadlift uses other. It does not require a separate straight barbell.",
+    "A wall is an ordinary surface, not equipment in this eval. Wall ankle mobility requires bodyweight only."
+  ],
+  "entries": [
+    {
+      "name": "Side plank x 30s/side",
+      "equipment": [
+        "bodyweight"
+      ],
+      "selection_count": 2800,
+      "rationale": "The stated side plank uses body weight. It names no support item."
+    },
+    {
+      "name": "Barbell back squat",
+      "equipment": [
+        "barbell",
+        "other"
+      ],
+      "selection_count": 2120,
+      "rationale": "The library version uses a barbell and a squat rack. The rack is other."
+    },
+    {
+      "name": "Barbell row (overhand grip)",
+      "equipment": [
+        "barbell"
+      ],
+      "selection_count": 1728,
+      "rationale": "The stated bent-over row uses a barbell. It does not require a bench."
+    },
+    {
+      "name": "Leg curl",
+      "equipment": [
+        "machine"
+      ],
+      "selection_count": 1432,
+      "rationale": "The name does not state a load. This library uses the leg-curl machine version."
+    },
+    {
+      "name": "Leg extension",
+      "equipment": [
+        "machine"
+      ],
+      "selection_count": 1432,
+      "rationale": "The library uses the leg-extension machine version."
+    },
+    {
+      "name": "Barbell bench press",
+      "equipment": [
+        "barbell",
+        "other"
+      ],
+      "selection_count": 1024,
+      "rationale": "The lift requires a barbell and a bench. The bench and rack are other."
+    },
+    {
+      "name": "Groin cable",
+      "equipment": [
+        "cable"
+      ],
+      "selection_count": 740,
+      "rationale": "The exercise names a cable station. The station includes its cuff attachment."
+    },
+    {
+      "name": "Band shuffle",
+      "equipment": [
+        "band"
+      ],
+      "selection_count": 740,
+      "rationale": "The exercise names a resistance band."
+    },
+    {
+      "name": "One-leg glute ham bridge",
+      "equipment": [
+        "bodyweight"
+      ],
+      "selection_count": 696,
+      "rationale": "The library uses an unweighted floor bridge. It does not name a bench or machine."
+    },
+    {
+      "name": "Hammer curls",
+      "equipment": [
+        "dumbbell"
+      ],
+      "selection_count": 688,
+      "rationale": "The name does not state a load. This library uses dumbbells for hammer curls."
+    },
+    {
+      "name": "Hip flexor cable",
+      "equipment": [
+        "cable"
+      ],
+      "selection_count": 648,
+      "rationale": "The exercise names a cable station. The station includes its cuff attachment."
+    },
+    {
+      "name": "Decline alternating dumbbell bench press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ],
+      "selection_count": 504,
+      "rationale": "The name states dumbbells and a decline bench. The bench is other."
+    },
+    {
+      "name": "Incline alternating dumbbell bench press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ],
+      "selection_count": 496,
+      "rationale": "The name states dumbbells and an incline bench. The bench is other."
+    },
+    {
+      "name": "Farmer carry x 40 yards",
+      "equipment": [
+        "dumbbell"
+      ],
+      "selection_count": 400,
+      "rationale": "The name does not state an implement. This library uses the dumbbell version."
+    },
+    {
+      "name": "Tricep kickbacks",
+      "equipment": [
+        "dumbbell"
+      ],
+      "selection_count": 380,
+      "rationale": "The name does not state a load. This library uses dumbbell kickbacks."
+    },
+    {
+      "name": "Reverse flies",
+      "equipment": [
+        "dumbbell"
+      ],
+      "selection_count": 332,
+      "rationale": "The name does not state a load. This library uses standing dumbbell reverse flies."
+    },
+    {
+      "name": "Renegade rows",
+      "equipment": [
+        "dumbbell"
+      ],
+      "selection_count": 320,
+      "rationale": "The library uses the dumbbell row from a plank. It needs no bench."
+    },
+    {
+      "name": "One-arm dumbbell row",
+      "equipment": [
+        "dumbbell"
+      ],
+      "selection_count": 296,
+      "rationale": "The name states a dumbbell. The library uses a split stance that needs no bench."
+    },
+    {
+      "name": "One-arm TRX row",
+      "equipment": [
+        "bodyweight",
+        "other"
+      ],
+      "selection_count": 272,
+      "rationale": "The exercise uses body weight and TRX straps with an anchor. Straps and anchor are other."
+    },
+    {
+      "name": "Alternating dumbbell bench press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ],
+      "selection_count": 248,
+      "rationale": "The name states dumbbells and a bench. The bench is other."
+    }
+  ]
+}

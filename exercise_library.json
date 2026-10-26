@@ -1,13 +1,53 @@
 {
   "warmup": [
-    "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30–60s each)",
-    "90/90 hip stretch 15–20s/side",
-    "Half-kneeling hip flexor stretch 15–20s/side",
-    "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
-    "Mobility: Wall ankle mobilizations x 8/side",
-    "Activation: X-band walks x 12/side",
-    "Activation: Band pull-aparts x 15",
-    "Activation: Dead bug x 8/side"
+    {
+      "name": "Self-myofascial release / foam roll: T-spine, lats, pecs/chest, hip flexors, delts, adductors, IT band, glutes, calves, hamstrings (30–60s each)",
+      "equipment": [
+        "other"
+      ]
+    },
+    {
+      "name": "90/90 hip stretch 15–20s/side",
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    {
+      "name": "Half-kneeling hip flexor stretch 15–20s/side",
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    {
+      "name": "Mobility: Shoulder INT-EXT rotation (band or cable) x 10/side",
+      "equipment": [
+        "band"
+      ]
+    },
+    {
+      "name": "Mobility: Wall ankle mobilizations x 8/side",
+      "equipment": [
+        "bodyweight"
+      ]
+    },
+    {
+      "name": "Activation: X-band walks x 12/side",
+      "equipment": [
+        "band"
+      ]
+    },
+    {
+      "name": "Activation: Band pull-aparts x 15",
+      "equipment": [
+        "band"
+      ]
+    },
+    {
+      "name": "Activation: Dead bug x 8/side",
+      "equipment": [
+        "bodyweight"
+      ]
+    }
   ],
   "upper_push": [
     {
@@ -16,7 +56,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:783795dd",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Dumbbell bench press",
@@ -24,7 +68,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:3084af60",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Alternating dumbbell bench press",
@@ -32,7 +80,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:a86261cd",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "One-sided dumbbell bench press",
@@ -40,7 +92,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:04da3b95",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Incline barbell bench press",
@@ -48,7 +104,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:f738a80d",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Incline dumbbell bench press",
@@ -56,7 +116,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:442de963",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Incline alternating dumbbell bench press",
@@ -64,7 +128,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:7bcc5f78",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Incline one-sided dumbbell bench press",
@@ -72,7 +140,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:14f78249",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Decline barbell bench press",
@@ -80,7 +152,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:11cf3775",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Decline dumbbell bench press",
@@ -88,7 +164,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:6b9ce32a",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Decline alternating dumbbell bench press",
@@ -96,7 +176,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:6ba4e0e9",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Decline one-sided dumbbell bench press",
@@ -104,7 +188,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:2fce1fa6",
-      "movement_family": "bench_press"
+      "movement_family": "bench_press",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Barbell military press",
@@ -112,7 +200,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:02942e5a",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Dumbbell military press",
@@ -120,7 +212,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_push:828c1a00",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Alternating dumbbell military press",
@@ -128,7 +223,10 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:9485d0d9",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "One-sided dumbbell military press",
@@ -136,7 +234,10 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:2a08c0dd",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Push-up",
@@ -144,7 +245,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "upper_push:7cb203d7",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Half-kneeling landmine press",
@@ -152,7 +256,11 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_push:2e10adb3",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Dumbbell chest fly",
@@ -160,7 +268,11 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "upper_push:6f456f92",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "Front shoulder raise",
@@ -168,7 +280,10 @@
       "muscle_mass": "small",
       "unilateral": false,
       "id": "upper_push:bce7adc2",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Lateral shoulder raise",
@@ -176,7 +291,10 @@
       "muscle_mass": "small",
       "unilateral": false,
       "id": "upper_push:bf44e98e",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Tricep kickbacks",
@@ -184,7 +302,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "upper_push:8ab76ea9",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     }
   ],
   "upper_push_power": [
@@ -194,7 +315,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "upper_push_power:31bb5057",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "med_ball"
+      ]
     },
     {
       "name": "Med ball rotational chest pass",
@@ -202,7 +326,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "upper_push_power:a8053166",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "med_ball"
+      ]
     }
   ],
   "upper_pull": [
@@ -212,7 +339,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_pull:fe9c984a",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "barbell"
+      ]
     },
     {
       "name": "Barbell row (reverse grip)",
@@ -220,7 +350,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_pull:1e4d5b9c",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "barbell"
+      ]
     },
     {
       "name": "Dumbbell row",
@@ -228,7 +361,10 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_pull:e9c63d55",
-      "movement_family": "dumbbell_row"
+      "movement_family": "dumbbell_row",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Wide-grip lat pulldown",
@@ -236,7 +372,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_pull:ee023997",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Reverse-grip lat pulldown",
@@ -244,7 +383,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_pull:bbfb9794",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "One-arm lat pulldown",
@@ -252,7 +394,10 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_pull:06fc9b2c",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Chest-supported row",
@@ -260,7 +405,11 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_pull:9d651399",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell",
+        "other"
+      ]
     },
     {
       "name": "One-arm dumbbell row",
@@ -268,7 +417,10 @@
       "muscle_mass": "large",
       "unilateral": true,
       "id": "upper_pull:28058d51",
-      "movement_family": "dumbbell_row"
+      "movement_family": "dumbbell_row",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Lat pulldown",
@@ -276,7 +428,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "upper_pull:79307fad",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "TRX row",
@@ -284,7 +439,11 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "upper_pull:500506f8",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight",
+        "other"
+      ]
     },
     {
       "name": "One-arm TRX row",
@@ -292,7 +451,11 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "upper_pull:d0444315",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight",
+        "other"
+      ]
     },
     {
       "name": "Rotational TRX row",
@@ -300,7 +463,11 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "upper_pull:3bbe1bd3",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight",
+        "other"
+      ]
     },
     {
       "name": "Renegade rows",
@@ -308,7 +475,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "upper_pull:1bf7481e",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Reverse flies",
@@ -316,7 +486,10 @@
       "muscle_mass": "small",
       "unilateral": false,
       "id": "upper_pull:1d931376",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Hammer curls",
@@ -324,7 +497,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "upper_pull:2289d1bb",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     }
   ],
   "upper_pull_power": [],
@@ -335,7 +511,10 @@
       "muscle_mass": "very_large",
       "unilateral": true,
       "id": "lower:6fb7e2c6",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Reverse lunge",
@@ -343,7 +522,10 @@
       "muscle_mass": "very_large",
       "unilateral": true,
       "id": "lower:a06225bc",
-      "movement_family": "reverse_lunge"
+      "movement_family": "reverse_lunge",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Forward lunge",
@@ -351,7 +533,10 @@
       "muscle_mass": "very_large",
       "unilateral": true,
       "id": "lower:57612ac1",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Barbell back squat",
@@ -359,7 +544,11 @@
       "muscle_mass": "very_large",
       "unilateral": false,
       "id": "lower:8ee2f0a8",
-      "movement_family": "back_squat"
+      "movement_family": "back_squat",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Barbell front squat",
@@ -367,7 +556,11 @@
       "muscle_mass": "very_large",
       "unilateral": false,
       "id": "lower:74f23d68",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "barbell",
+        "other"
+      ]
     },
     {
       "name": "Barbell deadlift",
@@ -375,7 +568,10 @@
       "muscle_mass": "very_large",
       "unilateral": false,
       "id": "lower:fff3bb51",
-      "movement_family": "deadlift"
+      "movement_family": "deadlift",
+      "equipment": [
+        "barbell"
+      ]
     },
     {
       "name": "Trap bar deadlift",
@@ -383,7 +579,10 @@
       "muscle_mass": "very_large",
       "unilateral": false,
       "id": "lower:c8621ff1",
-      "movement_family": "deadlift"
+      "movement_family": "deadlift",
+      "equipment": [
+        "other"
+      ]
     },
     {
       "name": "Cable shuffle",
@@ -391,7 +590,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "lower:02f21739",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Band shuffle",
@@ -399,7 +601,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "lower:452cd098",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "band"
+      ]
     },
     {
       "name": "Single-leg straight-leg deadlift",
@@ -407,7 +612,10 @@
       "muscle_mass": "very_large",
       "unilateral": true,
       "id": "lower:926e410e",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Barbell straight-leg deadlift",
@@ -415,7 +623,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "lower:b0029739",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "barbell"
+      ]
     },
     {
       "name": "Leg curl",
@@ -423,7 +634,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "lower:9556320b",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "machine"
+      ]
     },
     {
       "name": "Leg extension",
@@ -431,7 +645,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "lower:fe44a089",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "machine"
+      ]
     },
     {
       "name": "Leg press",
@@ -439,7 +656,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "lower:b2117ad7",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "machine"
+      ]
     },
     {
       "name": "Goblet squat",
@@ -447,7 +667,10 @@
       "muscle_mass": "large",
       "unilateral": false,
       "id": "lower:86a3d49b",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Hip flexor cable",
@@ -455,7 +678,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "lower:ca90a265",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Groin cable",
@@ -463,7 +689,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "lower:dc499ca7",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Glute ham bridge",
@@ -471,7 +700,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "lower:803e0890",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "One-leg glute ham bridge",
@@ -479,7 +711,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "lower:bcb60eee",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     }
   ],
   "lower_power": [
@@ -489,7 +724,11 @@
       "movement_family": "general",
       "pattern": "squat",
       "muscle_mass": "large",
-      "unilateral": false
+      "unilateral": false,
+      "equipment": [
+        "bodyweight",
+        "other"
+      ]
     }
   ],
   "core": [
@@ -499,7 +738,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "core:93eaaee0",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Side plank",
@@ -507,7 +749,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "core:90fa71e8",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "Plank",
@@ -515,7 +760,10 @@
       "muscle_mass": "small",
       "unilateral": false,
       "id": "core:63f5ec6d",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "One-foot plank",
@@ -523,7 +771,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "core:1792ae8f",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight"
+      ]
     },
     {
       "name": "TRX plank",
@@ -531,7 +782,11 @@
       "muscle_mass": "small",
       "unilateral": false,
       "id": "core:a5e65b9c",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "bodyweight",
+        "other"
+      ]
     },
     {
       "name": "Pallof press x 10/side",
@@ -539,7 +794,10 @@
       "muscle_mass": "small",
       "unilateral": true,
       "id": "core:d2cced8d",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Farmer carry x 40 yards",
@@ -547,7 +805,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "core:467f39c3",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "dumbbell"
+      ]
     },
     {
       "name": "Cable chop",
@@ -555,7 +816,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "core:d43dc689",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "Low-to-high cable chop",
@@ -563,7 +827,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "core:53c71bc3",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     },
     {
       "name": "High-to-low cable chop",
@@ -571,7 +838,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "core:500c300d",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "cable"
+      ]
     }
   ],
   "core_power": [
@@ -581,7 +851,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "core_power:5b2be236",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "med_ball"
+      ]
     },
     {
       "name": "Med ball rotational scoop toss",
@@ -589,7 +862,10 @@
       "muscle_mass": "medium",
       "unilateral": true,
       "id": "core_power:11cf9a55",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "med_ball"
+      ]
     },
     {
       "name": "Walking overhead slam",
@@ -597,7 +873,10 @@
       "muscle_mass": "medium",
       "unilateral": false,
       "id": "core_power:9fa5c79e",
-      "movement_family": "general"
+      "movement_family": "general",
+      "equipment": [
+        "med_ball"
+      ]
     }
   ]
 }

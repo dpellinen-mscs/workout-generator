@@ -31,7 +31,9 @@ def all_exercises_use_only(observation, allowed):
     violations = []
     workout = observation["workout"]
     exercises = [b["exercise"] for b in exercise_blocks(workout)]
-    exercises += [e if isinstance(e, dict) else {"name": e} for e in workout.get("warmup", [])]
+    exercises += [e if isinstance(e, dict) else {
+        "name": e, "equipment": observation.get("warmup_equipment", {}).get(e)
+    } for e in workout.get("warmup", [])]
     for exercise in exercises:
         equipment = exercise.get("equipment")
         if not isinstance(equipment, list) or not equipment:
@@ -89,6 +91,7 @@ def observe(case):
             day_index=case["day_index"],
         )
     return {"workout": workout,
+            "warmup_equipment": {e["name"]: e["equipment"] for e in work_gen.EXERCISE_LIBRARY["warmup"]},
             "category_sizes": {k: len(v) for k, v in work_gen.EXERCISE_LIBRARY.items()}}
 
 

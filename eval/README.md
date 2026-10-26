@@ -67,3 +67,11 @@ Replay verifies those hashes before it scores the stored outputs.
 CI compares current check results with the baseline. A check that passed before must not drop.
 Keep the baseline from the audit until the owner approves a new baseline.
 Add each check and its unit test in the same PR as its cases.
+
+The library uses equipment lists as AND requirements.
+The tag script assigns one canonical version when a name permits alternatives.
+`other` includes distinct support items, such as a bench, rack, or TRX straps.
+This coarse token cannot establish that all support items are available.
+
+The manual review file identifies 20 common selections from synthetic profiles.
+Warmup entries contain metadata in the library. Generator output keeps the original warmup text.
