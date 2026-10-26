@@ -19,6 +19,10 @@ from eval.tools.days import CHECKS as DAY_CHECKS, observe_days
 from eval.tools.injury import no_excluded_exercises, observe_injury
 from eval.tools.rotation import ROTATION_CHECKS, observe_rotation
 from eval.tools.load_checks import LOAD_CHECKS, observe_caps
+from eval.tools.roundtrip import (
+    observe_roundtrip, observe_flask_roundtrip, json_roundtrip_preserved,
+    text_prescriptions_preserved, flask_workout_preserved, completed_log_edit_preserved,
+)
 
 CASES_DIR = ROOT / "eval" / "cases"
 BASELINE = ROOT / "eval" / "recorded" / "baseline.json"
@@ -60,6 +64,12 @@ CHECKS.update(DAY_CHECKS)
 CHECKS["no_excluded_exercises"] = no_excluded_exercises
 CHECKS.update(ROTATION_CHECKS)
 CHECKS.update(LOAD_CHECKS)
+CHECKS.update({
+    "json_roundtrip_preserved": json_roundtrip_preserved,
+    "text_prescriptions_preserved": text_prescriptions_preserved,
+    "flask_workout_preserved": flask_workout_preserved,
+    "completed_log_edit_preserved": completed_log_edit_preserved,
+})
 
 
 def load_cases(cases_dir=CASES_DIR):
@@ -74,7 +84,7 @@ def digest(value):
 def source_hashes():
     return {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
             for name in ("work_gen.py", "exercise_library.json", "coaching_style.json",
-                         "eval/catalog/injury_exclusions.json")}
+                         "eval/catalog/injury_exclusions.json", "app.py")}
 
 
 @contextmanager
@@ -116,6 +126,11 @@ def observe(case):
     if "no_excluded_exercises" in case["expect"]:
         observation.update(observe_injury(case, workout, work_gen.EXERCISE_LIBRARY,
                                           work_gen.filter_exercises_for_injuries))
+    with patch.object(work_gen, "datetime", AuditDateTime):
+        if case.get("scenario", {}).get("kind") == "roundtrip":
+            observation.update(observe_roundtrip(case, workout))
+        elif case.get("scenario", {}).get("kind") == "flask_roundtrip":
+            observation.update(observe_flask_roundtrip(case, workout))
     return observation
 
 

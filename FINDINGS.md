@@ -13,6 +13,7 @@
 | F-009 | wrong-program | open | 8 load cases |
 | F-010 | wrong-program | open | 20 load cases |
 | F-011 | wrong-program | open | 3 power-history cases |
+| F-012 | blocks-use | open | 5 split-day text exports |
 
 ## F-001: The generator ignores available equipment
 
@@ -231,3 +232,25 @@
 - Observed: Power exercise history contributes zero load and no pattern warnings. The base-category history controls count load correctly.
 - Expected: Every logged library exercise must contribute its configured load and pattern count to the weekly totals.
 - Notes: The history lookup omits all power categories. The case runner fixes the date at 2026-10-26.
+
+## F-012: Text export crashes when the program omits a main slot
+
+- Severity: blocks-use
+- Status: open
+- Case(s):
+  ```text
+  eval/cases/roundtrip.json#roundtrip-split-day-0
+  eval/cases/roundtrip.json#roundtrip-split-day-1
+  eval/cases/roundtrip.json#roundtrip-split-day-2
+  eval/cases/roundtrip.json#roundtrip-split-day-3
+  eval/cases/roundtrip.json#roundtrip-flask-split
+  ```
+- Repro:
+  ```python
+  athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 4, "injuries": []}
+  import work_gen, random; random.seed(0); workout = work_gen.generate_workout(athlete, history=[], day_index=0)
+  work_gen.format_workout_text(athlete, workout)
+  ```
+- Observed: All four offseason split days raise TypeError when text export indexes an absent main block. JSON save and load preserve the complete workout.
+- Expected: Text export must preserve every prescribed exercise, set, rep, and order. An absent main slot must not prevent export.
+- Notes: This blocks command-line text export. SQLite save and completed-log edit preserve prescriptions. The eval runner calls the formatter after persistence. The web app has no text export or saved-program edit route.
