@@ -1,0 +1,3339 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "load-week-offseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 250,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-offseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-offseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 250,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-offseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-offseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 250,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-offseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-offseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 250,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-offseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-preseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 200,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-preseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-preseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 200,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-preseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-preseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 200,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-preseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-preseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 200,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-preseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-inseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-inseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-inseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-inseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-inseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-inseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-inseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-inseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-postseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-postseason-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-postseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-postseason-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-postseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-postseason-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-postseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 150,
+        "session_load_scores_match": true
+      },
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-postseason-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-return_to_play-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 120,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-return_to_play-power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-return_to_play-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 120,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-return_to_play-speed",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "speed",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-return_to_play-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 120,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-return_to_play-hypertrophy",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "hypertrophy",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-week-return_to_play-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "weekly_load_within_cap": 120,
+        "session_load_scores_match": true
+      },
+      "finding": "F-009",
+      "notes": "Generate six sessions with history=[] and seed 1 reset per call on 2026-10-26. Sum the loads from the prescribed blocks. No separate per-session cap exists. This case does not claim to verify one."
+    },
+    {
+      "id": "load-pattern-return_to_play-general",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_week"
+      },
+      "expect": {
+        "pattern_counts_within_caps": {
+          "push": 3,
+          "pull": 3,
+          "squat": 3,
+          "hinge": 3,
+          "lateral": 3,
+          "core": 4
+        }
+      },
+      "finding": "F-010",
+      "notes": "Count every prescribed main, core, and accessory exercise from the six raw sessions. Normalize carry to core as the configured cap logic does. Do not use the engine history aggregate as the scoring oracle."
+    },
+    {
+      "id": "load-warning-week-offseason-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 250,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-week-offseason-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 251,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 251 > 250"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-week-preseason-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 200,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-week-preseason-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 201,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 201 > 200"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-week-inseason-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 150,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-week-inseason-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 151,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 151 > 150"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-week-postseason-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 150,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-week-postseason-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 151,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 151 > 150"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-week-return_to_play-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 120,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-week-return_to_play-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 121,
+        "pattern_counts": {}
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 121 > 120"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-pattern-push-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "push": 3
+        }
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-pattern-push-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "push": 4
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for push: 4 > 3"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-pattern-pull-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "pull": 3
+        }
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-pattern-pull-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "pull": 4
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for pull: 4 > 3"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-pattern-squat-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "squat": 3
+        }
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-pattern-squat-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "squat": 4
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for squat: 4 > 3"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-pattern-hinge-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "hinge": 3
+        }
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-pattern-hinge-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "hinge": 4
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for hinge: 4 > 3"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-pattern-lateral-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "lateral": 3
+        }
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-pattern-lateral-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "lateral": 4
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for lateral: 4 > 3"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-warning-pattern-core-at",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "core": 4
+        }
+      },
+      "expect": {
+        "no_warnings": true
+      },
+      "notes": "A configured cap is inclusive: equality must not produce a warning."
+    },
+    {
+      "id": "load-warning-pattern-core-over",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_warning",
+        "total_load": 0,
+        "pattern_counts": {
+          "core": 5
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for core: 5 > 4"
+        ]
+      },
+      "notes": ""
+    },
+    {
+      "id": "load-history-week-offseason",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "offseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 255 > 250"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. A zero-load current workout isolates the warning caused by prior sessions."
+    },
+    {
+      "id": "load-history-week-preseason",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "preseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "preseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 210 > 200"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. A zero-load current workout isolates the warning caused by prior sessions."
+    },
+    {
+      "id": "load-history-week-inseason",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 155 > 150"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. A zero-load current workout isolates the warning caused by prior sessions."
+    },
+    {
+      "id": "load-history-week-postseason",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "postseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "postseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 155 > 150"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. A zero-load current workout isolates the warning caused by prior sessions."
+    },
+    {
+      "id": "load-history-week-return_to_play",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "return_to_play",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "return_to_play"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Weekly load cap exceeded: 125 > 120"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. A zero-load current workout isolates the warning caused by prior sessions."
+    },
+    {
+      "id": "load-history-pattern-push",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell bench press",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell bench press",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell bench press",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell bench press",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for push: 4 > 3"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. The core fixture uses a carry to verify the existing carry-to-core mapping."
+    },
+    {
+      "id": "load-history-pattern-pull",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell row (overhand grip)",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell row (overhand grip)",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell row (overhand grip)",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell row (overhand grip)",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for pull: 4 > 3"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. The core fixture uses a carry to verify the existing carry-to-core mapping."
+    },
+    {
+      "id": "load-history-pattern-squat",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell back squat",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for squat: 4 > 3"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. The core fixture uses a carry to verify the existing carry-to-core mapping."
+    },
+    {
+      "id": "load-history-pattern-hinge",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell deadlift",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell deadlift",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell deadlift",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Barbell deadlift",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for hinge: 4 > 3"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. The core fixture uses a carry to verify the existing carry-to-core mapping."
+    },
+    {
+      "id": "load-history-pattern-lateral",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Band shuffle",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Band shuffle",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Band shuffle",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Band shuffle",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for lateral: 4 > 3"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. The core fixture uses a carry to verify the existing carry-to-core mapping."
+    },
+    {
+      "id": "load-history-pattern-core",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "general",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Farmer carry x 40 yards",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Farmer carry x 40 yards",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Farmer carry x 40 yards",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Farmer carry x 40 yards",
+          "phase": "inseason"
+        },
+        {
+          "date": "2026-10-25",
+          "exercise_name": "Farmer carry x 40 yards",
+          "phase": "inseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0
+        }
+      },
+      "expect": {
+        "warnings_include": [
+          "Pattern cap exceeded for core: 5 > 4"
+        ]
+      },
+      "notes": "Synthetic history is dated inside the seven-day window. The core fixture uses a carry to verify the existing carry-to-core mapping."
+    },
+    {
+      "id": "load-history-power-upper_push_power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "upper_push_power",
+          "exercise_name": "Med ball chest pass",
+          "phase": "offseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0,
+          "accessories": []
+        }
+      },
+      "expect": {
+        "history_load_equals": 252,
+        "warnings_include": [
+          "Weekly load cap exceeded: 252 > 250",
+          "Pattern cap exceeded for push: 28 > 3"
+        ]
+      },
+      "finding": "F-011",
+      "notes": "Power-category exercise history must contribute the configured load score and pattern count. Synthetic rows only."
+    },
+    {
+      "id": "load-history-power-lower_power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "lower_power",
+          "exercise_name": "reactive box jump",
+          "phase": "offseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0,
+          "accessories": []
+        }
+      },
+      "expect": {
+        "history_load_equals": 252,
+        "warnings_include": [
+          "Weekly load cap exceeded: 252 > 250",
+          "Pattern cap exceeded for squat: 21 > 3"
+        ]
+      },
+      "finding": "F-011",
+      "notes": "Power-category exercise history must contribute the configured load score and pattern count. Synthetic rows only."
+    },
+    {
+      "id": "load-history-power-core_power",
+      "tags": [
+        "load_caps"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        },
+        {
+          "date": "2026-10-25",
+          "category": "core_power",
+          "exercise_name": "Med ball reverse toss",
+          "phase": "offseason"
+        }
+      ],
+      "day_index": 0,
+      "seed": 1,
+      "scenario": {
+        "kind": "caps_history",
+        "workout": {
+          "total_load_score": 0,
+          "accessories": []
+        }
+      },
+      "expect": {
+        "history_load_equals": 252,
+        "warnings_include": [
+          "Weekly load cap exceeded: 252 > 250",
+          "Pattern cap exceeded for hinge: 28 > 3"
+        ]
+      },
+      "finding": "F-011",
+      "notes": "Power-category exercise history must contribute the configured load score and pattern count. Synthetic rows only."
+    }
+  ]
+}

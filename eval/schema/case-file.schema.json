@@ -67,7 +67,10 @@
           "type": "string",
           "enum": [
             "offseason",
-            "inseason"
+            "preseason",
+            "inseason",
+            "postseason",
+            "return_to_play"
           ]
         },
         "days_per_week": {
@@ -173,6 +176,62 @@
               "minLength": 1
             }
           }
+        },
+        "weekly_load_within_cap": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pattern_counts_within_caps": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "push": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pull": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "squat": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "hinge": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "lateral": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "core": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "warnings_include": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "no_warnings": {
+          "type": "boolean",
+          "const": true
+        },
+        "session_load_scores_match": {
+          "type": "boolean",
+          "const": true
+        },
+        "history_load_equals": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -238,21 +297,171 @@
           ]
         },
         "scenario": {
-          "type": "object",
-          "required": [
-            "kind"
-          ],
-          "properties": {
-            "kind": {
-              "type": "string",
-              "enum": [
-                "single",
-                "days",
-                "injury_filter",
-                "rotation"
-              ]
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "single"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "days"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "rotation"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "caps_week"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "categories"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "injury_filter"
+                },
+                "categories": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "warmup",
+                      "upper_push",
+                      "upper_push_power",
+                      "upper_pull",
+                      "upper_pull_power",
+                      "lower",
+                      "lower_power",
+                      "core",
+                      "core_power"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "total_load",
+                "pattern_counts"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "caps_warning"
+                },
+                "total_load": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "pattern_counts": {
+                  "type": "object",
+                  "properties": {
+                    "push": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "pull": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "squat": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hinge": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "lateral": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "core": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "workout"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "caps_history"
+                },
+                "workout": {
+                  "type": "object",
+                  "required": [
+                    "total_load_score"
+                  ],
+                  "properties": {
+                    "total_load_score": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "accessories": {
+                      "type": "array"
+                    }
+                  }
+                }
+              }
             }
-          }
+          ]
         }
       }
     }

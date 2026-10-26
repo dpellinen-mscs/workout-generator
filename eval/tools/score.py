@@ -18,6 +18,7 @@ import work_gen
 from eval.tools.days import CHECKS as DAY_CHECKS, observe_days
 from eval.tools.injury import no_excluded_exercises, observe_injury
 from eval.tools.rotation import ROTATION_CHECKS, observe_rotation
+from eval.tools.load_checks import LOAD_CHECKS, observe_caps
 
 CASES_DIR = ROOT / "eval" / "cases"
 BASELINE = ROOT / "eval" / "recorded" / "baseline.json"
@@ -58,6 +59,7 @@ CHECKS = {
 CHECKS.update(DAY_CHECKS)
 CHECKS["no_excluded_exercises"] = no_excluded_exercises
 CHECKS.update(ROTATION_CHECKS)
+CHECKS.update(LOAD_CHECKS)
 
 
 def load_cases(cases_dir=CASES_DIR):
@@ -100,6 +102,9 @@ def generate_case(case, day_index):
 
 
 def observe(case):
+    if case.get("scenario", {}).get("kind") in {"caps_week", "caps_warning", "caps_history"}:
+        with patch.object(work_gen, "datetime", AuditDateTime):
+            return observe_caps(case, work_gen, lambda index: generate_case(case, index))
     if case.get("scenario", {}).get("kind") == "rotation":
         return observe_rotation(case, lambda c: generate_case(c, c["day_index"]))
     if case.get("scenario", {}).get("kind") == "days":

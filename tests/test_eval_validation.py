@@ -108,4 +108,17 @@ def test_injury_profile_must_match_athlete(tmp_path, case):
 def test_scenario_kind_typo_is_rejected(tmp_path, case):
     case["scenario"] = {"kind": "injury_filtre"}
     write_cases(tmp_path, [case])
-    assert any("must be one of" in error for error in validation.validate_corpus(tmp_path))
+    assert validation.validate_corpus(tmp_path)
+
+
+def test_load_warning_requires_observation_fields(tmp_path, case):
+    case["scenario"] = {"kind": "caps_warning"}
+    write_cases(tmp_path, [case])
+    assert validation.validate_corpus(tmp_path)
+
+
+def test_generated_cap_check_cannot_score_constructed_counts(tmp_path, case):
+    case["scenario"] = {"kind": "caps_warning", "total_load": 0, "pattern_counts": {}}
+    case["expect"] = {"pattern_counts_within_caps": {"pull": 3}}
+    write_cases(tmp_path, [case])
+    assert any("requires generated caps_week" in error for error in validation.validate_corpus(tmp_path))

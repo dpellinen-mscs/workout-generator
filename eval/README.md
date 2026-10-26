@@ -79,6 +79,18 @@ Warmup entries contain metadata in the library. Generator output keeps the origi
 Rotation cases treat the supplied history as one block.
 The requested no-repeat constraint differs from the configured four-use policy.
 The owner requires the no-repeat rule. F-007 records the conflict.
+
 The fixture defines the block boundary. Real history has no block boundary field.
 Accessory fixtures use synthetic session IDs and row order to identify the previous pair when dates tie.
+
 The engine has no seed argument. Callers can reset Python random state to reproduce a session.
+
+Load cases cover all five configured phases and all four goals.
+No separate session load cap exists, so this audit cannot verify a session cap.
+Weekly pattern counts include all prescribed blocks, with carry under core.
+The warning cases include exact boundaries and dated synthetic history.
+
+Load scores use configured intensity and muscle mass. They exclude set and rep volume.
+The four goals therefore produce the same load in each phase for this sample.
+The 20 phase and goal profiles produce three distinct six-session sequences.
+The fixed date covers an even calendar week. The audit does not claim all week parities or history window edges.
