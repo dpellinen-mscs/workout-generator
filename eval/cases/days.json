@@ -1,0 +1,767 @@
+{
+  "format_version": 1,
+  "cases": [
+    {
+      "id": "days-offseason-2-count",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 2,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 2
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-offseason-2-distinct",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 2,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 2
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-offseason-2-limit",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 2,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-offseason-3-count",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 3
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-offseason-3-distinct",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 3
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-offseason-3-limit",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-offseason-4-count",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 4
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-offseason-4-distinct",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 4
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session."
+    },
+    {
+      "id": "days-offseason-4-limit",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-offseason-5-count",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 5,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 5
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-offseason-5-distinct",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 5,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 5
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session."
+    },
+    {
+      "id": "days-offseason-5-limit",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 5,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-offseason-6-count",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 6
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-offseason-6-distinct",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 6
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session."
+    },
+    {
+      "id": "days-offseason-6-limit",
+      "tags": [
+        "days_per_week",
+        "offseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-inseason-2-count",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 2,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 2
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-inseason-2-distinct",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 2,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 2
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-inseason-2-limit",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 2,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-inseason-3-count",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 3
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-inseason-3-distinct",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 3
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-inseason-3-limit",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-inseason-4-count",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 4
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-inseason-4-distinct",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 4
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-inseason-4-limit",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 4,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-inseason-5-count",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 5,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 5
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-inseason-5-distinct",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 5,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 5
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-inseason-5-limit",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 5,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-inseason-6-count",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "day_count_equals": 6
+      },
+      "notes": "Generate each requested index with the same fixed clock and seed."
+    },
+    {
+      "id": "days-inseason-6-distinct",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "sessions_distinct": 6
+      },
+      "notes": "Reset the seed for each index. Random variation does not establish a distinct scheduled session.",
+      "finding": "F-003"
+    },
+    {
+      "id": "days-inseason-6-limit",
+      "tags": [
+        "days_per_week",
+        "inseason"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "inseason",
+        "days_per_week": 6,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "no_session_after_limit": true
+      },
+      "notes": "Request day_index equal to days_per_week and days_per_week + 1. Both must yield no session or reject the index.",
+      "finding": "F-004"
+    },
+    {
+      "id": "days-offseason-3-fallback",
+      "tags": [
+        "days_per_week",
+        "offseason",
+        "fallback"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": []
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "scenario": {
+        "kind": "days"
+      },
+      "expect": {
+        "fallback_full_body": true
+      },
+      "notes": "Characterize the current fallback: _offseason_day_plan returns None, and each workout has main_lift_lower, main_lift_upper_push, and main_lift_upper_pull. The private day-plan check is characterization. The runner generates the full schedule and ignores the anchor day_index."
+    }
+  ]
+}

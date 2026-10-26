@@ -131,6 +131,9 @@ def validate_corpus(cases_dir: Path | str = DEFAULT_CASES_DIR) -> list[str]:
                 for name in case["expect"]:
                     if name not in known_checks:
                         errors.append(f"{location}.expect: unknown scorer check {name!r}")
+                for name in ("day_count_equals", "sessions_distinct"):
+                    if name in case["expect"] and isinstance(case.get("athlete"), dict) and case["expect"][name] != case["athlete"].get("days_per_week"):
+                        errors.append(f"{location}.expect.{name}: must equal athlete.days_per_week")
     return errors
 
 

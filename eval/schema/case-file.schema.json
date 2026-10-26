@@ -105,6 +105,24 @@
             "type": "string",
             "minLength": 1
           }
+        },
+        "day_count_equals": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "sessions_distinct": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "no_session_after_limit": {
+          "type": "boolean",
+          "const": true
+        },
+        "fallback_full_body": {
+          "type": "boolean",
+          "const": true
         }
       }
     },

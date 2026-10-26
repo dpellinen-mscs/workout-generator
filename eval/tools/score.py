@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 import work_gen
+from eval.tools.days import CHECKS as DAY_CHECKS, observe_days
 
 CASES_DIR = ROOT / "eval" / "cases"
 BASELINE = ROOT / "eval" / "recorded" / "baseline.json"
@@ -52,6 +53,7 @@ CHECKS = {
     "all_exercises_use_only": all_exercises_use_only,
     "library_categories_nonempty": library_categories_nonempty,
 }
+CHECKS.update(DAY_CHECKS)
 
 
 def load_cases(cases_dir=CASES_DIR):
@@ -84,12 +86,18 @@ class AuditDateTime(datetime):
         return cls(2026, 10, 26, 12, tzinfo=tz)
 
 
-def observe(case):
+def generate_case(case, day_index):
     with seeded(case.get("seed", 0)), patch.object(work_gen, "datetime", AuditDateTime):
-        workout = work_gen.generate_workout(
+        return work_gen.generate_workout(
             case["athlete"], history=case["history"], focus=case.get("focus"),
-            day_index=case["day_index"],
+            day_index=day_index,
         )
+
+
+def observe(case):
+    if case.get("scenario", {}).get("kind") == "days":
+        return observe_days(case, lambda index: generate_case(case, index))
+    workout = generate_case(case, case["day_index"])
     return {"workout": workout,
             "warmup_equipment": {e["name"]: e["equipment"] for e in work_gen.EXERCISE_LIBRARY["warmup"]},
             "category_sizes": {k: len(v) for k, v in work_gen.EXERCISE_LIBRARY.items()}}

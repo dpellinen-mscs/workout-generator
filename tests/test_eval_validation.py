@@ -89,3 +89,11 @@ def test_no_case_files_is_an_error(tmp_path):
 def test_cli_returns_nonzero_for_invalid_corpus(tmp_path, capsys):
     assert validation.main(["--cases-dir", str(tmp_path)]) == 1
     assert "no JSON case files" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("check", ["day_count_equals", "sessions_distinct"])
+def test_schedule_expectation_must_match_athlete(tmp_path, case, check):
+    case["expect"] = {check: 2}
+    case["athlete"]["days_per_week"] = 3
+    write_cases(tmp_path, [case])
+    assert any("must equal athlete.days_per_week" in error for error in validation.validate_corpus(tmp_path))
