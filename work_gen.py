@@ -21,6 +21,7 @@ DEFAULT_ATHLETE = {
     "injuries": [],   # examples: ["shoulder"], ["knee"], [], ["back"]
     "goal": "power",  # examples: "power", "speed", "hypertrophy", "general"
     "phase": "offseason",  # examples: "offseason", "inseason"
+    "equipment": ["barbell", "dumbbell", "kettlebell", "cable", "machine", "band", "med_ball", "bodyweight", "other"],
 }
 
 
@@ -474,7 +475,7 @@ def generate_workout(
     lower_power_base = _get_category("lower_power", "lower_body_power")
     core_base = _get_category("core", "trunk_stability")
     core_power_base = _get_category("core_power", "trunk_stability_power")
-    warmup_base = _get_category("warmup")
+    warmup_base = [item["name"] if isinstance(item, dict) else item for item in _get_category("warmup")]
 
     upper_push_options = filter_exercises_for_injuries(upper_push_base, injuries)
     upper_pull_options = filter_exercises_for_injuries(upper_pull_base, injuries)

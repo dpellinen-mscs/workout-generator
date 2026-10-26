@@ -28,6 +28,72 @@
       },
       "finding": "F-001",
       "notes": "The engine accepts equipment but does not read it."
+    },
+    {
+      "id": "equip-002",
+      "tags": [
+        "equipment"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "bodyweight"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "all_exercises_use_only": [
+          "bodyweight"
+        ]
+      },
+      "finding": "F-001",
+      "notes": "The athlete states these available equipment types. Every selected exercise must fit."
+    },
+    {
+      "id": "equip-003",
+      "tags": [
+        "equipment"
+      ],
+      "athlete": {
+        "position": "RHP",
+        "goal": "power",
+        "phase": "offseason",
+        "days_per_week": 3,
+        "injuries": [],
+        "equipment": [
+          "barbell",
+          "dumbbell",
+          "kettlebell",
+          "cable",
+          "band",
+          "med_ball",
+          "bodyweight",
+          "other"
+        ]
+      },
+      "history": [],
+      "day_index": 0,
+      "seed": 0,
+      "expect": {
+        "all_exercises_use_only": [
+          "barbell",
+          "dumbbell",
+          "kettlebell",
+          "cable",
+          "band",
+          "med_ball",
+          "bodyweight",
+          "other"
+        ]
+      },
+      "finding": "F-001",
+      "notes": "No machines are available. Every selected exercise must exclude the machine equipment token."
     }
   ]
 }
