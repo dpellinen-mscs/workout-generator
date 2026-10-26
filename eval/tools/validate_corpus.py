@@ -134,6 +134,10 @@ def validate_corpus(cases_dir: Path | str = DEFAULT_CASES_DIR) -> list[str]:
                 for name in ("day_count_equals", "sessions_distinct"):
                     if name in case["expect"] and isinstance(case.get("athlete"), dict) and case["expect"][name] != case["athlete"].get("days_per_week"):
                         errors.append(f"{location}.expect.{name}: must equal athlete.days_per_week")
+                profile = case["expect"].get("no_excluded_exercises")
+                athlete = case.get("athlete")
+                if profile and isinstance(athlete, dict) and isinstance(athlete.get("injuries"), list) and profile not in athlete["injuries"]:
+                    errors.append(f"{location}.expect.no_excluded_exercises: profile must be in athlete.injuries")
     return errors
 
 

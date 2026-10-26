@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 import work_gen
 from eval.tools.days import CHECKS as DAY_CHECKS, observe_days
+from eval.tools.injury import no_excluded_exercises, observe_injury
 
 CASES_DIR = ROOT / "eval" / "cases"
 BASELINE = ROOT / "eval" / "recorded" / "baseline.json"
@@ -54,6 +55,7 @@ CHECKS = {
     "library_categories_nonempty": library_categories_nonempty,
 }
 CHECKS.update(DAY_CHECKS)
+CHECKS["no_excluded_exercises"] = no_excluded_exercises
 
 
 def load_cases(cases_dir=CASES_DIR):
@@ -67,7 +69,8 @@ def digest(value):
 
 def source_hashes():
     return {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
-            for name in ("work_gen.py", "exercise_library.json", "coaching_style.json")}
+            for name in ("work_gen.py", "exercise_library.json", "coaching_style.json",
+                         "eval/catalog/injury_exclusions.json")}
 
 
 @contextmanager
@@ -98,9 +101,13 @@ def observe(case):
     if case.get("scenario", {}).get("kind") == "days":
         return observe_days(case, lambda index: generate_case(case, index))
     workout = generate_case(case, case["day_index"])
-    return {"workout": workout,
+    observation = {"workout": workout,
             "warmup_equipment": {e["name"]: e["equipment"] for e in work_gen.EXERCISE_LIBRARY["warmup"]},
             "category_sizes": {k: len(v) for k, v in work_gen.EXERCISE_LIBRARY.items()}}
+    if "no_excluded_exercises" in case["expect"]:
+        observation.update(observe_injury(case, workout, work_gen.EXERCISE_LIBRARY,
+                                          work_gen.filter_exercises_for_injuries))
+    return observation
 
 
 def score_observation(case, observation):

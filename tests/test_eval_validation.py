@@ -97,3 +97,15 @@ def test_schedule_expectation_must_match_athlete(tmp_path, case, check):
     case["athlete"]["days_per_week"] = 3
     write_cases(tmp_path, [case])
     assert any("must equal athlete.days_per_week" in error for error in validation.validate_corpus(tmp_path))
+
+
+def test_injury_profile_must_match_athlete(tmp_path, case):
+    case["expect"] = {"no_excluded_exercises": "shoulder"}
+    write_cases(tmp_path, [case])
+    assert any("profile must be in athlete.injuries" in error for error in validation.validate_corpus(tmp_path))
+
+
+def test_scenario_kind_typo_is_rejected(tmp_path, case):
+    case["scenario"] = {"kind": "injury_filtre"}
+    write_cases(tmp_path, [case])
+    assert any("must be one of" in error for error in validation.validate_corpus(tmp_path))

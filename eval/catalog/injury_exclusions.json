@@ -1,0 +1,111 @@
+{
+  "format_version": 1,
+  "scope": "These are explicit restrictions for synthetic coach-supplied scenarios. They are not clinical guidance or exclusions for every athlete with an injury. An injury label selects a scenario contract; it does not establish a medical rule. This audit covers prescribed exercise blocks. Warmup text has no ID, movement_family, or pattern metadata.",
+  "profiles": {
+    "shoulder": {
+      "constraint": "Exclude the reviewed overhead press, landmine press, vertical pull, and overhead slam exercise IDs.",
+      "patterns": [],
+      "movement_families": [],
+      "reviewed_ids": [
+        {
+          "id": "upper_push:02942e5a",
+          "name": "Barbell military press",
+          "movement_family": "general",
+          "pattern": "push"
+        },
+        {
+          "id": "upper_push:828c1a00",
+          "name": "Dumbbell military press",
+          "movement_family": "general",
+          "pattern": "push"
+        },
+        {
+          "id": "upper_push:9485d0d9",
+          "name": "Alternating dumbbell military press",
+          "movement_family": "general",
+          "pattern": "push"
+        },
+        {
+          "id": "upper_push:2a08c0dd",
+          "name": "One-sided dumbbell military press",
+          "movement_family": "general",
+          "pattern": "push"
+        },
+        {
+          "id": "upper_push:2e10adb3",
+          "name": "Half-kneeling landmine press",
+          "movement_family": "general",
+          "pattern": "push"
+        },
+        {
+          "id": "upper_pull:ee023997",
+          "name": "Wide-grip lat pulldown",
+          "movement_family": "general",
+          "pattern": "pull"
+        },
+        {
+          "id": "upper_pull:bbfb9794",
+          "name": "Reverse-grip lat pulldown",
+          "movement_family": "general",
+          "pattern": "pull"
+        },
+        {
+          "id": "upper_pull:06fc9b2c",
+          "name": "One-arm lat pulldown",
+          "movement_family": "general",
+          "pattern": "pull"
+        },
+        {
+          "id": "upper_pull:79307fad",
+          "name": "Lat pulldown",
+          "movement_family": "general",
+          "pattern": "pull"
+        },
+        {
+          "id": "core_power:9fa5c79e",
+          "name": "Walking overhead slam",
+          "movement_family": "general",
+          "pattern": "core"
+        }
+      ],
+      "notes": "The library labels military presses and Push-up as movement_family=general and pattern=push. These fields cannot identify overhead movements. The shoulder profile therefore uses this explicit reviewed ID list. No scorer check reads name substrings. This is a metadata limitation and a deviation from metadata-only selection."
+    },
+    "elbow": {
+      "constraint": "Exclude every prescribed exercise with the push or pull pattern.",
+      "patterns": [
+        "push",
+        "pull"
+      ],
+      "movement_families": [],
+      "reviewed_ids": []
+    },
+    "knee": {
+      "constraint": "Exclude every prescribed exercise with the squat or knee_extension pattern.",
+      "patterns": [
+        "squat",
+        "knee_extension"
+      ],
+      "movement_families": [],
+      "reviewed_ids": []
+    },
+    "back": {
+      "constraint": "Exclude every prescribed exercise with the hinge pattern or deadlift movement family.",
+      "patterns": [
+        "hinge"
+      ],
+      "movement_families": [
+        "deadlift"
+      ],
+      "reviewed_ids": []
+    },
+    "hip": {
+      "constraint": "Exclude every prescribed exercise with the hip_flexion or lateral pattern.",
+      "patterns": [
+        "hip_flexion",
+        "lateral"
+      ],
+      "movement_families": [],
+      "reviewed_ids": []
+    }
+  }
+}

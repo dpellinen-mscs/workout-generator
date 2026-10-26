@@ -123,6 +123,16 @@
         "fallback_full_body": {
           "type": "boolean",
           "const": true
+        },
+        "no_excluded_exercises": {
+          "type": "string",
+          "enum": [
+            "shoulder",
+            "elbow",
+            "knee",
+            "back",
+            "hip"
+          ]
         }
       }
     },
@@ -188,7 +198,20 @@
           ]
         },
         "scenario": {
-          "type": "object"
+          "type": "object",
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "single",
+                "days",
+                "injury_filter"
+              ]
+            }
+          }
         }
       }
     }
