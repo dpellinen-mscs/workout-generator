@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 import work_gen
 from eval.tools.days import CHECKS as DAY_CHECKS, observe_days
 from eval.tools.injury import no_excluded_exercises, observe_injury
+from eval.tools.rotation import ROTATION_CHECKS, observe_rotation
 
 CASES_DIR = ROOT / "eval" / "cases"
 BASELINE = ROOT / "eval" / "recorded" / "baseline.json"
@@ -56,6 +57,7 @@ CHECKS = {
 }
 CHECKS.update(DAY_CHECKS)
 CHECKS["no_excluded_exercises"] = no_excluded_exercises
+CHECKS.update(ROTATION_CHECKS)
 
 
 def load_cases(cases_dir=CASES_DIR):
@@ -98,6 +100,8 @@ def generate_case(case, day_index):
 
 
 def observe(case):
+    if case.get("scenario", {}).get("kind") == "rotation":
+        return observe_rotation(case, lambda c: generate_case(c, c["day_index"]))
     if case.get("scenario", {}).get("kind") == "days":
         return observe_days(case, lambda index: generate_case(case, index))
     workout = generate_case(case, case["day_index"])

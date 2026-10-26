@@ -8,6 +8,8 @@
 | F-004 | wrong-program | open | days-offseason-2-limit, days-offseason-3-limit, days-offseason-4-limit, days-offseason-5-limit, days-offseason-6-limit, days-inseason-2-limit, days-inseason-3-limit, days-inseason-4-limit, days-inseason-5-limit, days-inseason-6-limit |
 | F-005 | blocks-use | open | injury-shoulder-military, injury-shoulder-core-power |
 | F-006 | blocks-use | open | injury-elbow-patterns, injury-knee-patterns, injury-back-hinge, injury-hip-patterns |
+| F-007 | wrong-program | open | rotation-001, rotation-006, rotation-007 |
+| F-008 | wrong-program | open | rotation-004 |
 
 ## F-001: The generator ignores available equipment
 
@@ -98,3 +100,33 @@
 - Observed: Elbow, knee, back, and hip profiles receive push or pull, squat or knee extension, hinge, and lateral exercises respectively.
 - Expected: Each program must exclude the movement patterns and families that its synthetic profile prohibits.
 - Notes: The case catalog defines explicit scenario restrictions. It does not define medical exclusions for all athletes with each injury. The engine only implements a shoulder filter.
+
+## F-007: A main lift repeats within the supplied block
+
+- Severity: wrong-program
+- Status: open
+- Case(s): eval/cases/rotation.json#rotation-001, eval/cases/rotation.json#rotation-006, eval/cases/rotation.json#rotation-007
+- Repro:
+  ```python
+  athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 3, "injuries": []}
+  import random, work_gen; random.seed(2)
+  work_gen.generate_workout(athlete, history=[{"date": "2026-10-25", "category": "lower", "exercise_name": "Barbell back squat"}], day_index=0)
+  ```
+- Observed: The selected main lifts repeat Barbell back squat, Barbell bench press, and Barbell row (overhand grip) from their supplied blocks. Rotation choices are deterministic within each eligible pool.
+- Expected: A main lift must not repeat within the supplied rotation block.
+- Notes: The requested eval constraint differs from the configured rotation policy. coaching_style.json sets rotation.block_length to 4, and the engine repeats the last lift until four consecutive uses. The owner requires no main-lift repeat in the supplied block. This PR records the conflict without a generator fix.
+
+## F-008: Consecutive sessions can receive the same accessory pair
+
+- Severity: wrong-program
+- Status: open
+- Case(s): eval/cases/rotation.json#rotation-004
+- Repro:
+  ```python
+  athlete = {"position": "RHP", "goal": "power", "phase": "offseason", "days_per_week": 3, "injuries": []}
+  import json, random, work_gen; from pathlib import Path; history = next(c for c in json.loads(Path("eval/cases/rotation.json").read_text())["cases"] if c["id"] == "rotation-004")["history"]; random.seed(2)
+  work_gen.generate_workout(athlete, history=history, day_index=0)
+  ```
+- Observed: All four accessory pairs share the latest date. Seed 2 selects Leg curl and Leg extension again from the four tied pairs.
+- Expected: Consecutive sessions must use different accessory pairs when another configured pair is available.
+- Notes: All four configured pairs have the same most-recent date. Pair scoring uses date strings and chooses at random among the tied pairs. The engine does not use the supplied session order to exclude the previous pair.
